@@ -1,0 +1,999 @@
+2025-09-24 13:37:59,010 INFO: Annotating btree1.ll...
+2025-09-24 13:37:59,011 INFO: Building function map...
+2025-09-24 13:37:59,011 INFO: New global discovered @ line 9: @allocator_stat = dso_local global i64 0, align 8
+2025-09-24 13:37:59,011 WARNING: @allocator_stat isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,011 INFO: New global discovered @ line 10: @order = dso_local global i64 6, align 8
+2025-09-24 13:37:59,011 WARNING: @order isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,011 INFO: New global discovered @ line 11: @queue = dso_local global ptr null, align 8
+2025-09-24 13:37:59,011 WARNING: @queue isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 12: @verbose_output = dso_local global i8 0, align 1
+2025-09-24 13:37:59,012 WARNING: @verbose_output isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 13: @.str = private unnamed_addr constant [77 x i8] c"bpt version %s -- Copyright (c) 2018  Amittai Aviram http://www.amittai.com\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 14: @.str.1 = private unnamed_addr constant [7 x i8] c"1.16.1\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.1 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 15: @.str.2 = private unnamed_addr constant [193 x i8] c"This program comes with ABSOLUTELY NO WARRANTY.\0AThis is free software, and you are welcome to redistribute it\0Aunder certain conditions.\0APlease see the headnote in the source code for details.\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.2 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 16: @.str.3 = private unnamed_addr constant [23 x i8] c"B+ Tree of Order %ld.\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.3 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 17: @.str.4 = private unnamed_addr constant [182 x i8] c"Following Silberschatz, Korth, Sidarshan, Database Concepts, 5th ed.\0A\0ATo build a B+ tree of a different order, start again and enter the order\0Aas an integer argument:  bpt <order>  \00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.4 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 18: @.str.5 = private unnamed_addr constant [22 x i8] c"(%d <= order <= %d).\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.5 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 19: @.str.6 = private unnamed_addr constant [149 x i8] c"To start with input from a file of newline-delimited integers, \0Astart again and enter the order followed by the filename:\0Abpt <order> <inputfile> .\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.6 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 20: @.str.7 = private unnamed_addr constant [776 x i8] c"Enter any of the following commands after the prompt > :\0A\09i <k>  -- Insert <k> (an integer) as both key and value).\0A\09i <k> <v> -- Insert the value <v> (an integer) as the value of key <k> (an integer).\0A\09f <k>  -- Find the value under key <k>.\0A\09p <k> -- Pruint64_t the path from the root to key k and its associated value.\0A\09r <k1> <k2> -- Pruint64_t the keys and values found in the range [<k1>, <k2>\0A\09d <k>  -- Delete key <k> and its associated value.\0A\09x -- Destroy the whole tree.  Start again with an empty tree of the same order.\0A\09t -- Pruint64_t the B+ tree.\0A\09l -- Pruint64_t the keys of the leaves (bottom row of the tree).\0A\09v -- Toggle output of pointer addresses (\22verbose\22) in tree and leaves.\0A\09q -- Quit. (Or use Ctl-D or Ctl-C.)\0A\09? -- Pruint64_t this help message.\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.7 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 21: @.str.8 = private unnamed_addr constant [24 x i8] c"Usage: ./bpt [<order>]\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.8 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 22: @.str.9 = private unnamed_addr constant [28 x i8] c"\09where %d <= order <= %d .\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.9 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 23: @.str.10 = private unnamed_addr constant [13 x i8] c"Empty tree.\0A\00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.10 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 24: @.str.11 = private unnamed_addr constant [4 x i8] c"%p \00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.11 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 25: @.str.12 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
+2025-09-24 13:37:59,012 WARNING: @.str.12 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,012 INFO: New global discovered @ line 26: @.str.13 = private unnamed_addr constant [4 x i8] c" | \00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.13 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 27: @.str.14 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.14 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 28: @.str.15 = private unnamed_addr constant [5 x i8] c"(%p)\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.15 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 29: @.str.16 = private unnamed_addr constant [3 x i8] c"| \00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.16 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 30: @.str.17 = private unnamed_addr constant [33 x i8] c"Record not found under key %ld.\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.17 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 31: @.str.18 = private unnamed_addr constant [37 x i8] c"Record at %p -- key %ld, value %ld.\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.18 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 32: @.str.19 = private unnamed_addr constant [13 x i8] c"None found.\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.19 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 33: @.str.20 = private unnamed_addr constant [37 x i8] c"Key: %ld   Location: %p  Value: %ld\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.20 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 34: @.str.21 = private unnamed_addr constant [2 x i8] c"[\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.21 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 35: @.str.22 = private unnamed_addr constant [6 x i8] c"%ld] \00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.22 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 36: @.str.23 = private unnamed_addr constant [8 x i8] c"%ld ->\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.23 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 37: @.str.24 = private unnamed_addr constant [7 x i8] c"Leaf [\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.24 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 38: @.str.25 = private unnamed_addr constant [9 x i8] c"%ld] ->\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.25 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 39: @free_nodes = dso_local global ptr null, align 8
+2025-09-24 13:37:59,013 WARNING: @free_nodes isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 40: @stderr = external global ptr, align 8
+2025-09-24 13:37:59,013 WARNING: @stderr isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,013 INFO: New global discovered @ line 41: @.str.26 = private unnamed_addr constant [30 x i8] c"Failed to allocate memory...\0A\00", align 1
+2025-09-24 13:37:59,013 WARNING: @.str.26 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 42: @free_recs = dso_local global ptr null, align 8
+2025-09-24 13:37:59,014 WARNING: @free_recs isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 43: @.str.27 = private unnamed_addr constant [17 x i8] c"Record creation.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.27 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 44: @.str.28 = private unnamed_addr constant [15 x i8] c"Node creation.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.28 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 45: @.str.29 = private unnamed_addr constant [21 x i8] c"New node keys array.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.29 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 46: @.str.30 = private unnamed_addr constant [25 x i8] c"New node pointers array.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.30 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 47: @.str.31 = private unnamed_addr constant [22 x i8] c"Temporary keys array.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.31 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 48: @.str.32 = private unnamed_addr constant [26 x i8] c"Temporary pointers array.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.32 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 49: @.str.33 = private unnamed_addr constant [46 x i8] c"Temporary pointers array for splitting nodes.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.33 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 50: @.str.34 = private unnamed_addr constant [42 x i8] c"Temporary keys array for splitting nodes.\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.34 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 51: @.str.35 = private unnamed_addr constant [51 x i8] c"Search for nonexistent pointer to node in parent.\0A\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.35 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 52: @.str.36 = private unnamed_addr constant [13 x i8] c"Node:  %#lx\0A\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.36 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 53: @x = internal global [3 x i64] [i64 13070, i64 43981, i64 4660], align 16
+2025-09-24 13:37:59,014 WARNING: @x isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 54: @a = internal global [3 x i64] [i64 58989, i64 57068, i64 5], align 16
+2025-09-24 13:37:59,014 WARNING: @a isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 55: @c = internal global i64 11, align 8
+2025-09-24 13:37:59,014 WARNING: @c isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 56: @.str.37 = private unnamed_addr constant [28 x i8] c"Failed to allocate memory.\0A\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.37 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 57: @.str.38 = private unnamed_addr constant [15 x i8] c"Allocated %ld\0A\00", align 1
+2025-09-24 13:37:59,014 WARNING: @.str.38 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,014 INFO: New global discovered @ line 58: @.str.39 = private unnamed_addr constant [21 x i8] c"BTree Elements: %zu\0A\00", align 1
+2025-09-24 13:37:59,015 WARNING: @.str.39 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,015 INFO: New global discovered @ line 59: @.str.40 = private unnamed_addr constant [19 x i8] c"Btree Fanout: %zu\0A\00", align 1
+2025-09-24 13:37:59,015 WARNING: @.str.40 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,015 INFO: New global discovered @ line 60: @.str.41 = private unnamed_addr constant [19 x i8] c"Allocator: %zu MB\0A\00", align 1
+2025-09-24 13:37:59,015 WARNING: @.str.41 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,015 INFO: New global discovered @ line 61: @.str.42 = private unnamed_addr constant [32 x i8] c"got %zu matches in %zu seconds\0A\00", align 1
+2025-09-24 13:37:59,015 WARNING: @.str.42 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,015 INFO: New global discovered @ line 62: @.str.43 = private unnamed_addr constant [17 x i8] c"Experiment DONE\0A\00", align 1
+2025-09-24 13:37:59,015 WARNING: @.str.43 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,015 INFO: New global discovered @ line 63: @.str.44 = private unnamed_addr constant [8 x i8] c"ENOMEM\0A\00", align 1
+2025-09-24 13:37:59,015 WARNING: @.str.44 isn't annotated, security will be determined by context
+
+2025-09-24 13:37:59,015 INFO: New function discovered @ line 66: define dso_local void @license_notice() #0 {
+2025-09-24 13:37:59,015 WARNING: Failed to parse annotations for <@license_notice>: define dso_local void @license_notice() #0 {
+2025-09-24 13:42:27,102 INFO: Annotating btree1.ll...
+2025-09-24 13:42:27,103 INFO: Building function map...
+2025-09-24 13:42:27,103 INFO: New global discovered @ line 9: @allocator_stat = dso_local global i64 0, align 8
+2025-09-24 13:42:27,103 WARNING: @allocator_stat isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,103 INFO: New global discovered @ line 10: @order = dso_local global i64 6, align 8
+2025-09-24 13:42:27,103 WARNING: @order isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,103 INFO: New global discovered @ line 11: @queue = dso_local global ptr null, align 8
+2025-09-24 13:42:27,104 WARNING: @queue isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 12: @verbose_output = dso_local global i8 0, align 1
+2025-09-24 13:42:27,104 WARNING: @verbose_output isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 13: @.str = private unnamed_addr constant [77 x i8] c"bpt version %s -- Copyright (c) 2018  Amittai Aviram http://www.amittai.com\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 14: @.str.1 = private unnamed_addr constant [7 x i8] c"1.16.1\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.1 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 15: @.str.2 = private unnamed_addr constant [193 x i8] c"This program comes with ABSOLUTELY NO WARRANTY.\0AThis is free software, and you are welcome to redistribute it\0Aunder certain conditions.\0APlease see the headnote in the source code for details.\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.2 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 16: @.str.3 = private unnamed_addr constant [23 x i8] c"B+ Tree of Order %ld.\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.3 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 17: @.str.4 = private unnamed_addr constant [182 x i8] c"Following Silberschatz, Korth, Sidarshan, Database Concepts, 5th ed.\0A\0ATo build a B+ tree of a different order, start again and enter the order\0Aas an integer argument:  bpt <order>  \00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.4 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 18: @.str.5 = private unnamed_addr constant [22 x i8] c"(%d <= order <= %d).\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.5 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 19: @.str.6 = private unnamed_addr constant [149 x i8] c"To start with input from a file of newline-delimited integers, \0Astart again and enter the order followed by the filename:\0Abpt <order> <inputfile> .\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.6 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 20: @.str.7 = private unnamed_addr constant [776 x i8] c"Enter any of the following commands after the prompt > :\0A\09i <k>  -- Insert <k> (an integer) as both key and value).\0A\09i <k> <v> -- Insert the value <v> (an integer) as the value of key <k> (an integer).\0A\09f <k>  -- Find the value under key <k>.\0A\09p <k> -- Pruint64_t the path from the root to key k and its associated value.\0A\09r <k1> <k2> -- Pruint64_t the keys and values found in the range [<k1>, <k2>\0A\09d <k>  -- Delete key <k> and its associated value.\0A\09x -- Destroy the whole tree.  Start again with an empty tree of the same order.\0A\09t -- Pruint64_t the B+ tree.\0A\09l -- Pruint64_t the keys of the leaves (bottom row of the tree).\0A\09v -- Toggle output of pointer addresses (\22verbose\22) in tree and leaves.\0A\09q -- Quit. (Or use Ctl-D or Ctl-C.)\0A\09? -- Pruint64_t this help message.\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.7 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 21: @.str.8 = private unnamed_addr constant [24 x i8] c"Usage: ./bpt [<order>]\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.8 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 22: @.str.9 = private unnamed_addr constant [28 x i8] c"\09where %d <= order <= %d .\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.9 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 23: @.str.10 = private unnamed_addr constant [13 x i8] c"Empty tree.\0A\00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.10 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 24: @.str.11 = private unnamed_addr constant [4 x i8] c"%p \00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.11 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,104 INFO: New global discovered @ line 25: @.str.12 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
+2025-09-24 13:42:27,104 WARNING: @.str.12 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 26: @.str.13 = private unnamed_addr constant [4 x i8] c" | \00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.13 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 27: @.str.14 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.14 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 28: @.str.15 = private unnamed_addr constant [5 x i8] c"(%p)\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.15 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 29: @.str.16 = private unnamed_addr constant [3 x i8] c"| \00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.16 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 30: @.str.17 = private unnamed_addr constant [33 x i8] c"Record not found under key %ld.\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.17 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 31: @.str.18 = private unnamed_addr constant [37 x i8] c"Record at %p -- key %ld, value %ld.\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.18 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 32: @.str.19 = private unnamed_addr constant [13 x i8] c"None found.\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.19 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 33: @.str.20 = private unnamed_addr constant [37 x i8] c"Key: %ld   Location: %p  Value: %ld\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.20 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 34: @.str.21 = private unnamed_addr constant [2 x i8] c"[\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.21 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 35: @.str.22 = private unnamed_addr constant [6 x i8] c"%ld] \00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.22 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 36: @.str.23 = private unnamed_addr constant [8 x i8] c"%ld ->\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.23 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 37: @.str.24 = private unnamed_addr constant [7 x i8] c"Leaf [\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.24 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,105 INFO: New global discovered @ line 38: @.str.25 = private unnamed_addr constant [9 x i8] c"%ld] ->\0A\00", align 1
+2025-09-24 13:42:27,105 WARNING: @.str.25 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 39: @free_nodes = dso_local global ptr null, align 8
+2025-09-24 13:42:27,106 WARNING: @free_nodes isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 40: @stderr = external global ptr, align 8
+2025-09-24 13:42:27,106 WARNING: @stderr isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 41: @.str.26 = private unnamed_addr constant [30 x i8] c"Failed to allocate memory...\0A\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.26 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 42: @free_recs = dso_local global ptr null, align 8
+2025-09-24 13:42:27,106 WARNING: @free_recs isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 43: @.str.27 = private unnamed_addr constant [17 x i8] c"Record creation.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.27 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 44: @.str.28 = private unnamed_addr constant [15 x i8] c"Node creation.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.28 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 45: @.str.29 = private unnamed_addr constant [21 x i8] c"New node keys array.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.29 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 46: @.str.30 = private unnamed_addr constant [25 x i8] c"New node pointers array.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.30 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 47: @.str.31 = private unnamed_addr constant [22 x i8] c"Temporary keys array.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.31 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 48: @.str.32 = private unnamed_addr constant [26 x i8] c"Temporary pointers array.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.32 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 49: @.str.33 = private unnamed_addr constant [46 x i8] c"Temporary pointers array for splitting nodes.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.33 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 50: @.str.34 = private unnamed_addr constant [42 x i8] c"Temporary keys array for splitting nodes.\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.34 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 51: @.str.35 = private unnamed_addr constant [51 x i8] c"Search for nonexistent pointer to node in parent.\0A\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.35 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 52: @.str.36 = private unnamed_addr constant [13 x i8] c"Node:  %#lx\0A\00", align 1
+2025-09-24 13:42:27,106 WARNING: @.str.36 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 53: @x = internal global [3 x i64] [i64 13070, i64 43981, i64 4660], align 16
+2025-09-24 13:42:27,106 WARNING: @x isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,106 INFO: New global discovered @ line 54: @a = internal global [3 x i64] [i64 58989, i64 57068, i64 5], align 16
+2025-09-24 13:42:27,106 WARNING: @a isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 55: @c = internal global i64 11, align 8
+2025-09-24 13:42:27,107 WARNING: @c isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 56: @.str.37 = private unnamed_addr constant [28 x i8] c"Failed to allocate memory.\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.37 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 57: @.str.38 = private unnamed_addr constant [15 x i8] c"Allocated %ld\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.38 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 58: @.str.39 = private unnamed_addr constant [21 x i8] c"BTree Elements: %zu\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.39 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 59: @.str.40 = private unnamed_addr constant [19 x i8] c"Btree Fanout: %zu\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.40 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 60: @.str.41 = private unnamed_addr constant [19 x i8] c"Allocator: %zu MB\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.41 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 61: @.str.42 = private unnamed_addr constant [32 x i8] c"got %zu matches in %zu seconds\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.42 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 62: @.str.43 = private unnamed_addr constant [17 x i8] c"Experiment DONE\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.43 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New global discovered @ line 63: @.str.44 = private unnamed_addr constant [8 x i8] c"ENOMEM\0A\00", align 1
+2025-09-24 13:42:27,107 WARNING: @.str.44 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:27,107 INFO: New function discovered @ line 66: define dso_local void @license_notice() #0 !sec !{!"void", !"public", {}} {
+2025-09-24 13:42:27,107 WARNING: Failed to parse annotations for <@license_notice>: define dso_local void @license_notice() #0 !sec !{!"void", !"public", {}} {
+2025-09-24 13:42:46,099 INFO: Annotating btree1.ll...
+2025-09-24 13:42:46,100 INFO: Building function map...
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 9: @allocator_stat = dso_local global i64 0, align 8
+2025-09-24 13:42:46,100 WARNING: @allocator_stat isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 10: @order = dso_local global i64 6, align 8
+2025-09-24 13:42:46,100 WARNING: @order isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 11: @queue = dso_local global ptr null, align 8
+2025-09-24 13:42:46,100 WARNING: @queue isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 12: @verbose_output = dso_local global i8 0, align 1
+2025-09-24 13:42:46,100 WARNING: @verbose_output isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 13: @.str = private unnamed_addr constant [77 x i8] c"bpt version %s -- Copyright (c) 2018  Amittai Aviram http://www.amittai.com\0A\00", align 1
+2025-09-24 13:42:46,100 WARNING: @.str isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 14: @.str.1 = private unnamed_addr constant [7 x i8] c"1.16.1\00", align 1
+2025-09-24 13:42:46,100 WARNING: @.str.1 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,100 INFO: New global discovered @ line 15: @.str.2 = private unnamed_addr constant [193 x i8] c"This program comes with ABSOLUTELY NO WARRANTY.\0AThis is free software, and you are welcome to redistribute it\0Aunder certain conditions.\0APlease see the headnote in the source code for details.\0A\00", align 1
+2025-09-24 13:42:46,100 WARNING: @.str.2 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 16: @.str.3 = private unnamed_addr constant [23 x i8] c"B+ Tree of Order %ld.\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.3 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 17: @.str.4 = private unnamed_addr constant [182 x i8] c"Following Silberschatz, Korth, Sidarshan, Database Concepts, 5th ed.\0A\0ATo build a B+ tree of a different order, start again and enter the order\0Aas an integer argument:  bpt <order>  \00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.4 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 18: @.str.5 = private unnamed_addr constant [22 x i8] c"(%d <= order <= %d).\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.5 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 19: @.str.6 = private unnamed_addr constant [149 x i8] c"To start with input from a file of newline-delimited integers, \0Astart again and enter the order followed by the filename:\0Abpt <order> <inputfile> .\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.6 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 20: @.str.7 = private unnamed_addr constant [776 x i8] c"Enter any of the following commands after the prompt > :\0A\09i <k>  -- Insert <k> (an integer) as both key and value).\0A\09i <k> <v> -- Insert the value <v> (an integer) as the value of key <k> (an integer).\0A\09f <k>  -- Find the value under key <k>.\0A\09p <k> -- Pruint64_t the path from the root to key k and its associated value.\0A\09r <k1> <k2> -- Pruint64_t the keys and values found in the range [<k1>, <k2>\0A\09d <k>  -- Delete key <k> and its associated value.\0A\09x -- Destroy the whole tree.  Start again with an empty tree of the same order.\0A\09t -- Pruint64_t the B+ tree.\0A\09l -- Pruint64_t the keys of the leaves (bottom row of the tree).\0A\09v -- Toggle output of pointer addresses (\22verbose\22) in tree and leaves.\0A\09q -- Quit. (Or use Ctl-D or Ctl-C.)\0A\09? -- Pruint64_t this help message.\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.7 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 21: @.str.8 = private unnamed_addr constant [24 x i8] c"Usage: ./bpt [<order>]\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.8 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 22: @.str.9 = private unnamed_addr constant [28 x i8] c"\09where %d <= order <= %d .\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.9 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 23: @.str.10 = private unnamed_addr constant [13 x i8] c"Empty tree.\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.10 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 24: @.str.11 = private unnamed_addr constant [4 x i8] c"%p \00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.11 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 25: @.str.12 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.12 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 26: @.str.13 = private unnamed_addr constant [4 x i8] c" | \00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.13 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 27: @.str.14 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.14 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 28: @.str.15 = private unnamed_addr constant [5 x i8] c"(%p)\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.15 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 29: @.str.16 = private unnamed_addr constant [3 x i8] c"| \00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.16 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 30: @.str.17 = private unnamed_addr constant [33 x i8] c"Record not found under key %ld.\0A\00", align 1
+2025-09-24 13:42:46,101 WARNING: @.str.17 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,101 INFO: New global discovered @ line 31: @.str.18 = private unnamed_addr constant [37 x i8] c"Record at %p -- key %ld, value %ld.\0A\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.18 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 32: @.str.19 = private unnamed_addr constant [13 x i8] c"None found.\0A\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.19 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 33: @.str.20 = private unnamed_addr constant [37 x i8] c"Key: %ld   Location: %p  Value: %ld\0A\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.20 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 34: @.str.21 = private unnamed_addr constant [2 x i8] c"[\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.21 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 35: @.str.22 = private unnamed_addr constant [6 x i8] c"%ld] \00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.22 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 36: @.str.23 = private unnamed_addr constant [8 x i8] c"%ld ->\0A\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.23 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 37: @.str.24 = private unnamed_addr constant [7 x i8] c"Leaf [\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.24 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 38: @.str.25 = private unnamed_addr constant [9 x i8] c"%ld] ->\0A\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.25 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 39: @free_nodes = dso_local global ptr null, align 8
+2025-09-24 13:42:46,102 WARNING: @free_nodes isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 40: @stderr = external global ptr, align 8
+2025-09-24 13:42:46,102 WARNING: @stderr isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 41: @.str.26 = private unnamed_addr constant [30 x i8] c"Failed to allocate memory...\0A\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.26 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 42: @free_recs = dso_local global ptr null, align 8
+2025-09-24 13:42:46,102 WARNING: @free_recs isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 43: @.str.27 = private unnamed_addr constant [17 x i8] c"Record creation.\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.27 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 44: @.str.28 = private unnamed_addr constant [15 x i8] c"Node creation.\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.28 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 45: @.str.29 = private unnamed_addr constant [21 x i8] c"New node keys array.\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.29 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 46: @.str.30 = private unnamed_addr constant [25 x i8] c"New node pointers array.\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.30 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,102 INFO: New global discovered @ line 47: @.str.31 = private unnamed_addr constant [22 x i8] c"Temporary keys array.\00", align 1
+2025-09-24 13:42:46,102 WARNING: @.str.31 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 48: @.str.32 = private unnamed_addr constant [26 x i8] c"Temporary pointers array.\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.32 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 49: @.str.33 = private unnamed_addr constant [46 x i8] c"Temporary pointers array for splitting nodes.\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.33 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 50: @.str.34 = private unnamed_addr constant [42 x i8] c"Temporary keys array for splitting nodes.\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.34 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 51: @.str.35 = private unnamed_addr constant [51 x i8] c"Search for nonexistent pointer to node in parent.\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.35 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 52: @.str.36 = private unnamed_addr constant [13 x i8] c"Node:  %#lx\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.36 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 53: @x = internal global [3 x i64] [i64 13070, i64 43981, i64 4660], align 16
+2025-09-24 13:42:46,103 WARNING: @x isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 54: @a = internal global [3 x i64] [i64 58989, i64 57068, i64 5], align 16
+2025-09-24 13:42:46,103 WARNING: @a isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 55: @c = internal global i64 11, align 8
+2025-09-24 13:42:46,103 WARNING: @c isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 56: @.str.37 = private unnamed_addr constant [28 x i8] c"Failed to allocate memory.\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.37 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 57: @.str.38 = private unnamed_addr constant [15 x i8] c"Allocated %ld\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.38 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 58: @.str.39 = private unnamed_addr constant [21 x i8] c"BTree Elements: %zu\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.39 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 59: @.str.40 = private unnamed_addr constant [19 x i8] c"Btree Fanout: %zu\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.40 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 60: @.str.41 = private unnamed_addr constant [19 x i8] c"Allocator: %zu MB\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.41 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 61: @.str.42 = private unnamed_addr constant [32 x i8] c"got %zu matches in %zu seconds\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.42 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 62: @.str.43 = private unnamed_addr constant [17 x i8] c"Experiment DONE\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.43 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,103 INFO: New global discovered @ line 63: @.str.44 = private unnamed_addr constant [8 x i8] c"ENOMEM\0A\00", align 1
+2025-09-24 13:42:46,103 WARNING: @.str.44 isn't annotated, security will be determined by context
+
+2025-09-24 13:42:46,104 INFO: New function discovered @ line 66: define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:42:46,105 INFO: Calculating <license_notice> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:42:46,106 INFO: New function discovered @ line 72: declare i32 @printf(ptr noundef, ...) #1
+2025-09-24 13:42:46,106 WARNING: Failed to parse annotations for <@printf>: declare i32 @printf(ptr noundef, ...) #1
+2025-09-24 13:46:01,828 INFO: Annotating btree1-funcs.ll...
+2025-09-24 13:46:01,828 INFO: Building function map...
+2025-09-24 13:46:01,828 INFO: New function discovered @ line 1: define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:46:01,830 INFO: Calculating <license_notice> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:46:01,831 DEBUG: Function Map:
+{ 'license_notice': LLVMFunction(name='license_notice', start=1, end=5, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1)\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.2)\n', '  ret void\n', '}'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]})}
+
+2025-09-24 13:46:01,832 INFO: Processing license_notice...
+2025-09-24 13:46:01,832 DEBUG: Processing define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:46:01,832 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:46:01,834 DEBUG: Parsing function call on line 1...
+2025-09-24 13:46:01,834 ERROR: Error building constraints on line 1 of license_notice: 'printf' <class 'KeyError'>
+  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1)
+
+2025-09-24 13:46:01,834 DEBUG: Full Context:
+{'pc': False, 'ret': False}
+2025-09-24 13:47:48,723 INFO: Annotating btree1-funcs.ll...
+2025-09-24 13:47:48,723 INFO: Building function map...
+2025-09-24 13:47:48,723 INFO: New function discovered @ line 1: define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:47:48,724 INFO: Calculating <license_notice> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:47:48,725 INFO: New function discovered @ line 7: declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
+2025-09-24 13:47:48,726 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:47:48,726 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:47:48,726 DEBUG: Function Map:
+{ 'license_notice': LLVMFunction(name='license_notice', start=1, end=5, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1)\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.2)\n', '  ret void\n', '}\n'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]}),
+  'printf': LLVMFunction(name='printf', start=7, end=7, meta={'ret': False, 'pc': False, '%param0': False, '...': False}, blocks=[LLVMBlock('%entry')], body=['declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1'], is_poly=False, history={'ret': [], 'pc': [], '%param0': [], '...': []})}
+
+2025-09-24 13:47:48,727 INFO: Processing license_notice...
+2025-09-24 13:47:48,727 DEBUG: Processing define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:47:48,727 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:47:48,729 DEBUG: Parsing function call on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	1_printf_arg0 ≡ False
+	1_printf_arg1 ≡ False
+	%1 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %1),
+  ('arg0_label', 1_printf_arg0),
+  ('arg1_label', 1_printf_arg1)]
+
+2025-09-24 13:47:48,731 DEBUG: Parsing function call on line 2...
+	Constraints:
+	'pc'(False) ⊑ %2
+	2_printf_arg0 ≡ False
+	%2 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %2), ('arg0_label', 2_printf_arg0)]
+
+2025-09-24 13:47:48,732 DEBUG: Parsing return instruction on line 3...
+	Annotations:
+	[]
+
+2025-09-24 13:47:48,733 INFO: Solving constraints for license_notice...
+tgt_label: %1 -> public
+arg0_label: 1_printf_arg0 -> public
+arg1_label: 1_printf_arg1 -> public
+tgt_label: %2 -> public
+arg0_label: 2_printf_arg0 -> public
+2025-09-24 13:47:48,733 INFO: Finished processing license_notice!
+
+2025-09-24 13:47:48,734 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:47:48,734 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:47:48,734 INFO: Processing printf...
+2025-09-24 13:47:48,734 DEBUG: Processing declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1...
+2025-09-24 13:47:48,734 DEBUG: {'%param0': False, '...': False, 'pc': False, 'ret': False}
+2025-09-24 13:47:48,734 INFO: Solving constraints for printf...
+2025-09-24 13:47:48,735 INFO: Finished processing printf!
+
+2025-09-24 13:47:48,735 INFO: Annotations complete! File written to q.ll
+2025-09-24 13:52:15,093 INFO: Annotating btree1-funcs.ll...
+2025-09-24 13:52:15,093 INFO: Building function map...
+2025-09-24 13:52:15,093 INFO: New function discovered @ line 1: define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:52:15,094 INFO: Calculating <license_notice> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:52:15,095 INFO: New function discovered @ line 7: declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
+2025-09-24 13:52:15,095 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:52:15,096 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:52:15,096 INFO: New function discovered @ line 9: define dso_local void @usage_1() #0 {
+2025-09-24 13:52:15,096 WARNING: Failed to parse annotations for <@usage_1>: define dso_local void @usage_1() #0 {
+2025-09-24 13:53:15,570 INFO: Annotating btree1-funcs.ll...
+2025-09-24 13:53:15,570 INFO: Building function map...
+2025-09-24 13:53:15,570 INFO: New function discovered @ line 1: define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:53:15,571 INFO: Calculating <license_notice> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:53:15,573 INFO: New function discovered @ line 7: declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
+2025-09-24 13:53:15,573 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:53:15,573 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:53:15,573 INFO: New function discovered @ line 9: define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:53:15,573 INFO: Calculating <usage_1> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:53:15,575 DEBUG: Function Map:
+{ 'license_notice': LLVMFunction(name='license_notice', start=1, end=5, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1)\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.2)\n', '  ret void\n', '}\n'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]}),
+  'printf': LLVMFunction(name='printf', start=7, end=7, meta={'ret': False, 'pc': False, '%param0': False, '...': False}, blocks=[LLVMBlock('%entry')], body=['declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1\n'], is_poly=False, history={'ret': [], 'pc': [], '%param0': [], '...': []}),
+  'usage_1': LLVMFunction(name='usage_1', start=9, end=16, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = load i64, ptr @order, align 8\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.3, i64 noundef %1)\n', '  %3 = call i32 (ptr, ...) @printf(ptr noundef @.str.4)\n', '  %4 = call i32 (ptr, ...) @printf(ptr noundef @.str.5, i32 noundef 3, i32 noundef 20)\n', '  %5 = call i32 (ptr, ...) @printf(ptr noundef @.str.6)\n', '  ret void\n', '}'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]})}
+
+2025-09-24 13:53:15,575 INFO: Processing license_notice...
+2025-09-24 13:53:15,575 DEBUG: Processing define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:53:15,575 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:53:15,577 DEBUG: Parsing function call on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	1_printf_arg0 ≡ False
+	1_printf_arg1 ≡ False
+	%1 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %1),
+  ('arg0_label', 1_printf_arg0),
+  ('arg1_label', 1_printf_arg1)]
+
+2025-09-24 13:53:15,579 DEBUG: Parsing function call on line 2...
+	Constraints:
+	'pc'(False) ⊑ %2
+	2_printf_arg0 ≡ False
+	%2 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %2), ('arg0_label', 2_printf_arg0)]
+
+2025-09-24 13:53:15,580 DEBUG: Parsing return instruction on line 3...
+	Annotations:
+	[]
+
+2025-09-24 13:53:15,581 INFO: Solving constraints for license_notice...
+tgt_label: %1 -> public
+arg0_label: 1_printf_arg0 -> public
+arg1_label: 1_printf_arg1 -> public
+tgt_label: %2 -> public
+arg0_label: 2_printf_arg0 -> public
+2025-09-24 13:53:15,582 INFO: Finished processing license_notice!
+
+2025-09-24 13:53:15,582 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:53:15,582 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:53:15,582 INFO: Processing printf...
+2025-09-24 13:53:15,582 DEBUG: Processing declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
+...
+2025-09-24 13:53:15,582 DEBUG: {'%param0': False, '...': False, 'pc': False, 'ret': False}
+2025-09-24 13:53:15,583 INFO: Solving constraints for printf...
+2025-09-24 13:53:15,583 INFO: Finished processing printf!
+
+2025-09-24 13:53:15,583 INFO: Processing usage_1...
+2025-09-24 13:53:15,583 DEBUG: Processing define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:53:15,583 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:53:15,583 DEBUG: Parsing load instruction on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	@order ⊑ %1
+
+	Annotations:
+	[('tgt_label', %1), ('src_label', @order)]
+
+2025-09-24 13:53:15,584 DEBUG: Parsing function call on line 2...
+	Constraints:
+	'pc'(False) ⊑ %2
+	2_printf_arg0 ≡ False
+	%1 ≡ False
+	%2 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %2),
+  ('arg0_label', 2_printf_arg0),
+  ('arg1_label', %1)]
+
+2025-09-24 13:53:15,586 DEBUG: Parsing function call on line 3...
+	Constraints:
+	'pc'(False) ⊑ %3
+	3_printf_arg0 ≡ False
+	%3 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %3), ('arg0_label', 3_printf_arg0)]
+
+2025-09-24 13:53:15,587 DEBUG: Parsing function call on line 4...
+	Constraints:
+	'pc'(False) ⊑ %4
+	4_printf_arg0 ≡ False
+	4_printf_arg1 ≡ False
+	4_printf_arg2 ≡ False
+	%4 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %4),
+  ('arg0_label', 4_printf_arg0),
+  ('arg1_label', 4_printf_arg1),
+  ('arg2_label', 4_printf_arg2)]
+
+2025-09-24 13:53:15,588 DEBUG: Parsing function call on line 5...
+	Constraints:
+	'pc'(False) ⊑ %5
+	5_printf_arg0 ≡ False
+	%5 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %5), ('arg0_label', 5_printf_arg0)]
+
+2025-09-24 13:53:15,589 DEBUG: Parsing return instruction on line 6...
+	Annotations:
+	[]
+
+2025-09-24 13:53:15,589 INFO: Solving constraints for usage_1...
+tgt_label: %1 -> public
+src_label: @order -> public
+tgt_label: %2 -> public
+arg0_label: 2_printf_arg0 -> public
+arg1_label: %1 -> public
+tgt_label: %3 -> public
+arg0_label: 3_printf_arg0 -> public
+tgt_label: %4 -> public
+arg0_label: 4_printf_arg0 -> public
+arg1_label: 4_printf_arg1 -> public
+arg2_label: 4_printf_arg2 -> public
+tgt_label: %5 -> public
+arg0_label: 5_printf_arg0 -> public
+2025-09-24 13:53:15,590 INFO: Finished processing usage_1!
+
+2025-09-24 13:53:15,591 INFO: Annotations complete! File written to bfuncs-annotated.ll
+2025-09-24 13:55:06,228 INFO: Annotating btree1-funcs.ll...
+2025-09-24 13:55:06,228 INFO: Building function map...
+2025-09-24 13:55:06,228 INFO: New function discovered @ line 1: define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:55:06,229 INFO: Calculating <license_notice> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:55:06,230 INFO: New function discovered @ line 7: declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
+2025-09-24 13:55:06,231 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:55:06,231 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:55:06,231 INFO: New function discovered @ line 9: define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:55:06,231 INFO: Calculating <usage_1> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:55:06,231 INFO: New function discovered @ line 19: define dso_local void @usage_2() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:55:06,232 INFO: Calculating <usage_2> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:55:06,232 INFO: New function discovered @ line 25: define dso_local void @usage_3() #0 !sec !{!"void", !"public", !{}} {
+2025-09-24 13:55:06,232 INFO: Calculating <usage_3> post-dom constraints...
+%entry...
+	'False' ⊑ 'False'
+
+
+2025-09-24 13:55:06,235 DEBUG: Function Map:
+{ 'license_notice': LLVMFunction(name='license_notice', start=1, end=5, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1)\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.2)\n', '  ret void\n', '}\n'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]}),
+  'printf': LLVMFunction(name='printf', start=7, end=7, meta={'ret': False, 'pc': False, '%param0': False, '...': False}, blocks=[LLVMBlock('%entry')], body=['declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1\n'], is_poly=False, history={'ret': [], 'pc': [], '%param0': [], '...': []}),
+  'usage_1': LLVMFunction(name='usage_1', start=9, end=16, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = load i64, ptr @order, align 8\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.3, i64 noundef %1)\n', '  %3 = call i32 (ptr, ...) @printf(ptr noundef @.str.4)\n', '  %4 = call i32 (ptr, ...) @printf(ptr noundef @.str.5, i32 noundef 3, i32 noundef 20)\n', '  %5 = call i32 (ptr, ...) @printf(ptr noundef @.str.6)\n', '  ret void\n', '}\n'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]}),
+  'usage_2': LLVMFunction(name='usage_2', start=19, end=22, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @usage_2() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str.7)\n', '  ret void\n', '}\n'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]}),
+  'usage_3': LLVMFunction(name='usage_3', start=25, end=29, meta={'ret': False, 'pc': False, '%entry': False}, blocks=[LLVMBlock('%entry')], body=['define dso_local void @usage_3() #0 !sec !{!"void", !"public", !{}} {\n', '  %1 = call i32 (ptr, ...) @printf(ptr noundef @.str.8)\n', '  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.9, i32 noundef 3, i32 noundef 20)\n', '  ret void\n', '}'], is_poly=False, history={'ret': [], 'pc': [], '%entry': [False, False]})}
+
+2025-09-24 13:55:06,235 INFO: Processing license_notice...
+2025-09-24 13:55:06,235 DEBUG: Processing define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:55:06,235 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:55:06,237 DEBUG: Parsing function call on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	1_printf_arg0 ≡ False
+	1_printf_arg1 ≡ False
+	%1 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %1),
+  ('arg0_label', 1_printf_arg0),
+  ('arg1_label', 1_printf_arg1)]
+
+2025-09-24 13:55:06,240 DEBUG: Parsing function call on line 2...
+	Constraints:
+	'pc'(False) ⊑ %2
+	2_printf_arg0 ≡ False
+	%2 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %2), ('arg0_label', 2_printf_arg0)]
+
+2025-09-24 13:55:06,241 DEBUG: Parsing return instruction on line 3...
+	Annotations:
+	[]
+
+2025-09-24 13:55:06,241 INFO: Solving constraints for license_notice...
+tgt_label: %1 -> public
+arg0_label: 1_printf_arg0 -> public
+arg1_label: 1_printf_arg1 -> public
+tgt_label: %2 -> public
+arg0_label: 2_printf_arg0 -> public
+2025-09-24 13:55:06,242 INFO: Finished processing license_notice!
+
+2025-09-24 13:55:06,242 DEBUG: Updating metadata - <@printf>[%param0]: public
+2025-09-24 13:55:06,242 DEBUG: Updating metadata - <@printf>[...]: public
+2025-09-24 13:55:06,242 INFO: Processing printf...
+2025-09-24 13:55:06,242 DEBUG: Processing declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
+...
+2025-09-24 13:55:06,242 DEBUG: {'%param0': False, '...': False, 'pc': False, 'ret': False}
+2025-09-24 13:55:06,243 INFO: Solving constraints for printf...
+2025-09-24 13:55:06,243 INFO: Finished processing printf!
+
+2025-09-24 13:55:06,243 INFO: Processing usage_1...
+2025-09-24 13:55:06,243 DEBUG: Processing define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:55:06,243 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:55:06,243 DEBUG: Parsing load instruction on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	@order ⊑ %1
+
+	Annotations:
+	[('tgt_label', %1), ('src_label', @order)]
+
+2025-09-24 13:55:06,243 DEBUG: Parsing function call on line 2...
+	Constraints:
+	'pc'(False) ⊑ %2
+	2_printf_arg0 ≡ False
+	%1 ≡ False
+	%2 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %2),
+  ('arg0_label', 2_printf_arg0),
+  ('arg1_label', %1)]
+
+2025-09-24 13:55:06,246 DEBUG: Parsing function call on line 3...
+	Constraints:
+	'pc'(False) ⊑ %3
+	3_printf_arg0 ≡ False
+	%3 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %3), ('arg0_label', 3_printf_arg0)]
+
+2025-09-24 13:55:06,247 DEBUG: Parsing function call on line 4...
+	Constraints:
+	'pc'(False) ⊑ %4
+	4_printf_arg0 ≡ False
+	4_printf_arg1 ≡ False
+	4_printf_arg2 ≡ False
+	%4 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %4),
+  ('arg0_label', 4_printf_arg0),
+  ('arg1_label', 4_printf_arg1),
+  ('arg2_label', 4_printf_arg2)]
+
+2025-09-24 13:55:06,249 DEBUG: Parsing function call on line 5...
+	Constraints:
+	'pc'(False) ⊑ %5
+	5_printf_arg0 ≡ False
+	%5 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %5), ('arg0_label', 5_printf_arg0)]
+
+2025-09-24 13:55:06,250 DEBUG: Parsing return instruction on line 6...
+	Annotations:
+	[]
+
+2025-09-24 13:55:06,250 INFO: Solving constraints for usage_1...
+tgt_label: %1 -> public
+src_label: @order -> public
+tgt_label: %2 -> public
+arg0_label: 2_printf_arg0 -> public
+arg1_label: %1 -> public
+tgt_label: %3 -> public
+arg0_label: 3_printf_arg0 -> public
+tgt_label: %4 -> public
+arg0_label: 4_printf_arg0 -> public
+arg1_label: 4_printf_arg1 -> public
+arg2_label: 4_printf_arg2 -> public
+tgt_label: %5 -> public
+arg0_label: 5_printf_arg0 -> public
+2025-09-24 13:55:06,251 INFO: Finished processing usage_1!
+
+2025-09-24 13:55:06,251 INFO: Processing usage_2...
+2025-09-24 13:55:06,251 DEBUG: Processing define dso_local void @usage_2() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:55:06,251 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:55:06,251 DEBUG: Parsing function call on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	1_printf_arg0 ≡ False
+	%1 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %1), ('arg0_label', 1_printf_arg0)]
+
+2025-09-24 13:55:06,252 DEBUG: Parsing return instruction on line 2...
+	Annotations:
+	[]
+
+2025-09-24 13:55:06,253 INFO: Solving constraints for usage_2...
+tgt_label: %1 -> public
+arg0_label: 1_printf_arg0 -> public
+2025-09-24 13:55:06,253 INFO: Finished processing usage_2!
+
+2025-09-24 13:55:06,253 INFO: Processing usage_3...
+2025-09-24 13:55:06,253 DEBUG: Processing define dso_local void @usage_3() #0 !sec !{!"void", !"public", !{}} {
+...
+2025-09-24 13:55:06,253 DEBUG: {'pc': False, 'ret': False}
+2025-09-24 13:55:06,253 DEBUG: Parsing function call on line 1...
+	Constraints:
+	'pc'(False) ⊑ %1
+	1_printf_arg0 ≡ False
+	%1 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[('call', False), ('tgt_label', %1), ('arg0_label', 1_printf_arg0)]
+
+2025-09-24 13:55:06,254 DEBUG: Parsing function call on line 2...
+	Constraints:
+	'pc'(False) ⊑ %2
+	2_printf_arg0 ≡ False
+	2_printf_arg1 ≡ False
+	2_printf_arg2 ≡ False
+	%2 ≡ 'ret'(False)
+	'pc'(False) ⊑ 'pc_min'(False)
+
+	Annotations:
+	[ ('call', False),
+  ('tgt_label', %2),
+  ('arg0_label', 2_printf_arg0),
+  ('arg1_label', 2_printf_arg1),
+  ('arg2_label', 2_printf_arg2)]
+
+2025-09-24 13:55:06,256 DEBUG: Parsing return instruction on line 3...
+	Annotations:
+	[]
+
+2025-09-24 13:55:06,256 INFO: Solving constraints for usage_3...
+tgt_label: %1 -> public
+arg0_label: 1_printf_arg0 -> public
+tgt_label: %2 -> public
+arg0_label: 2_printf_arg0 -> public
+arg1_label: 2_printf_arg1 -> public
+arg2_label: 2_printf_arg2 -> public
+2025-09-24 13:55:06,257 INFO: Finished processing usage_3!
+
+2025-09-24 13:55:06,257 INFO: Annotations complete! File written to bfuncs-annotated.ll
