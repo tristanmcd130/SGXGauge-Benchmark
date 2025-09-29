@@ -487,7 +487,7 @@ uint64_t path_to_root(node *const root, node *child)
  */
 void print_tree(node *const root)
 {
-    node *n = NULL;
+    node *n = NULL; // %3
     uint64_t i = 0;
     uint64_t rank = 0;
     uint64_t new_rank = 0;
@@ -499,9 +499,9 @@ void print_tree(node *const root)
     queue = NULL;
     enqueue(root);
     while (queue != NULL) {
-        n = dequeue();
+        n = dequeue(); // %17
         if (n->parent != NULL && n == n->parent->pointers[0]) {
-            new_rank = path_to_root(root, n);
+            new_rank = path_to_root(root, n); // %34
             if (new_rank != rank) {
                 rank = new_rank;
                 printf("\n");
@@ -516,7 +516,7 @@ void print_tree(node *const root)
         }
         if (!n->is_leaf)
             for (i = 0; i <= n->num_keys; i++)
-                enqueue(n->pointers[i]);
+                enqueue(n->pointers[i]); // %96
         if (verbose_output) {
             if (n->is_leaf)
                 printf("%p ", n->pointers[order - 1]);
@@ -532,13 +532,13 @@ void print_tree(node *const root)
 /* Finds the record under a given key and prints an
  * appropriate message to stdout.
  */
-void find_and_print(node *const root, uint64_t key, bool verbose)
+void find_and_print(node *const root, uint64_t key, bool verbose) // %5 = key: private
 {
     record *r = find(root, key, verbose, NULL);
     if (r == NULL)
-        printf("Record not found under key %ld.\n", key);
+        printf("Record not found under key %ld.\n", key); // %17 = 
     else
-        printf("Record at %p -- key %ld, value %ld.\n", r, key, r->value);
+        printf("Record at %p -- key %ld, value %ld.\n", r, key, r->value); //
 }
 
 
@@ -549,7 +549,7 @@ void find_and_print_range(node *const root, uint64_t key_start, uint64_t key_end
 {
     uint64_t i;
     uint64_t array_size = key_end - key_start + 1;
-    uint64_t returned_keys[array_size];
+    uint64_t returned_keys[array_size]; // %22: private
     void *returned_pointers[array_size];
     uint64_t num_found = find_range(root, key_start, key_end, verbose, returned_keys,
                                     returned_pointers);
@@ -557,7 +557,7 @@ void find_and_print_range(node *const root, uint64_t key_start, uint64_t key_end
         printf("None found.\n");
     else {
         for (i = 0; i < num_found; i++)
-            printf("Key: %ld   Location: %p  Value: %ld\n", returned_keys[i], returned_pointers[i],
+            printf("Key: %ld   Location: %p  Value: %ld\n", returned_keys[i], returned_pointers[i], // %43 = returned_keys[i]: public
                    ((record *)returned_pointers[i])->value);
     }
 }
@@ -607,7 +607,7 @@ node *find_leaf(node *const root, uint64_t key, bool verbose)
     }
     uint64_t i = 0;
     node *c = root;
-    while (!c->is_leaf) {
+    while (!c->is_leaf) { // c is %23
         if (verbose) {
             printf("[");
             for (i = 0; i < c->num_keys - 1; i++)
@@ -638,7 +638,7 @@ node *find_leaf(node *const root, uint64_t key, bool verbose)
 /* Finds and returns the record to which
  * a key refers.
  */
-record *find(node *root, uint64_t key, bool verbose, node **leaf_out)
+record *find(node *root, uint64_t key, bool verbose, node **leaf_out) // %7 = key
 {
     if (root == NULL) {
         if (leaf_out != NULL) {
