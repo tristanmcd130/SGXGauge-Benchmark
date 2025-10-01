@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python3 ~/Documents/llvm-enclaves/enclave_tests/annotation-inference/annotate.py btree1-funcs.ll btree1-annotated.ll

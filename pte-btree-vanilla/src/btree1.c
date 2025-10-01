@@ -882,7 +882,7 @@ node *insert_into_leaf_after_splitting(node *root, node *leaf, uint64_t key, rec
 
     leaf->num_keys = 0;
 
-    split = cut(order - 1);
+    split = cut(order - 1); // %103 = order - 1
     for (i = 0; i < split; i++) {
         leaf->pointers[i] = temp_pointers[i];
         leaf->keys[i] = temp_keys[i];
@@ -1635,6 +1635,7 @@ int real_main(){
 
     size_t total_mem = nelements * sizeof(struct element);
     struct element *elms = allocate(total_mem,CONFIG_LARGE_PAGE_SIZE);
+    // call to allocate = %23: public
     if (elms == NULL) {
         fprintf(stderr, "Failed to allocate memory.\n");
         exit(1);
@@ -1651,7 +1652,7 @@ int real_main(){
 
     /* shuffle for insertions */
     for (size_t i = nelements; i > 1; i--) {
-        size_t j = myrand() % (i + 1);
+        size_t j = myrand() % (i + 1); // call to myrand = %59: private
         uint64_t tmp = elms[i].key;
         elms[i].key = elms[j].key;
         elms[j].key = tmp;
@@ -1659,6 +1660,7 @@ int real_main(){
 
     for (size_t i = 0; i < nelements; i++) {
         root = insert(root, elms[i].key, (uint64_t)&elms[i]);
+        // cast to uint64_t = %100: private
     }
 
     printf("BTree Elements: %zu\n", nelements);
