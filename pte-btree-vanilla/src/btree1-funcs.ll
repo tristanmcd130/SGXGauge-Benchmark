@@ -544,19 +544,25 @@ define dso_local void @find_and_print(ptr noundef %0, i64 noundef %1, i1 noundef
 
 19:                                               ; preds = %3
   %20 = load ptr, ptr %7, align 8
+  %d20 = call ptr @declassify.ptr(ptr noundef %20)
   %21 = load i64, ptr %5, align 8
   %22 = load ptr, ptr %7, align 8
   %23 = getelementptr inbounds %struct.record, ptr %22, i32 0, i32 0
   %24 = load i64, ptr %23, align 8
-  %25 = call i32 (ptr, ...) @printf(ptr noundef @.str.18, ptr noundef %20, i64 noundef %21, i64 noundef %24)
+  %d24 = call i64 @declassify.i64(ptr noundef %24)
+  %25 = call i32 (ptr, ...) @printf(ptr noundef @.str.18, ptr noundef %d20, i64 noundef %21, i64 noundef %d24)
   br label %26
 
 26:                                               ; preds = %19, %16
   ret void
 }
 
+define dso_local ptr @declassify.ptr(ptr noundef %0) #0 !sec !{!"public", !"public", !{!"private"}} {
+  ret ptr %0 !sec !{!"public"}
+}
+
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local ptr @find(ptr noundef %0, i64 noundef %1, i1 noundef zeroext %2, ptr noundef %3) #0 !sec !{!"nosec", !"nosec", !{!"nosec", !"nosec", !"nosec", !"nosec"}} {
+define dso_local ptr @find(ptr noundef %0, i64 noundef %1, i1 noundef zeroext %2, ptr noundef %3) #0 !sec !{!"private", !"private", !{!"private", !"private", !"private", !"private"}} {
   %5 = alloca ptr, align 8
   %6 = alloca ptr, align 8
   %7 = alloca i64, align 8
@@ -595,6 +601,7 @@ define dso_local ptr @find(ptr noundef %0, i64 noundef %1, i1 noundef zeroext %2
   %24 = load i8, ptr %8, align 1
   %25 = trunc i8 %24 to i1
   %26 = call ptr @find_leaf(ptr noundef %22, i64 noundef %23, i1 noundef zeroext %25)
+  ; %d26 = call ptr @declassify.ptr(ptr noundef %26)
   store ptr %26, ptr %11, align 8
   store i64 0, ptr %10, align 8
   br label %27
@@ -727,15 +734,18 @@ define dso_local void @find_and_print_range(ptr noundef %0, i64 noundef %1, i64 
   %41 = load i64, ptr %9, align 8
   %42 = getelementptr inbounds i64, ptr %22, i64 %41
   %43 = load i64, ptr %42, align 8
+  %d43 = call i64 @declassify.i64(i64 noundef %43)
   %44 = load i64, ptr %9, align 8
   %45 = getelementptr inbounds ptr, ptr %24, i64 %44
   %46 = load ptr, ptr %45, align 8
+  %d46 = call ptr @declassify.ptr(ptr noundef %46)
   %47 = load i64, ptr %9, align 8
   %48 = getelementptr inbounds ptr, ptr %24, i64 %47
   %49 = load ptr, ptr %48, align 8
   %50 = getelementptr inbounds %struct.record, ptr %49, i32 0, i32 0
   %51 = load i64, ptr %50, align 8
-  %52 = call i32 (ptr, ...) @printf(ptr noundef @.str.20, i64 noundef %43, ptr noundef %46, i64 noundef %51)
+  %d51 = call i64 @declassify.i64(i64 noundef %51)
+  %52 = call i32 (ptr, ...) @printf(ptr noundef @.str.20, i64 noundef %d43, ptr noundef %d46, i64 noundef %d51)
   br label %53
 
 53:                                               ; preds = %40
@@ -756,8 +766,12 @@ define dso_local void @find_and_print_range(ptr noundef %0, i64 noundef %1, i64 
 ; Function Attrs: nocallback nofree nosync nounwind willreturn
 declare !sec !{!"public", !"public", !{}} ptr @llvm.stacksave.p0() #2
 
+define dso_local i1 @declassify.i1(i1 noundef %0) #0 !sec !{!"public", !"public", !{!"private"}} {
+  ret i1 %0 !sec !{!"public"}
+}
+
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local i64 @find_range(ptr noundef %0, i64 noundef %1, i64 noundef %2, i1 noundef zeroext %3, ptr noundef %4, ptr noundef %5) #0 !sec !{!"private", !"private", !{!"private", !"private", !"private", !"private", !"nosec", !"private"}} {
+define dso_local i64 @find_range(ptr noundef %0, i64 noundef %1, i64 noundef %2, i1 noundef zeroext %3, ptr noundef %4, ptr noundef %5) #0 !sec !{!"nosec", !"nosec", !{!"nosec", !"nosec", !"nosec", !"nosec", !"nosec", !"nosec"}} {
   %7 = alloca i64, align 8
   %8 = alloca ptr, align 8
   %9 = alloca i64, align 8
@@ -780,7 +794,8 @@ define dso_local i64 @find_range(ptr noundef %0, i64 noundef %1, i64 noundef %2,
   %19 = load i64, ptr %9, align 8
   %20 = load i8, ptr %11, align 1
   %21 = trunc i8 %20 to i1
-  %22 = call ptr @find_leaf(ptr noundef %18, i64 noundef %19, i1 noundef zeroext %21)
+  ; %d21 = call i1 @declassify.i1(i1 noundef zeroext %21)
+  %22 = call ptr @find_leaf(ptr noundef %18, i64 noundef %19, i1 noundef zeroext %d21)
   store ptr %22, ptr %16, align 8
   %23 = load ptr, ptr %16, align 8
   %24 = icmp eq ptr %23, null

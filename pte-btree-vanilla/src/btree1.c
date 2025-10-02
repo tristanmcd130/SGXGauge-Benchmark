@@ -534,11 +534,11 @@ void print_tree(node *const root)
  */
 void find_and_print(node *const root, uint64_t key, bool verbose) // %5 = key: private
 {
-    record *r = find(root, key, verbose, NULL);
+    record *r = find(root, key, verbose, NULL); // %13: private
     if (r == NULL)
-        printf("Record not found under key %ld.\n", key); // %17 = 
+        printf("Record not found under key %ld.\n", key);
     else
-        printf("Record at %p -- key %ld, value %ld.\n", r, key, r->value); //
+        printf("Record at %p -- key %ld, value %ld.\n", r, key, r->value); // %20 = r: private
 }
 
 

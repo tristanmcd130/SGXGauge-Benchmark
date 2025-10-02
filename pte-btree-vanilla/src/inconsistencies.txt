@@ -5,6 +5,6 @@ delete: private(private, private, public, private)
 real_main: public(private, public, public, public)
 
 find_leaf uses:
-find: public(public, public, public)
-find_range: private(private, private, private)
-insert: private(private, private, public)
+find: private(public, public, public)
+find_range: public(public, public, public)
+insert: public(private, private, public)
