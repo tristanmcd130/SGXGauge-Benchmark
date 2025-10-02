@@ -1,4 +1,4 @@
-@order = dso_local global i64 6, align 8 !sec !{!"private"}
+@order = dso_local global i64 6, align 8 !sec !{!"public"}
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
@@ -7,14 +7,14 @@ define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
   ret void
 }
 
-declare !sec !{!"NOSEC", !"NOSEC", !{!"public", !"public", !"NOSEC", !"public", !"public"}} i32 @printf(ptr noundef, ...) #1
+declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #1
 
-define dso_local void @usage_1() #0 !sec !{!"void", !"private", !{}} {
-  %1 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
-  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.3, i64 noundef %1), !sec !{!"call", !"private", !{!"public", !"private"}}
-  %3 = call i32 (ptr, ...) @printf(ptr noundef @.str.4), !sec !{!"call", !"private", !{!"public"}}
-  %4 = call i32 (ptr, ...) @printf(ptr noundef @.str.5, i32 noundef 3, i32 noundef 20), !sec !{!"call", !"private", !{!"public", !"public", !"public"}}
-  %5 = call i32 (ptr, ...) @printf(ptr noundef @.str.6), !sec !{!"call", !"private", !{!"public"}}
+define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {
+  %1 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
+  %2 = call i32 (ptr, ...) @printf(ptr noundef @.str.3, i64 noundef %1), !sec !{!"call", !"public", !{!"public", !"public"}}
+  %3 = call i32 (ptr, ...) @printf(ptr noundef @.str.4), !sec !{!"call", !"public", !{!"public"}}
+  %4 = call i32 (ptr, ...) @printf(ptr noundef @.str.5, i32 noundef 3, i32 noundef 20), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
+  %5 = call i32 (ptr, ...) @printf(ptr noundef @.str.6), !sec !{!"call", !"public", !{!"public"}}
   ret void
 }
 
@@ -33,7 +33,7 @@ define dso_local void @usage_3() #0 !sec !{!"void", !"public", !{}} {
 
 ; TODO: should 12 and 17 really be public?
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local void @enqueue(ptr noundef %0) #0 !sec !{!"void", !"private", !{!"private", !"private", !"private", !"private", !"private", !"private", !"private", !"private", !"private"}} {
+define dso_local void @enqueue(ptr noundef %0) #0 !sec !{!"void", !"public", !{!"public", !"private", !"private", !"private", !"private", !"private", !"private", !"private", !"private"}} {
   %2 = alloca ptr, align 8, !sec !{!"private"}
   %3 = alloca ptr, align 8, !sec !{!"private"}
   store ptr %0, ptr %2, align 8, !sec !{!"private", !"private"}
@@ -83,7 +83,7 @@ define dso_local void @enqueue(ptr noundef %0) #0 !sec !{!"void", !"private", !{
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local ptr @dequeue() #0 !sec !{!"private", !"private", !{!"public"}} {
+define dso_local ptr @dequeue() #0 !sec !{!"public", !"public", !{!"public"}} {
   %1 = alloca ptr, align 8, !sec !{!"public"}
   %2 = load ptr, ptr @queue, align 8, !sec !{!"public", !"public"}
   store ptr %2, ptr %1, align 8, !sec !{!"public", !"public"}
@@ -100,38 +100,38 @@ define dso_local ptr @dequeue() #0 !sec !{!"private", !"private", !{!"public"}} 
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @print_leaves(ptr noundef %0) #0 !sec !{!"void", !"public", !{!"nonsec"}} {
-  %2 = alloca ptr, align 8, !sec !{!"private"}
+  %2 = alloca ptr, align 8, !sec !{!"public"}
   %3 = alloca i64, align 8, !sec !{!"public"}
-  %4 = alloca ptr, align 8, !sec !{!"private"}
-  store ptr %0, ptr %2, align 8, !sec !{!"private", !"private"}
-  %5 = load ptr, ptr %2, align 8, !sec !{!"private", !"private"}
-  %6 = icmp eq ptr %5, null, !sec !{!"private"}
-  br i1 %6, label %7, label %9, !sec !{!"private"}
+  %4 = alloca ptr, align 8, !sec !{!"public"}
+  store ptr %0, ptr %2, align 8, !sec !{!"public", !"public"}
+  %5 = load ptr, ptr %2, align 8, !sec !{!"public", !"public"}
+  %6 = icmp eq ptr %5, null, !sec !{!"public"}
+  br i1 %6, label %7, label %9, !sec !{!"public"}
 
 7:                                                ; preds = %1, !sec !{!"public"}
   %8 = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"call", !"public", !{!"public"}}
   br label %87
 
 9:                                                ; preds = %1, !sec !{!"public"}
-  %10 = load ptr, ptr %2, align 8, !sec !{!"private", !"private"}
-  store ptr %10, ptr %4, align 8, !sec !{!"private", !"private"}
+  %10 = load ptr, ptr %2, align 8, !sec !{!"public", !"public"}
+  store ptr %10, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %11
 
 11:                                               ; preds = %17, %9, !sec !{!"public"}
-  %12 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %13 = getelementptr inbounds %struct.node, ptr %12, i32 0, i32 3, !sec !{!"private", !"private", !"public", !"public"}
-  %14 = load i8, ptr %13, align 8, !sec !{!"private", !"private"}
-  %15 = trunc i8 %14 to i1, !sec !{!"private"}
-  %16 = xor i1 %15, true, !sec !{!"private"}
-  br i1 %16, label %17, label %23, !sec !{!"private"}
+  %12 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %13 = getelementptr inbounds %struct.node, ptr %12, i32 0, i32 3, !sec !{!"public", !"public", !"public", !"public"}
+  %14 = load i8, ptr %13, align 8, !sec !{!"public", !"public"}
+  %15 = trunc i8 %14 to i1, !sec !{!"public"}
+  %16 = xor i1 %15, true, !sec !{!"public"}
+  br i1 %16, label %17, label %23, !sec !{!"public"}
 
 17:                                               ; preds = %11, !sec !{!"public"}
-  %18 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %19 = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %20 = load ptr, ptr %19, align 8, !sec !{!"private", !"private"}
-  %21 = getelementptr inbounds ptr, ptr %20, i64 0, !sec !{!"private", !"private", !"public"}
-  %22 = load ptr, ptr %21, align 8, !sec !{!"private", !"private"}
-  store ptr %22, ptr %4, align 8, !sec !{!"private", !"private"}
+  %18 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %19 = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %20 = load ptr, ptr %19, align 8, !sec !{!"public", !"public"}
+  %21 = getelementptr inbounds ptr, ptr %20, i64 0, !sec !{!"public", !"public", !"public"}
+  %22 = load ptr, ptr %21, align 8, !sec !{!"public", !"public"}
+  store ptr %22, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %11, !llvm.loop !8
 
 23:                                               ; preds = %11, !sec !{!"public"}
@@ -142,12 +142,12 @@ define dso_local void @print_leaves(ptr noundef %0) #0 !sec !{!"void", !"public"
   br label %25
 
 25:                                               ; preds = %50, %24, !sec !{!"public"}
-  %26 = load i64, ptr %3, align 8, !sec !{!"private", !"public"}
-  %27 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %28 = getelementptr inbounds %struct.node, ptr %27, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
-  %29 = load i64, ptr %28, align 8, !sec !{!"private", !"private"}
-  %30 = icmp ult i64 %26, %29, !sec !{!"private"}
-  br i1 %30, label %31, label %53, !sec !{!"private"}
+  %26 = load i64, ptr %3, align 8, !sec !{!"public", !"public"}
+  %27 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %28 = getelementptr inbounds %struct.node, ptr %27, i32 0, i32 4, !sec !{!"public", !"public", !"public", !"public"}
+  %29 = load i64, ptr %28, align 8, !sec !{!"public", !"public"}
+  %30 = icmp ult i64 %26, %29, !sec !{!"public"}
+  br i1 %30, label %31, label %53, !sec !{!"public"}
 
 31:                                               ; preds = %25, !sec !{!"public"}
   %32 = load i8, ptr @verbose_output, align 1, !sec !{!"public", !"public"}
@@ -155,23 +155,23 @@ define dso_local void @print_leaves(ptr noundef %0) #0 !sec !{!"void", !"public"
   br i1 %33, label %34, label %42, !sec !{!"public"}
 
 34:                                               ; preds = %31, !sec !{!"public"}
-  %35 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %36 = getelementptr inbounds %struct.node, ptr %35, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %37 = load ptr, ptr %36, align 8, !sec !{!"private", !"private"}
+  %35 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %36 = getelementptr inbounds %struct.node, ptr %35, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %37 = load ptr, ptr %36, align 8, !sec !{!"public", !"public"}
   %38 = load i64, ptr %3, align 8, !sec !{!"public", !"public"}
-  %39 = getelementptr inbounds ptr, ptr %37, i64 %38, !sec !{!"private", !"private", !"public"}
-  %40 = load ptr, ptr %39, align 8, !sec !{!"private", !"private"}
-  %41 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %40), !sec !{!"call", !"public", !{!"public", !"private"}}
+  %39 = getelementptr inbounds ptr, ptr %37, i64 %38, !sec !{!"public", !"public", !"public"}
+  %40 = load ptr, ptr %39, align 8, !sec !{!"public", !"public"}
+  %41 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %40), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %42
 
 42:                                               ; preds = %34, %31, !sec !{!"public"}
-  %43 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %44 = getelementptr inbounds %struct.node, ptr %43, i32 0, i32 1, !sec !{!"private", !"private", !"public", !"public"}
-  %45 = load ptr, ptr %44, align 8, !sec !{!"private", !"private"}
+  %43 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %44 = getelementptr inbounds %struct.node, ptr %43, i32 0, i32 1, !sec !{!"public", !"public", !"public", !"public"}
+  %45 = load ptr, ptr %44, align 8, !sec !{!"public", !"public"}
   %46 = load i64, ptr %3, align 8, !sec !{!"public", !"public"}
-  %47 = getelementptr inbounds i64, ptr %45, i64 %46, !sec !{!"private", !"private", !"public"}
-  %48 = load i64, ptr %47, align 8, !sec !{!"private", !"private"}
-  %49 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %48), !sec !{!"call", !"public", !{!"public", !"private"}}
+  %47 = getelementptr inbounds i64, ptr %45, i64 %46, !sec !{!"public", !"public", !"public"}
+  %48 = load i64, ptr %47, align 8, !sec !{!"public", !"public"}
+  %49 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %48), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %50
 
 50:                                               ; preds = %42, !sec !{!"public"}
@@ -186,37 +186,37 @@ define dso_local void @print_leaves(ptr noundef %0) #0 !sec !{!"void", !"public"
   br i1 %55, label %56, label %65, !sec !{!"public"}
 
 56:                                               ; preds = %53, !sec !{!"public"}
-  %57 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %58 = getelementptr inbounds %struct.node, ptr %57, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %59 = load ptr, ptr %58, align 8, !sec !{!"private", !"private"}
-  %60 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
-  %61 = sub i64 %60, 1, !sec !{!"private"}
-  %62 = getelementptr inbounds ptr, ptr %59, i64 %61, !sec !{!"private", !"private", !"private"}
-  %63 = load ptr, ptr %62, align 8, !sec !{!"private", !"private"}
-  %64 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %63), !sec !{!"call", !"public", !{!"public", !"private"}}
+  %57 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %58 = getelementptr inbounds %struct.node, ptr %57, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %59 = load ptr, ptr %58, align 8, !sec !{!"public", !"public"}
+  %60 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
+  %61 = sub i64 %60, 1, !sec !{!"public"}
+  %62 = getelementptr inbounds ptr, ptr %59, i64 %61, !sec !{!"public", !"public", !"public"}
+  %63 = load ptr, ptr %62, align 8, !sec !{!"public", !"public"}
+  %64 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %63), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %65
 
 65:                                               ; preds = %56, %53, !sec !{!"public"}
-  %66 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %67 = getelementptr inbounds %struct.node, ptr %66, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %68 = load ptr, ptr %67, align 8, !sec !{!"private", !"private"}
-  %69 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
-  %70 = sub i64 %69, 1, !sec !{!"private"}
-  %71 = getelementptr inbounds ptr, ptr %68, i64 %70, !sec !{!"private", !"private", !"private"}
-  %72 = load ptr, ptr %71, align 8, !sec !{!"private", !"private"}
-  %73 = icmp ne ptr %72, null, !sec !{!"private"}
-  br i1 %73, label %74, label %83, !sec !{!"private"}
+  %66 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %67 = getelementptr inbounds %struct.node, ptr %66, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %68 = load ptr, ptr %67, align 8, !sec !{!"public", !"public"}
+  %69 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
+  %70 = sub i64 %69, 1, !sec !{!"public"}
+  %71 = getelementptr inbounds ptr, ptr %68, i64 %70, !sec !{!"public", !"public", !"public"}
+  %72 = load ptr, ptr %71, align 8, !sec !{!"public", !"public"}
+  %73 = icmp ne ptr %72, null, !sec !{!"public"}
+  br i1 %73, label %74, label %83, !sec !{!"public"}
 
 74:                                               ; preds = %65, !sec !{!"public"}
   %75 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"call", !"public", !{!"public"}}
-  %76 = load ptr, ptr %4, align 8, !sec !{!"private", !"private"}
-  %77 = getelementptr inbounds %struct.node, ptr %76, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %78 = load ptr, ptr %77, align 8, !sec !{!"private", !"private"}
-  %79 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
-  %80 = sub i64 %79, 1, !sec !{!"private"}
-  %81 = getelementptr inbounds ptr, ptr %78, i64 %80, !sec !{!"private", !"private", !"private"}
-  %82 = load ptr, ptr %81, align 8, !sec !{!"private", !"private"}
-  store ptr %82, ptr %4, align 8, !sec !{!"private", !"private"}
+  %76 = load ptr, ptr %4, align 8, !sec !{!"public", !"public"}
+  %77 = getelementptr inbounds %struct.node, ptr %76, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %78 = load ptr, ptr %77, align 8, !sec !{!"public", !"public"}
+  %79 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
+  %80 = sub i64 %79, 1, !sec !{!"public"}
+  %81 = getelementptr inbounds ptr, ptr %78, i64 %80, !sec !{!"public", !"public", !"public"}
+  %82 = load ptr, ptr %81, align 8, !sec !{!"public", !"public"}
+  store ptr %82, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %84
 
 83:                                               ; preds = %65, !sec !{!"public"}
@@ -272,7 +272,7 @@ define dso_local i64 @height(ptr noundef %0) #0 !sec !{!"private", !"private", !
 
 ; WHILE LOOP WITH PRIVATE CONDITION
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local i64 @path_to_root(ptr noundef %0, ptr noundef %1) #0 !sec !{!"private", !"private", !{!"private", !"private", !"private", !"private", !"private", !"private", !"private"}} {
+define dso_local i64 @path_to_root(ptr noundef %0, ptr noundef %1) #0 !sec !{!"public", !"public", !{!"public", !"public", !"private", !"private", !"private", !"private", !"private"}} {
   %3 = alloca ptr, align 8, !sec !{!"private"}
   %4 = alloca ptr, align 8, !sec !{!"private"}
   %5 = alloca i64, align 8, !sec !{!"private"}
@@ -306,214 +306,214 @@ define dso_local i64 @path_to_root(ptr noundef %0, ptr noundef %1) #0 !sec !{!"p
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local void @print_tree(ptr noundef %0) #0 !sec !{!"void", !"private", !{!"private"}} {
-  %2 = alloca ptr, align 8, !sec !{!"private"}
-  %3 = alloca ptr, align 8, !sec !{!"private"}
-  %4 = alloca i64, align 8, !sec !{!"private"}
-  %5 = alloca i64, align 8, !sec !{!"private"}
-  %6 = alloca i64, align 8, !sec !{!"private"}
-  store ptr %0, ptr %2, align 8, !sec !{!"private", !"private"}
-  store ptr null, ptr %3, align 8, !sec !{!"private", !"private"}
-  store i64 0, ptr %4, align 8, !sec !{!"private", !"private"}
-  store i64 0, ptr %5, align 8, !sec !{!"private", !"private"}
-  store i64 0, ptr %6, align 8, !sec !{!"private", !"private"}
-  %7 = load ptr, ptr %2, align 8, !sec !{!"private", !"private"}
-  %8 = icmp eq ptr %7, null, !sec !{!"private"}
-  br i1 %8, label %9, label %11, !sec !{!"private"}
+define dso_local void @print_tree(ptr noundef %0) #0 !sec !{!"void", !"public", !{!"public"}} {
+  %2 = alloca ptr, align 8, !sec !{!"public"}
+  %3 = alloca ptr, align 8, !sec !{!"public"}
+  %4 = alloca i64, align 8, !sec !{!"public"}
+  %5 = alloca i64, align 8, !sec !{!"public"}
+  %6 = alloca i64, align 8, !sec !{!"public"}
+  store ptr %0, ptr %2, align 8, !sec !{!"public", !"public"}
+  store ptr null, ptr %3, align 8, !sec !{!"public", !"public"}
+  store i64 0, ptr %4, align 8, !sec !{!"public", !"public"}
+  store i64 0, ptr %5, align 8, !sec !{!"public", !"public"}
+  store i64 0, ptr %6, align 8, !sec !{!"public", !"public"}
+  %7 = load ptr, ptr %2, align 8, !sec !{!"public", !"public"}
+  %8 = icmp eq ptr %7, null, !sec !{!"public"}
+  br i1 %8, label %9, label %11, !sec !{!"public"}
 
-9:                                                ; preds = %1, !sec !{!"private"}
-  %10 = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"call", !"private", !{!"public"}}
+9:                                                ; preds = %1, !sec !{!"public"}
+  %10 = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"call", !"public", !{!"public"}}
   br label %133
 
-11:                                               ; preds = %1, !sec !{!"private"}
+11:                                               ; preds = %1, !sec !{!"public"}
   store ptr null, ptr @queue, align 8
-  %12 = load ptr, ptr %2, align 8, !sec !{!"private", !"private"}
-  call void @enqueue(ptr noundef %12), !sec !{!"call", !"void", !{!"private"}}
+  %12 = load ptr, ptr %2, align 8, !sec !{!"public", !"public"}
+  call void @enqueue(ptr noundef %12), !sec !{!"call", !"void", !{!"public"}}
   br label %13
 
-13:                                               ; preds = %129, %11, !sec !{!"private"}
-  %14 = load ptr, ptr @queue, align 8, !sec !{!"private", !"private"}
-  %15 = icmp ne ptr %14, null, !sec !{!"private"}
-  br i1 %15, label %16, label %131, !sec !{!"private"}
+13:                                               ; preds = %129, %11, !sec !{!"public"}
+  %14 = load ptr, ptr @queue, align 8, !sec !{!"public", !"public"}
+  %15 = icmp ne ptr %14, null, !sec !{!"public"}
+  br i1 %15, label %16, label %131, !sec !{!"public"}
 
-16:                                               ; preds = %13, !sec !{!"private"}
-  %17 = call ptr @dequeue(), !sec !{!"call", !"private", !{}}
-  store ptr %17, ptr %3, align 8, !sec !{!"private", !"private"}
-  %18 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %19 = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 2, !sec !{!"private", !"private", !"public", !"public"}
-  %20 = load ptr, ptr %19, align 8, !sec !{!"private", !"private"}
-  %21 = icmp ne ptr %20, null, !sec !{!"private"}
-  br i1 %21, label %22, label %43, !sec !{!"private"}
+16:                                               ; preds = %13, !sec !{!"public"}
+  %17 = call ptr @dequeue(), !sec !{!"call", !"public", !{}}
+  store ptr %17, ptr %3, align 8, !sec !{!"public", !"public"}
+  %18 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %19 = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 2, !sec !{!"public", !"public", !"public", !"public"}
+  %20 = load ptr, ptr %19, align 8, !sec !{!"public", !"public"}
+  %21 = icmp ne ptr %20, null, !sec !{!"public"}
+  br i1 %21, label %22, label %43, !sec !{!"public"}
 
-22:                                               ; preds = %16, !sec !{!"private"}
-  %23 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %24 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %25 = getelementptr inbounds %struct.node, ptr %24, i32 0, i32 2, !sec !{!"private", !"private", !"public", !"public"}
-  %26 = load ptr, ptr %25, align 8, !sec !{!"private", !"private"}
-  %27 = getelementptr inbounds %struct.node, ptr %26, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %28 = load ptr, ptr %27, align 8, !sec !{!"private", !"private"}
-  %29 = getelementptr inbounds ptr, ptr %28, i64 0, !sec !{!"private", !"private", !"public"}
-  %30 = load ptr, ptr %29, align 8, !sec !{!"private", !"private"}
-  %31 = icmp eq ptr %23, %30, !sec !{!"private"}
-  br i1 %31, label %32, label %43, !sec !{!"private"}
+22:                                               ; preds = %16, !sec !{!"public"}
+  %23 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %24 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %25 = getelementptr inbounds %struct.node, ptr %24, i32 0, i32 2, !sec !{!"public", !"public", !"public", !"public"}
+  %26 = load ptr, ptr %25, align 8, !sec !{!"public", !"public"}
+  %27 = getelementptr inbounds %struct.node, ptr %26, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %28 = load ptr, ptr %27, align 8, !sec !{!"public", !"public"}
+  %29 = getelementptr inbounds ptr, ptr %28, i64 0, !sec !{!"public", !"public", !"public"}
+  %30 = load ptr, ptr %29, align 8, !sec !{!"public", !"public"}
+  %31 = icmp eq ptr %23, %30, !sec !{!"public"}
+  br i1 %31, label %32, label %43, !sec !{!"public"}
 
-32:                                               ; preds = %22, !sec !{!"private"}
-  %33 = load ptr, ptr %2, align 8, !sec !{!"private", !"private"}
-  %34 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %35 = call i64 @path_to_root(ptr noundef %33, ptr noundef %34), !sec !{!"call", !"private", !{!"private", !"private"}}
-  store i64 %35, ptr %6, align 8, !sec !{!"private", !"private"}
-  %36 = load i64, ptr %6, align 8, !sec !{!"private", !"private"}
-  %37 = load i64, ptr %5, align 8, !sec !{!"private", !"private"}
-  %38 = icmp ne i64 %36, %37, !sec !{!"private"}
-  br i1 %38, label %39, label %42, !sec !{!"private"}
+32:                                               ; preds = %22, !sec !{!"public"}
+  %33 = load ptr, ptr %2, align 8, !sec !{!"public", !"public"}
+  %34 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %35 = call i64 @path_to_root(ptr noundef %33, ptr noundef %34), !sec !{!"call", !"public", !{!"public", !"public"}}
+  store i64 %35, ptr %6, align 8, !sec !{!"public", !"public"}
+  %36 = load i64, ptr %6, align 8, !sec !{!"public", !"public"}
+  %37 = load i64, ptr %5, align 8, !sec !{!"public", !"public"}
+  %38 = icmp ne i64 %36, %37, !sec !{!"public"}
+  br i1 %38, label %39, label %42, !sec !{!"public"}
 
-39:                                               ; preds = %32, !sec !{!"private"}
-  %40 = load i64, ptr %6, align 8, !sec !{!"private", !"private"}
-  store i64 %40, ptr %5, align 8, !sec !{!"private", !"private"}
-  %41 = call i32 (ptr, ...) @printf(ptr noundef @.str.14), !sec !{!"call", !"private", !{!"public"}}
+39:                                               ; preds = %32, !sec !{!"public"}
+  %40 = load i64, ptr %6, align 8, !sec !{!"public", !"public"}
+  store i64 %40, ptr %5, align 8, !sec !{!"public", !"public"}
+  %41 = call i32 (ptr, ...) @printf(ptr noundef @.str.14), !sec !{!"call", !"public", !{!"public"}}
   br label %42
 
-42:                                               ; preds = %39, %32, !sec !{!"private"}
+42:                                               ; preds = %39, %32, !sec !{!"public"}
   br label %43
 
-43:                                               ; preds = %42, %22, %16, !sec !{!"private"}
-  %44 = load i8, ptr @verbose_output, align 1, !sec !{!"private", !"public"}
-  %45 = trunc i8 %44 to i1, !sec !{!"private"}
-  br i1 %45, label %46, label %49, !sec !{!"private"}
+43:                                               ; preds = %42, %22, %16, !sec !{!"public"}
+  %44 = load i8, ptr @verbose_output, align 1, !sec !{!"public", !"public"}
+  %45 = trunc i8 %44 to i1, !sec !{!"public"}
+  br i1 %45, label %46, label %49, !sec !{!"public"}
 
-46:                                               ; preds = %43, !sec !{!"private"}
-  %47 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %48 = call i32 (ptr, ...) @printf(ptr noundef @.str.15, ptr noundef %47), !sec !{!"call", !"private", !{!"public", !"private"}}
+46:                                               ; preds = %43, !sec !{!"public"}
+  %47 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %48 = call i32 (ptr, ...) @printf(ptr noundef @.str.15, ptr noundef %47), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %49
 
-49:                                               ; preds = %46, %43, !sec !{!"private"}
-  store i64 0, ptr %4, align 8, !sec !{!"private", !"private"}
+49:                                               ; preds = %46, %43, !sec !{!"public"}
+  store i64 0, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %50
 
-50:                                               ; preds = %75, %49, !sec !{!"private"}
-  %51 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %52 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %53 = getelementptr inbounds %struct.node, ptr %52, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
-  %54 = load i64, ptr %53, align 8, !sec !{!"private", !"private"}
-  %55 = icmp ult i64 %51, %54, !sec !{!"private"}
-  br i1 %55, label %56, label %78, !sec !{!"private"}
+50:                                               ; preds = %75, %49, !sec !{!"public"}
+  %51 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %52 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %53 = getelementptr inbounds %struct.node, ptr %52, i32 0, i32 4, !sec !{!"public", !"public", !"public", !"public"}
+  %54 = load i64, ptr %53, align 8, !sec !{!"public", !"public"}
+  %55 = icmp ult i64 %51, %54, !sec !{!"public"}
+  br i1 %55, label %56, label %78, !sec !{!"public"}
 
-56:                                               ; preds = %50, !sec !{!"private"}
-  %57 = load i8, ptr @verbose_output, align 1, !sec !{!"private", !"public"}
-  %58 = trunc i8 %57 to i1, !sec !{!"private"}
-  br i1 %58, label %59, label %67, !sec !{!"private"}
+56:                                               ; preds = %50, !sec !{!"public"}
+  %57 = load i8, ptr @verbose_output, align 1, !sec !{!"public", !"public"}
+  %58 = trunc i8 %57 to i1, !sec !{!"public"}
+  br i1 %58, label %59, label %67, !sec !{!"public"}
 
-59:                                               ; preds = %56, !sec !{!"private"}
-  %60 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %61 = getelementptr inbounds %struct.node, ptr %60, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %62 = load ptr, ptr %61, align 8, !sec !{!"private", !"private"}
-  %63 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %64 = getelementptr inbounds ptr, ptr %62, i64 %63, !sec !{!"private", !"private", !"private"}
-  %65 = load ptr, ptr %64, align 8, !sec !{!"private", !"private"}
-  %66 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %65), !sec !{!"call", !"private", !{!"public", !"private"}}
+59:                                               ; preds = %56, !sec !{!"public"}
+  %60 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %61 = getelementptr inbounds %struct.node, ptr %60, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %62 = load ptr, ptr %61, align 8, !sec !{!"public", !"public"}
+  %63 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %64 = getelementptr inbounds ptr, ptr %62, i64 %63, !sec !{!"public", !"public", !"public"}
+  %65 = load ptr, ptr %64, align 8, !sec !{!"public", !"public"}
+  %66 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %65), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %67
 
-67:                                               ; preds = %59, %56, !sec !{!"private"}
-  %68 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %69 = getelementptr inbounds %struct.node, ptr %68, i32 0, i32 1, !sec !{!"private", !"private", !"public", !"public"}
-  %70 = load ptr, ptr %69, align 8, !sec !{!"private", !"private"}
-  %71 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %72 = getelementptr inbounds i64, ptr %70, i64 %71, !sec !{!"private", !"private", !"private"}
-  %73 = load i64, ptr %72, align 8, !sec !{!"private", !"private"}
-  %74 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %73), !sec !{!"call", !"private", !{!"public", !"private"}}
+67:                                               ; preds = %59, %56, !sec !{!"public"}
+  %68 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %69 = getelementptr inbounds %struct.node, ptr %68, i32 0, i32 1, !sec !{!"public", !"public", !"public", !"public"}
+  %70 = load ptr, ptr %69, align 8, !sec !{!"public", !"public"}
+  %71 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %72 = getelementptr inbounds i64, ptr %70, i64 %71, !sec !{!"public", !"public", !"public"}
+  %73 = load i64, ptr %72, align 8, !sec !{!"public", !"public"}
+  %74 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %73), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %75
 
-75:                                               ; preds = %67, !sec !{!"private"}
-  %76 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %77 = add i64 %76, 1, !sec !{!"private"}
-  store i64 %77, ptr %4, align 8, !sec !{!"private", !"private"}
+75:                                               ; preds = %67, !sec !{!"public"}
+  %76 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %77 = add i64 %76, 1, !sec !{!"public"}
+  store i64 %77, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %50, !llvm.loop !12
 
-78:                                               ; preds = %50, !sec !{!"private"}
-  %79 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %80 = getelementptr inbounds %struct.node, ptr %79, i32 0, i32 3, !sec !{!"private", !"private", !"public", !"public"}
-  %81 = load i8, ptr %80, align 8, !sec !{!"private", !"private"}
-  %82 = trunc i8 %81 to i1, !sec !{!"private"}
-  br i1 %82, label %101, label %83, !sec !{!"private"}
+78:                                               ; preds = %50, !sec !{!"public"}
+  %79 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %80 = getelementptr inbounds %struct.node, ptr %79, i32 0, i32 3, !sec !{!"public", !"public", !"public", !"public"}
+  %81 = load i8, ptr %80, align 8, !sec !{!"public", !"public"}
+  %82 = trunc i8 %81 to i1, !sec !{!"public"}
+  br i1 %82, label %101, label %83, !sec !{!"public"}
 
-83:                                               ; preds = %78, !sec !{!"private"}
-  store i64 0, ptr %4, align 8, !sec !{!"private", !"private"}
+83:                                               ; preds = %78, !sec !{!"public"}
+  store i64 0, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %84
 
-84:                                               ; preds = %97, %83, !sec !{!"private"}
-  %85 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %86 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %87 = getelementptr inbounds %struct.node, ptr %86, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
-  %88 = load i64, ptr %87, align 8, !sec !{!"private", !"private"}
-  %89 = icmp ule i64 %85, %88, !sec !{!"private"}
-  br i1 %89, label %90, label %100, !sec !{!"private"}
+84:                                               ; preds = %97, %83, !sec !{!"public"}
+  %85 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %86 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %87 = getelementptr inbounds %struct.node, ptr %86, i32 0, i32 4, !sec !{!"public", !"public", !"public", !"public"}
+  %88 = load i64, ptr %87, align 8, !sec !{!"public", !"public"}
+  %89 = icmp ule i64 %85, %88, !sec !{!"public"}
+  br i1 %89, label %90, label %100, !sec !{!"public"}
 
-90:                                               ; preds = %84, !sec !{!"private"}
-  %91 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %92 = getelementptr inbounds %struct.node, ptr %91, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %93 = load ptr, ptr %92, align 8, !sec !{!"private", !"private"}
-  %94 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %95 = getelementptr inbounds ptr, ptr %93, i64 %94, !sec !{!"private", !"private", !"private"}
-  %96 = load ptr, ptr %95, align 8, !sec !{!"private", !"private"}
-  call void @enqueue(ptr noundef %96), !sec !{!"call", !"void", !{!"private"}}
+90:                                               ; preds = %84, !sec !{!"public"}
+  %91 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %92 = getelementptr inbounds %struct.node, ptr %91, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %93 = load ptr, ptr %92, align 8, !sec !{!"public", !"public"}
+  %94 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %95 = getelementptr inbounds ptr, ptr %93, i64 %94, !sec !{!"public", !"public", !"public"}
+  %96 = load ptr, ptr %95, align 8, !sec !{!"public", !"public"}
+  call void @enqueue(ptr noundef %96), !sec !{!"call", !"void", !{!"public"}}
   br label %97
 
-97:                                               ; preds = %90, !sec !{!"private"}
-  %98 = load i64, ptr %4, align 8, !sec !{!"private", !"private"}
-  %99 = add i64 %98, 1, !sec !{!"private"}
-  store i64 %99, ptr %4, align 8, !sec !{!"private", !"private"}
+97:                                               ; preds = %90, !sec !{!"public"}
+  %98 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
+  %99 = add i64 %98, 1, !sec !{!"public"}
+  store i64 %99, ptr %4, align 8, !sec !{!"public", !"public"}
   br label %84, !llvm.loop !13
 
-100:                                              ; preds = %84, !sec !{!"private"}
+100:                                              ; preds = %84, !sec !{!"public"}
   br label %101
 
-101:                                              ; preds = %100, %78, !sec !{!"private"}
-  %102 = load i8, ptr @verbose_output, align 1, !sec !{!"private", !"public"}
-  %103 = trunc i8 %102 to i1, !sec !{!"private"}
-  br i1 %103, label %104, label %129, !sec !{!"private"}
+101:                                              ; preds = %100, %78, !sec !{!"public"}
+  %102 = load i8, ptr @verbose_output, align 1, !sec !{!"public", !"public"}
+  %103 = trunc i8 %102 to i1, !sec !{!"public"}
+  br i1 %103, label %104, label %129, !sec !{!"public"}
 
-104:                                              ; preds = %101, !sec !{!"private"}
-  %105 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %106 = getelementptr inbounds %struct.node, ptr %105, i32 0, i32 3, !sec !{!"private", !"private", !"public", !"public"}
-  %107 = load i8, ptr %106, align 8, !sec !{!"private", !"private"}
-  %108 = trunc i8 %107 to i1, !sec !{!"private"}
-  br i1 %108, label %109, label %118, !sec !{!"private"}
+104:                                              ; preds = %101, !sec !{!"public"}
+  %105 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %106 = getelementptr inbounds %struct.node, ptr %105, i32 0, i32 3, !sec !{!"public", !"public", !"public", !"public"}
+  %107 = load i8, ptr %106, align 8, !sec !{!"public", !"public"}
+  %108 = trunc i8 %107 to i1, !sec !{!"public"}
+  br i1 %108, label %109, label %118, !sec !{!"public"}
 
-109:                                              ; preds = %104, !sec !{!"private"}
-  %110 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %111 = getelementptr inbounds %struct.node, ptr %110, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %112 = load ptr, ptr %111, align 8, !sec !{!"private", !"private"}
-  %113 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
-  %114 = sub i64 %113, 1, !sec !{!"private"}
-  %115 = getelementptr inbounds ptr, ptr %112, i64 %114, !sec !{!"private", !"private", !"private"}
-  %116 = load ptr, ptr %115, align 8, !sec !{!"private", !"private"}
-  %117 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %116), !sec !{!"call", !"private", !{!"public", !"private"}}
+109:                                              ; preds = %104, !sec !{!"public"}
+  %110 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %111 = getelementptr inbounds %struct.node, ptr %110, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %112 = load ptr, ptr %111, align 8, !sec !{!"public", !"public"}
+  %113 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
+  %114 = sub i64 %113, 1, !sec !{!"public"}
+  %115 = getelementptr inbounds ptr, ptr %112, i64 %114, !sec !{!"public", !"public", !"public"}
+  %116 = load ptr, ptr %115, align 8, !sec !{!"public", !"public"}
+  %117 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %116), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %128
 
-118:                                              ; preds = %104, !sec !{!"private"}
-  %119 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %120 = getelementptr inbounds %struct.node, ptr %119, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
-  %121 = load ptr, ptr %120, align 8, !sec !{!"private", !"private"}
-  %122 = load ptr, ptr %3, align 8, !sec !{!"private", !"private"}
-  %123 = getelementptr inbounds %struct.node, ptr %122, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
-  %124 = load i64, ptr %123, align 8, !sec !{!"private", !"private"}
-  %125 = getelementptr inbounds ptr, ptr %121, i64 %124, !sec !{!"private", !"private", !"private"}
-  %126 = load ptr, ptr %125, align 8, !sec !{!"private", !"private"}
-  %127 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %126), !sec !{!"call", !"private", !{!"public", !"private"}}
+118:                                              ; preds = %104, !sec !{!"public"}
+  %119 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %120 = getelementptr inbounds %struct.node, ptr %119, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
+  %121 = load ptr, ptr %120, align 8, !sec !{!"public", !"public"}
+  %122 = load ptr, ptr %3, align 8, !sec !{!"public", !"public"}
+  %123 = getelementptr inbounds %struct.node, ptr %122, i32 0, i32 4, !sec !{!"public", !"public", !"public", !"public"}
+  %124 = load i64, ptr %123, align 8, !sec !{!"public", !"public"}
+  %125 = getelementptr inbounds ptr, ptr %121, i64 %124, !sec !{!"public", !"public", !"public"}
+  %126 = load ptr, ptr %125, align 8, !sec !{!"public", !"public"}
+  %127 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %126), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %128
 
-128:                                              ; preds = %118, %109, !sec !{!"private"}
+128:                                              ; preds = %118, %109, !sec !{!"public"}
   br label %129
 
-129:                                              ; preds = %128, %101, !sec !{!"private"}
-  %130 = call i32 (ptr, ...) @printf(ptr noundef @.str.16), !sec !{!"call", !"private", !{!"public"}}
+129:                                              ; preds = %128, %101, !sec !{!"public"}
+  %130 = call i32 (ptr, ...) @printf(ptr noundef @.str.16), !sec !{!"call", !"public", !{!"public"}}
   br label %13, !llvm.loop !14
 
-131:                                              ; preds = %13, !sec !{!"private"}
-  %132 = call i32 (ptr, ...) @printf(ptr noundef @.str.14), !sec !{!"call", !"private", !{!"public"}}
+131:                                              ; preds = %13, !sec !{!"public"}
+  %132 = call i32 (ptr, ...) @printf(ptr noundef @.str.14), !sec !{!"call", !"public", !{!"public"}}
   br label %133
 
-133:                                              ; preds = %131, %9, !sec !{!"private"}
+133:                                              ; preds = %131, %9, !sec !{!"public"}
   ret void
 }
 
@@ -908,7 +908,7 @@ define dso_local i64 @find_range(ptr noundef %0, i64 noundef %1, i64 noundef %2,
   %102 = load ptr, ptr %16, align 8, !sec !{!"private", !"private"}
   %103 = getelementptr inbounds %struct.node, ptr %102, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %104 = load ptr, ptr %103, align 8, !sec !{!"private", !"private"}
-  %105 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %105 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %106 = sub i64 %105, 1, !sec !{!"private"}
   %107 = getelementptr inbounds ptr, ptr %104, i64 %106, !sec !{!"private", !"private", !"private"}
   %108 = load ptr, ptr %107, align 8, !sec !{!"private", !"private"}
@@ -1401,7 +1401,7 @@ define dso_local ptr @make_node() #0 !sec !{!"private", !"private", !{}} {
   unreachable
 
 6:                                                ; preds = %0, !sec !{!"private"}
-  %7 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %7 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %8 = sub i64 %7, 1, !sec !{!"private"}
   %9 = mul i64 %8, 8, !sec !{!"private"}
   %10 = call ptr @allocate_align64(i64 noundef %9), !sec !{!"call", !"private", !{!"private"}}
@@ -1420,7 +1420,7 @@ define dso_local ptr @make_node() #0 !sec !{!"private", !"private", !{}} {
   unreachable
 
 18:                                               ; preds = %6, !sec !{!"private"}
-  %19 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %19 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %20 = mul i64 %19, 8, !sec !{!"private"}
   %21 = call ptr @allocate_align64(i64 noundef %20), !sec !{!"call", !"private", !{!"private"}}
   %22 = load ptr, ptr %1, align 8, !sec !{!"private", !"private"}
@@ -1671,7 +1671,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
   store ptr %3, ptr %8, align 8, !sec !{!"private", !"private"}
   %17 = call ptr @make_leaf(), !sec !{!"call", !"private", !{}}
   store ptr %17, ptr %9, align 8, !sec !{!"private", !"private"}
-  %18 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %18 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %19 = add i64 %18, 1, !sec !{!"private"}
   %20 = mul i64 %19, 8, !sec !{!"private"}
   %21 = call ptr @allocate_align64(i64 noundef %20), !sec !{!"call", !"private", !{!"private"}}
@@ -1686,7 +1686,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
   unreachable
 
 25:                                               ; preds = %4, !sec !{!"private"}
-  %26 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %26 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %27 = add i64 %26, 1, !sec !{!"private"}
   %28 = mul i64 %27, 8, !sec !{!"private"}
   %29 = call ptr @allocate_align64(i64 noundef %28), !sec !{!"call", !"private", !{!"private"}}
@@ -1706,7 +1706,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
 
 34:                                               ; preds = %50, %33, !sec !{!"private"}
   %35 = load i64, ptr %12, align 8, !sec !{!"private", !"private"}
-  %36 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %36 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %37 = sub i64 %36, 1, !sec !{!"private"}
   %38 = icmp ult i64 %35, %37, !sec !{!"private"}
   br i1 %38, label %39, label %48, !sec !{!"private"}
@@ -1803,7 +1803,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
   %100 = load ptr, ptr %6, align 8, !sec !{!"private", !"private"}
   %101 = getelementptr inbounds %struct.node, ptr %100, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
   store i64 0, ptr %101, align 8, !sec !{!"private", !"private"}
-  %102 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %102 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %103 = sub i64 %102, 1, !sec !{!"private"}
   %104 = call i64 @cut(i64 noundef %103), !sec !{!"call", !"private", !{!"private"}}
   store i64 %104, ptr %13, align 8, !sec !{!"private", !"private"}
@@ -1858,7 +1858,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
 
 137:                                              ; preds = %164, %135, !sec !{!"private"}
   %138 = load i64, ptr %15, align 8, !sec !{!"private", !"private"}
-  %139 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %139 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %140 = icmp ult i64 %138, %139, !sec !{!"private"}
   br i1 %140, label %141, label %169, !sec !{!"private"}
 
@@ -1907,14 +1907,14 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
   %172 = load ptr, ptr %6, align 8, !sec !{!"private", !"private"}
   %173 = getelementptr inbounds %struct.node, ptr %172, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %174 = load ptr, ptr %173, align 8, !sec !{!"private", !"private"}
-  %175 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %175 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %176 = sub i64 %175, 1, !sec !{!"private"}
   %177 = getelementptr inbounds ptr, ptr %174, i64 %176, !sec !{!"private", !"private", !"private"}
   %178 = load ptr, ptr %177, align 8, !sec !{!"private", !"private"}
   %179 = load ptr, ptr %9, align 8, !sec !{!"private", !"private"}
   %180 = getelementptr inbounds %struct.node, ptr %179, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %181 = load ptr, ptr %180, align 8, !sec !{!"private", !"private"}
-  %182 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %182 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %183 = sub i64 %182, 1, !sec !{!"private"}
   %184 = getelementptr inbounds ptr, ptr %181, i64 %183, !sec !{!"private", !"private", !"private"}
   store ptr %178, ptr %184, align 8, !sec !{!"private", !"private"}
@@ -1922,7 +1922,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
   %186 = load ptr, ptr %6, align 8, !sec !{!"private", !"private"}
   %187 = getelementptr inbounds %struct.node, ptr %186, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %188 = load ptr, ptr %187, align 8, !sec !{!"private", !"private"}
-  %189 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %189 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %190 = sub i64 %189, 1, !sec !{!"private"}
   %191 = getelementptr inbounds ptr, ptr %188, i64 %190, !sec !{!"private", !"private", !"private"}
   store ptr %185, ptr %191, align 8, !sec !{!"private", !"private"}
@@ -1934,7 +1934,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
 
 195:                                              ; preds = %206, %169, !sec !{!"private"}
   %196 = load i64, ptr %15, align 8, !sec !{!"private", !"private"}
-  %197 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %197 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %198 = sub i64 %197, 1, !sec !{!"private"}
   %199 = icmp ult i64 %196, %198, !sec !{!"private"}
   br i1 %199, label %200, label %209, !sec !{!"private"}
@@ -1963,7 +1963,7 @@ define dso_local ptr @insert_into_leaf_after_splitting(ptr noundef %0, ptr nound
 
 213:                                              ; preds = %224, %209, !sec !{!"private"}
   %214 = load i64, ptr %15, align 8, !sec !{!"private", !"private"}
-  %215 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %215 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %216 = sub i64 %215, 1, !sec !{!"private"}
   %217 = icmp ult i64 %214, %216, !sec !{!"private"}
   br i1 %217, label %218, label %227, !sec !{!"private"}
@@ -2044,7 +2044,7 @@ define dso_local ptr @insert_into_parent(ptr noundef %0, ptr noundef %1, i64 nou
   %26 = load ptr, ptr %11, align 8, !sec !{!"private", !"private"}
   %27 = getelementptr inbounds %struct.node, ptr %26, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
   %28 = load i64, ptr %27, align 8, !sec !{!"private", !"private"}
-  %29 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %29 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %30 = sub i64 %29, 1, !sec !{!"private"}
   %31 = icmp ult i64 %28, %30, !sec !{!"private"}
   br i1 %31, label %32, label %39, !sec !{!"private"}
@@ -2228,7 +2228,7 @@ define dso_local ptr @insert_into_node_after_splitting(ptr noundef %0, ptr nound
   store i64 %2, ptr %8, align 8, !sec !{!"private", !"private"}
   store i64 %3, ptr %9, align 8, !sec !{!"private", !"private"}
   store ptr %4, ptr %10, align 8, !sec !{!"private", !"private"}
-  %19 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %19 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %20 = add i64 %19, 1, !sec !{!"private"}
   %21 = mul i64 %20, 8, !sec !{!"private"}
   %22 = call ptr @allocate_align64(i64 noundef %21), !sec !{!"call", !"private", !{!"private"}}
@@ -2243,7 +2243,7 @@ define dso_local ptr @insert_into_node_after_splitting(ptr noundef %0, ptr nound
   unreachable
 
 26:                                               ; preds = %5, !sec !{!"private"}
-  %27 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %27 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %28 = mul i64 %27, 8, !sec !{!"private"}
   %29 = call ptr @allocate_align64(i64 noundef %28), !sec !{!"call", !"private", !{!"private"}}
   store ptr %29, ptr %17, align 8, !sec !{!"private", !"private"}
@@ -2364,7 +2364,7 @@ define dso_local ptr @insert_into_node_after_splitting(ptr noundef %0, ptr nound
   %101 = load i64, ptr %8, align 8, !sec !{!"private", !"private"}
   %102 = getelementptr inbounds i64, ptr %100, i64 %101, !sec !{!"private", !"private", !"private"}
   store i64 %99, ptr %102, align 8, !sec !{!"private", !"private"}
-  %103 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %103 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %104 = call i64 @cut(i64 noundef %103), !sec !{!"call", !"private", !{!"private"}}
   store i64 %104, ptr %13, align 8, !sec !{!"private", !"private"}
   %105 = call ptr @make_node(), !sec !{!"call", !"private", !{}}
@@ -2441,7 +2441,7 @@ define dso_local ptr @insert_into_node_after_splitting(ptr noundef %0, ptr nound
 
 156:                                              ; preds = %183, %139, !sec !{!"private"}
   %157 = load i64, ptr %11, align 8, !sec !{!"private", !"private"}
-  %158 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %158 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %159 = icmp ult i64 %157, %158, !sec !{!"private"}
   br i1 %159, label %160, label %188, !sec !{!"private"}
 
@@ -2616,7 +2616,7 @@ define dso_local ptr @start_new_tree(i64 noundef %0, ptr noundef %1) #0 !sec !{!
   %17 = load ptr, ptr %5, align 8, !sec !{!"private", !"private"}
   %18 = getelementptr inbounds %struct.node, ptr %17, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %19 = load ptr, ptr %18, align 8, !sec !{!"private", !"private"}
-  %20 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %20 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %21 = sub i64 %20, 1, !sec !{!"private"}
   %22 = getelementptr inbounds ptr, ptr %19, i64 %21, !sec !{!"private", !"private", !"private"}
   store ptr null, ptr %22, align 8, !sec !{!"private", !"private"}
@@ -2685,7 +2685,7 @@ define dso_local ptr @insert(ptr noundef %0, i64 noundef %1, i64 noundef %2) #0 
   %33 = load ptr, ptr %9, align 8, !sec !{!"private", !"private"}
   %34 = getelementptr inbounds %struct.node, ptr %33, i32 0, i32 4, !sec !{!"private", !"private", !"public", !"public"}
   %35 = load i64, ptr %34, align 8, !sec !{!"private", !"private"}
-  %36 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %36 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %37 = sub i64 %36, 1, !sec !{!"private"}
   %38 = icmp ult i64 %35, %37, !sec !{!"private"}
   br i1 %38, label %39, label %45, !sec !{!"private"}
@@ -2763,9 +2763,14 @@ define dso_local i64 @get_neighbor_index(ptr noundef %0) #0 !sec !{!"private", !
   %31 = call i32 (ptr, ...) @printf(ptr noundef @.str.35), !sec !{!"call", !"public", !{!"public"}}
   %32 = load ptr, ptr %2, align 8, !sec !{!"private", !"private"}
   %33 = ptrtoint ptr %32 to i64, !sec !{!"private"}
-  %34 = call i32 (ptr, ...) @printf(ptr noundef @.str.36, i64 noundef %33), !sec !{!"call", !"public", !{!"public", !"private"}}
+  %d33 = call i64 @declassify.i64(i64 noundef %33), !sec !{!"declassify", !"private", !"public"}
+  %34 = call i32 (ptr, ...) @printf(ptr noundef @.str.36, i64 noundef %d33), !sec !{!"call", !"public", !{!"public", !"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
+}
+
+define dso_local i64 @declassify.i64(i64 noundef %0) #0 !sec !{!"public", !"public", !{!"private"}} {
+  ret i64 %0 !sec !{!"public"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2932,7 +2937,7 @@ define dso_local ptr @remove_entry_from_node(ptr noundef %0, i64 noundef %1, ptr
 
 110:                                              ; preds = %121, %106, !sec !{!"private"}
   %111 = load i64, ptr %7, align 8, !sec !{!"private", !"private"}
-  %112 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %112 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %113 = sub i64 %112, 1, !sec !{!"private"}
   %114 = icmp ult i64 %111, %113, !sec !{!"private"}
   br i1 %114, label %115, label %124, !sec !{!"private"}
@@ -2965,7 +2970,7 @@ define dso_local ptr @remove_entry_from_node(ptr noundef %0, i64 noundef %1, ptr
 
 130:                                              ; preds = %140, %125, !sec !{!"private"}
   %131 = load i64, ptr %7, align 8, !sec !{!"private", !"private"}
-  %132 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %132 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %133 = icmp ult i64 %131, %132, !sec !{!"private"}
   br i1 %133, label %134, label %143, !sec !{!"private"}
 
@@ -3275,14 +3280,14 @@ define dso_local ptr @coalesce_nodes(ptr noundef %0, ptr noundef %1, ptr noundef
   %160 = load ptr, ptr %7, align 8, !sec !{!"private", !"private"}
   %161 = getelementptr inbounds %struct.node, ptr %160, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %162 = load ptr, ptr %161, align 8, !sec !{!"private", !"private"}
-  %163 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %163 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %164 = sub i64 %163, 1, !sec !{!"private"}
   %165 = getelementptr inbounds ptr, ptr %162, i64 %164, !sec !{!"private", !"private", !"private"}
   %166 = load ptr, ptr %165, align 8, !sec !{!"private", !"private"}
   %167 = load ptr, ptr %8, align 8, !sec !{!"private", !"private"}
   %168 = getelementptr inbounds %struct.node, ptr %167, i32 0, i32 0, !sec !{!"private", !"private", !"public", !"public"}
   %169 = load ptr, ptr %168, align 8, !sec !{!"private", !"private"}
-  %170 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %170 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %171 = sub i64 %170, 1, !sec !{!"private"}
   %172 = getelementptr inbounds ptr, ptr %169, i64 %171, !sec !{!"private", !"private", !"private"}
   store ptr %166, ptr %172, align 8, !sec !{!"private", !"private"}
@@ -3352,13 +3357,13 @@ define dso_local ptr @delete_entry(ptr noundef %0, ptr noundef %1, i64 noundef %
   br i1 %30, label %31, label %35, !sec !{!"private"}
 
 31:                                               ; preds = %26, !sec !{!"private"}
-  %32 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %32 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %33 = sub i64 %32, 1, !sec !{!"private"}
   %34 = call i64 @cut(i64 noundef %33), !sec !{!"call", !"private", !{!"private"}}
   br label %39
 
 35:                                               ; preds = %26, !sec !{!"private"}
-  %36 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %36 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %37 = call i64 @cut(i64 noundef %36), !sec !{!"call", !"private", !{!"private"}}
   %38 = sub i64 %37, 1, !sec !{!"private"}
   br label %39
@@ -3440,11 +3445,11 @@ define dso_local ptr @delete_entry(ptr noundef %0, ptr noundef %1, i64 noundef %
   br i1 %90, label %91, label %93, !sec !{!"private"}
 
 91:                                               ; preds = %85, !sec !{!"private"}
-  %92 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %92 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   br label %96
 
 93:                                               ; preds = %85, !sec !{!"private"}
-  %94 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
+  %94 = load i64, ptr @order, align 8, !sec !{!"private", !"public"}
   %95 = sub i64 %94, 1, !sec !{!"private"}
   br label %96
 
@@ -4393,8 +4398,8 @@ define dso_local i32 @real_main() #0 !sec !{!"public", !"public", !{}} {
 105:                                              ; preds = %86, !sec !{!"public"}
   %106 = load i64, ptr %4, align 8, !sec !{!"public", !"public"}
   %107 = call i32 (ptr, ...) @printf(ptr noundef @.str.39, i64 noundef %106), !sec !{!"call", !"public", !{!"public", !"public"}}
-  %108 = load i64, ptr @order, align 8, !sec !{!"private", !"private"}
-  %109 = call i32 (ptr, ...) @printf(ptr noundef @.str.40, i64 noundef %108), !sec !{!"call", !"public", !{!"public", !"private"}}
+  %108 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
+  %109 = call i32 (ptr, ...) @printf(ptr noundef @.str.40, i64 noundef %108), !sec !{!"call", !"public", !{!"public", !"public"}}
   %110 = load i64, ptr @allocator_stat, align 8, !sec !{!"public", !"public"}
   %111 = lshr i64 %110, 20, !sec !{!"public"}
   %112 = call i32 (ptr, ...) @printf(ptr noundef @.str.41, i64 noundef %111), !sec !{!"call", !"public", !{!"public", !"public"}}

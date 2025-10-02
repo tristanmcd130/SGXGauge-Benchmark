@@ -306,7 +306,7 @@ define dso_local i64 @path_to_root(ptr noundef %0, ptr noundef %1) #0 !sec !{!"p
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local void @print_tree(ptr noundef %0) #0 !sec !{!"void", !"private", !{!"private"}} {
+define dso_local void @print_tree(ptr noundef %0) #0 !sec !{!"void", !"public", !{!"public"}} {
   %2 = alloca ptr, align 8
   %3 = alloca ptr, align 8
   %4 = alloca i64, align 8
@@ -2763,9 +2763,14 @@ define dso_local i64 @get_neighbor_index(ptr noundef %0) #0 !sec !{!"private", !
   %31 = call i32 (ptr, ...) @printf(ptr noundef @.str.35)
   %32 = load ptr, ptr %2, align 8
   %33 = ptrtoint ptr %32 to i64
-  %34 = call i32 (ptr, ...) @printf(ptr noundef @.str.36, i64 noundef %33)
+  %d33 = call i64 @declassify.i64(i64 noundef %33)
+  %34 = call i32 (ptr, ...) @printf(ptr noundef @.str.36, i64 noundef %d33)
   call void @exit(i32 noundef 1) #7
   unreachable
+}
+
+define dso_local i64 @declassify.i64(i64 noundef %0) #0 !sec !{!"public", !"public", !{!"private"}} {
+  ret i64 %0 !sec !{!"public"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
