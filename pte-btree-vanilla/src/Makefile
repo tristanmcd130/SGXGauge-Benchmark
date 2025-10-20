@@ -4,20 +4,19 @@ ir = $(source:.c=.ll)
 iromp = $(source:.c=.ll-omp)
 
 # Standard Flags
-CFLAGS := -Wall -S -emit-llvm
+CFLAGS := -Wall -target x86_64-unknown-linux-gnu -S -emit-llvm -O0 -fno-inline -fno-discard-value-names
 
 # compiler
 CC = clang
 
+$(program): $(ir) Makefile
+	$(CC) $(CFLAGS) $(ir) -o $@ $(LDFLAGS)
 
-# $(program): $(ir) Makefile
-# 	$(CC) $(CFLAGS) $(ir) -o $@ $(LDFLAGS)
+# libbtree.a: $(ir) Makefile
+# 	ar rcs $@ $(ir)
 
-libbtree.a: $(ir) Makefile
-	ar rcs $@ $(ir)
-
-libbtreeomp.a: $(iromp) Makefile
-	ar rcs $@ $(iromp)
+# libbtreeomp.a: $(iromp) Makefile
+# 	ar rcs $@ $(iromp)
 
 %.ll: %.c Makefile
 	$(CC) $(CFLAGS) -c $< -o $@

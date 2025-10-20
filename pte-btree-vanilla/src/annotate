@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source ../../.venv/bin/activate
-python3 ~/Documents/llvm-enclaves/enclave_tests/annotation-inference/annotate.py btree1-funcs.ll btree1-annotated.ll
+python3 ~/Documents/llvm-enclaves/enclave_tests/annotation-inference/annotate.py $1 ${1%-copy.ll}-annotated.ll
