@@ -11,7 +11,6 @@ target triple = "x86_64-unknown-linux-gnu"
 @allocator_stat = dso_local global i64 0, align 8
 @order = dso_local global i64 6, align 8
 @queue = dso_local global ptr null, align 8
-@verbose_output = dso_local global i8 0, align 1
 @.str = private unnamed_addr constant [77 x i8] c"bpt version %s -- Copyright (c) 2018  Amittai Aviram http://www.amittai.com\0A\00", align 1
 @.str.1 = private unnamed_addr constant [7 x i8] c"1.16.1\00", align 1
 @.str.2 = private unnamed_addr constant [193 x i8] c"This program comes with ABSOLUTELY NO WARRANTY.\0AThis is free software, and you are welcome to redistribute it\0Aunder certain conditions.\0APlease see the headnote in the source code for details.\0A\00", align 1
@@ -23,46 +22,39 @@ target triple = "x86_64-unknown-linux-gnu"
 @.str.8 = private unnamed_addr constant [24 x i8] c"Usage: ./bpt [<order>]\0A\00", align 1
 @.str.9 = private unnamed_addr constant [28 x i8] c"\09where %d <= order <= %d .\0A\00", align 1
 @.str.10 = private unnamed_addr constant [13 x i8] c"Empty tree.\0A\00", align 1
-@.str.11 = private unnamed_addr constant [4 x i8] c"%p \00", align 1
-@.str.12 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
-@.str.13 = private unnamed_addr constant [4 x i8] c" | \00", align 1
-@.str.14 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
-@.str.15 = private unnamed_addr constant [5 x i8] c"(%p)\00", align 1
-@.str.16 = private unnamed_addr constant [3 x i8] c"| \00", align 1
-@.str.17 = private unnamed_addr constant [33 x i8] c"Record not found under key %ld.\0A\00", align 1
-@.str.18 = private unnamed_addr constant [37 x i8] c"Record at %p -- key %ld, value %ld.\0A\00", align 1
-@.str.19 = private unnamed_addr constant [13 x i8] c"None found.\0A\00", align 1
-@.str.20 = private unnamed_addr constant [37 x i8] c"Key: %ld   Location: %p  Value: %ld\0A\00", align 1
-@.str.21 = private unnamed_addr constant [2 x i8] c"[\00", align 1
-@.str.22 = private unnamed_addr constant [6 x i8] c"%ld] \00", align 1
-@.str.23 = private unnamed_addr constant [8 x i8] c"%ld ->\0A\00", align 1
-@.str.24 = private unnamed_addr constant [7 x i8] c"Leaf [\00", align 1
-@.str.25 = private unnamed_addr constant [9 x i8] c"%ld] ->\0A\00", align 1
+@.str.11 = private unnamed_addr constant [5 x i8] c"%ld \00", align 1
+@.str.12 = private unnamed_addr constant [4 x i8] c" | \00", align 1
+@.str.13 = private unnamed_addr constant [2 x i8] c"\0A\00", align 1
+@.str.14 = private unnamed_addr constant [3 x i8] c"| \00", align 1
+@.str.15 = private unnamed_addr constant [33 x i8] c"Record not found under key %ld.\0A\00", align 1
+@.str.16 = private unnamed_addr constant [37 x i8] c"Record at %p -- key %ld, value %ld.\0A\00", align 1
+@.str.17 = private unnamed_addr constant [13 x i8] c"None found.\0A\00", align 1
+@.str.18 = private unnamed_addr constant [37 x i8] c"Key: %ld   Location: %p  Value: %ld\0A\00", align 1
 @free_nodes = dso_local global ptr null, align 8
 @stderr = external global ptr, align 8
-@.str.26 = private unnamed_addr constant [30 x i8] c"Failed to allocate memory...\0A\00", align 1
+@.str.19 = private unnamed_addr constant [30 x i8] c"Failed to allocate memory...\0A\00", align 1
 @free_recs = dso_local global ptr null, align 8
-@.str.27 = private unnamed_addr constant [17 x i8] c"Record creation.\00", align 1
-@.str.28 = private unnamed_addr constant [15 x i8] c"Node creation.\00", align 1
-@.str.29 = private unnamed_addr constant [21 x i8] c"New node keys array.\00", align 1
-@.str.30 = private unnamed_addr constant [25 x i8] c"New node pointers array.\00", align 1
-@.str.31 = private unnamed_addr constant [22 x i8] c"Temporary keys array.\00", align 1
-@.str.32 = private unnamed_addr constant [26 x i8] c"Temporary pointers array.\00", align 1
-@.str.33 = private unnamed_addr constant [46 x i8] c"Temporary pointers array for splitting nodes.\00", align 1
-@.str.34 = private unnamed_addr constant [42 x i8] c"Temporary keys array for splitting nodes.\00", align 1
-@.str.35 = private unnamed_addr constant [51 x i8] c"Search for nonexistent pointer to node in parent.\0A\00", align 1
-@.str.36 = private unnamed_addr constant [13 x i8] c"Node:  %#lx\0A\00", align 1
+@.str.20 = private unnamed_addr constant [17 x i8] c"Record creation.\00", align 1
+@.str.21 = private unnamed_addr constant [15 x i8] c"Node creation.\00", align 1
+@.str.22 = private unnamed_addr constant [21 x i8] c"New node keys array.\00", align 1
+@.str.23 = private unnamed_addr constant [25 x i8] c"New node pointers array.\00", align 1
+@.str.24 = private unnamed_addr constant [22 x i8] c"Temporary keys array.\00", align 1
+@.str.25 = private unnamed_addr constant [26 x i8] c"Temporary pointers array.\00", align 1
+@.str.26 = private unnamed_addr constant [46 x i8] c"Temporary pointers array for splitting nodes.\00", align 1
+@.str.27 = private unnamed_addr constant [42 x i8] c"Temporary keys array for splitting nodes.\00", align 1
+@.str.28 = private unnamed_addr constant [51 x i8] c"Search for nonexistent pointer to node in parent.\0A\00", align 1
+@.str.29 = private unnamed_addr constant [13 x i8] c"Node:  %#lx\0A\00", align 1
 @x = internal global [3 x i64] [i64 13070, i64 43981, i64 4660], align 16
 @a = internal global [3 x i64] [i64 58989, i64 57068, i64 5], align 16
 @c = internal global i64 11, align 8
-@.str.37 = private unnamed_addr constant [28 x i8] c"Failed to allocate memory.\0A\00", align 1
-@.str.38 = private unnamed_addr constant [15 x i8] c"Allocated %ld\0A\00", align 1
-@.str.39 = private unnamed_addr constant [21 x i8] c"BTree Elements: %zu\0A\00", align 1
-@.str.40 = private unnamed_addr constant [19 x i8] c"Btree Fanout: %zu\0A\00", align 1
-@.str.41 = private unnamed_addr constant [19 x i8] c"Allocator: %zu MB\0A\00", align 1
-@.str.42 = private unnamed_addr constant [32 x i8] c"got %zu matches in %zu seconds\0A\00", align 1
-@.str.43 = private unnamed_addr constant [17 x i8] c"Experiment DONE\0A\00", align 1
-@.str.44 = private unnamed_addr constant [8 x i8] c"ENOMEM\0A\00", align 1
+@.str.30 = private unnamed_addr constant [28 x i8] c"Failed to allocate memory.\0A\00", align 1
+@.str.31 = private unnamed_addr constant [15 x i8] c"Allocated %ld\0A\00", align 1
+@.str.32 = private unnamed_addr constant [21 x i8] c"BTree Elements: %zu\0A\00", align 1
+@.str.33 = private unnamed_addr constant [19 x i8] c"Btree Fanout: %zu\0A\00", align 1
+@.str.34 = private unnamed_addr constant [19 x i8] c"Allocator: %zu MB\0A\00", align 1
+@.str.35 = private unnamed_addr constant [32 x i8] c"got %zu matches in %zu seconds\0A\00", align 1
+@.str.36 = private unnamed_addr constant [17 x i8] c"Experiment DONE\0A\00", align 1
+@.str.37 = private unnamed_addr constant [8 x i8] c"ENOMEM\0A\00", align 1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @license_notice() #0 {
@@ -208,7 +200,7 @@ while.body:                                       ; preds = %while.cond
 while.end:                                        ; preds = %while.cond
   br label %while.body2
 
-while.body2:                                      ; preds = %while.end, %if.end27
+while.body2:                                      ; preds = %while.end, %if.end14
   store i64 0, ptr %i, align 8
   br label %for.cond
 
@@ -221,86 +213,55 @@ for.cond:                                         ; preds = %for.inc, %while.bod
   br i1 %cmp3, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %10 = load i8, ptr @verbose_output, align 1
-  %tobool4 = trunc i8 %10 to i1
-  br i1 %tobool4, label %if.then5, label %if.end9
-
-if.then5:                                         ; preds = %for.body
-  %11 = load ptr, ptr %c, align 8
-  %pointers6 = getelementptr inbounds %struct.node, ptr %11, i32 0, i32 0
-  %12 = load ptr, ptr %pointers6, align 8
-  %13 = load i64, ptr %i, align 8
-  %arrayidx7 = getelementptr inbounds ptr, ptr %12, i64 %13
-  %14 = load ptr, ptr %arrayidx7, align 8
-  %call8 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %14)
-  br label %if.end9
-
-if.end9:                                          ; preds = %if.then5, %for.body
-  %15 = load ptr, ptr %c, align 8
-  %keys = getelementptr inbounds %struct.node, ptr %15, i32 0, i32 1
-  %16 = load ptr, ptr %keys, align 8
-  %17 = load i64, ptr %i, align 8
-  %arrayidx10 = getelementptr inbounds i64, ptr %16, i64 %17
-  %18 = load i64, ptr %arrayidx10, align 8
-  %call11 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %18)
+  %10 = load ptr, ptr %c, align 8
+  %keys = getelementptr inbounds %struct.node, ptr %10, i32 0, i32 1
+  %11 = load ptr, ptr %keys, align 8
+  %12 = load i64, ptr %i, align 8
+  %arrayidx4 = getelementptr inbounds i64, ptr %11, i64 %12
+  %13 = load i64, ptr %arrayidx4, align 8
+  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, i64 noundef %13)
   br label %for.inc
 
-for.inc:                                          ; preds = %if.end9
-  %19 = load i64, ptr %i, align 8
-  %inc = add i64 %19, 1
+for.inc:                                          ; preds = %for.body
+  %14 = load i64, ptr %i, align 8
+  %inc = add i64 %14, 1
   store i64 %inc, ptr %i, align 8
   br label %for.cond, !llvm.loop !9
 
 for.end:                                          ; preds = %for.cond
-  %20 = load i8, ptr @verbose_output, align 1
-  %tobool12 = trunc i8 %20 to i1
-  br i1 %tobool12, label %if.then13, label %if.end17
+  %15 = load ptr, ptr %c, align 8
+  %pointers6 = getelementptr inbounds %struct.node, ptr %15, i32 0, i32 0
+  %16 = load ptr, ptr %pointers6, align 8
+  %17 = load i64, ptr @order, align 8
+  %sub = sub i64 %17, 1
+  %arrayidx7 = getelementptr inbounds ptr, ptr %16, i64 %sub
+  %18 = load ptr, ptr %arrayidx7, align 8
+  %cmp8 = icmp ne ptr %18, null
+  br i1 %cmp8, label %if.then9, label %if.else
 
-if.then13:                                        ; preds = %for.end
-  %21 = load ptr, ptr %c, align 8
-  %pointers14 = getelementptr inbounds %struct.node, ptr %21, i32 0, i32 0
-  %22 = load ptr, ptr %pointers14, align 8
-  %23 = load i64, ptr @order, align 8
-  %sub = sub i64 %23, 1
-  %arrayidx15 = getelementptr inbounds ptr, ptr %22, i64 %sub
-  %24 = load ptr, ptr %arrayidx15, align 8
-  %call16 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %24)
-  br label %if.end17
+if.then9:                                         ; preds = %for.end
+  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.12)
+  %19 = load ptr, ptr %c, align 8
+  %pointers11 = getelementptr inbounds %struct.node, ptr %19, i32 0, i32 0
+  %20 = load ptr, ptr %pointers11, align 8
+  %21 = load i64, ptr @order, align 8
+  %sub12 = sub i64 %21, 1
+  %arrayidx13 = getelementptr inbounds ptr, ptr %20, i64 %sub12
+  %22 = load ptr, ptr %arrayidx13, align 8
+  store ptr %22, ptr %c, align 8
+  br label %if.end14
 
-if.end17:                                         ; preds = %if.then13, %for.end
-  %25 = load ptr, ptr %c, align 8
-  %pointers18 = getelementptr inbounds %struct.node, ptr %25, i32 0, i32 0
-  %26 = load ptr, ptr %pointers18, align 8
-  %27 = load i64, ptr @order, align 8
-  %sub19 = sub i64 %27, 1
-  %arrayidx20 = getelementptr inbounds ptr, ptr %26, i64 %sub19
-  %28 = load ptr, ptr %arrayidx20, align 8
-  %cmp21 = icmp ne ptr %28, null
-  br i1 %cmp21, label %if.then22, label %if.else
+if.else:                                          ; preds = %for.end
+  br label %while.end15
 
-if.then22:                                        ; preds = %if.end17
-  %call23 = call i32 (ptr, ...) @printf(ptr noundef @.str.13)
-  %29 = load ptr, ptr %c, align 8
-  %pointers24 = getelementptr inbounds %struct.node, ptr %29, i32 0, i32 0
-  %30 = load ptr, ptr %pointers24, align 8
-  %31 = load i64, ptr @order, align 8
-  %sub25 = sub i64 %31, 1
-  %arrayidx26 = getelementptr inbounds ptr, ptr %30, i64 %sub25
-  %32 = load ptr, ptr %arrayidx26, align 8
-  store ptr %32, ptr %c, align 8
-  br label %if.end27
-
-if.else:                                          ; preds = %if.end17
-  br label %while.end28
-
-if.end27:                                         ; preds = %if.then22
+if.end14:                                         ; preds = %if.then9
   br label %while.body2
 
-while.end28:                                      ; preds = %if.else
-  %call29 = call i32 (ptr, ...) @printf(ptr noundef @.str.14)
+while.end15:                                      ; preds = %if.else
+  %call16 = call i32 (ptr, ...) @printf(ptr noundef @.str.13)
   br label %return
 
-return:                                           ; preds = %while.end28, %if.then
+return:                                           ; preds = %while.end15, %if.then
   ret void
 }
 
@@ -403,7 +364,7 @@ if.end:                                           ; preds = %entry
   call void @enqueue(ptr noundef %1)
   br label %while.cond
 
-while.cond:                                       ; preds = %if.end50, %if.end
+while.cond:                                       ; preds = %if.end26, %if.end
   %2 = load ptr, ptr @queue, align 8
   %cmp1 = icmp ne ptr %2, null
   br i1 %cmp1, label %while.body, label %while.end
@@ -442,147 +403,84 @@ if.then6:                                         ; preds = %land.lhs.true
 if.then9:                                         ; preds = %if.then6
   %14 = load i64, ptr %new_rank, align 8
   store i64 %14, ptr %rank, align 8
-  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.14)
+  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.13)
   br label %if.end11
 
 if.end11:                                         ; preds = %if.then9, %if.then6
   br label %if.end12
 
 if.end12:                                         ; preds = %if.end11, %land.lhs.true, %while.body
-  %15 = load i8, ptr @verbose_output, align 1
-  %tobool = trunc i8 %15 to i1
-  br i1 %tobool, label %if.then13, label %if.end15
-
-if.then13:                                        ; preds = %if.end12
-  %16 = load ptr, ptr %n, align 8
-  %call14 = call i32 (ptr, ...) @printf(ptr noundef @.str.15, ptr noundef %16)
-  br label %if.end15
-
-if.end15:                                         ; preds = %if.then13, %if.end12
   store i64 0, ptr %i, align 8
   br label %for.cond
 
-for.cond:                                         ; preds = %for.inc, %if.end15
-  %17 = load i64, ptr %i, align 8
-  %18 = load ptr, ptr %n, align 8
-  %num_keys = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 4
-  %19 = load i64, ptr %num_keys, align 8
-  %cmp16 = icmp ult i64 %17, %19
-  br i1 %cmp16, label %for.body, label %for.end
+for.cond:                                         ; preds = %for.inc, %if.end12
+  %15 = load i64, ptr %i, align 8
+  %16 = load ptr, ptr %n, align 8
+  %num_keys = getelementptr inbounds %struct.node, ptr %16, i32 0, i32 4
+  %17 = load i64, ptr %num_keys, align 8
+  %cmp13 = icmp ult i64 %15, %17
+  br i1 %cmp13, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %20 = load i8, ptr @verbose_output, align 1
-  %tobool17 = trunc i8 %20 to i1
-  br i1 %tobool17, label %if.then18, label %if.end22
-
-if.then18:                                        ; preds = %for.body
-  %21 = load ptr, ptr %n, align 8
-  %pointers19 = getelementptr inbounds %struct.node, ptr %21, i32 0, i32 0
-  %22 = load ptr, ptr %pointers19, align 8
-  %23 = load i64, ptr %i, align 8
-  %arrayidx20 = getelementptr inbounds ptr, ptr %22, i64 %23
-  %24 = load ptr, ptr %arrayidx20, align 8
-  %call21 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %24)
-  br label %if.end22
-
-if.end22:                                         ; preds = %if.then18, %for.body
-  %25 = load ptr, ptr %n, align 8
-  %keys = getelementptr inbounds %struct.node, ptr %25, i32 0, i32 1
-  %26 = load ptr, ptr %keys, align 8
-  %27 = load i64, ptr %i, align 8
-  %arrayidx23 = getelementptr inbounds i64, ptr %26, i64 %27
-  %28 = load i64, ptr %arrayidx23, align 8
-  %call24 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %28)
+  %18 = load ptr, ptr %n, align 8
+  %keys = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 1
+  %19 = load ptr, ptr %keys, align 8
+  %20 = load i64, ptr %i, align 8
+  %arrayidx14 = getelementptr inbounds i64, ptr %19, i64 %20
+  %21 = load i64, ptr %arrayidx14, align 8
+  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, i64 noundef %21)
   br label %for.inc
 
-for.inc:                                          ; preds = %if.end22
-  %29 = load i64, ptr %i, align 8
-  %inc = add i64 %29, 1
+for.inc:                                          ; preds = %for.body
+  %22 = load i64, ptr %i, align 8
+  %inc = add i64 %22, 1
   store i64 %inc, ptr %i, align 8
   br label %for.cond, !llvm.loop !12
 
 for.end:                                          ; preds = %for.cond
-  %30 = load ptr, ptr %n, align 8
-  %is_leaf = getelementptr inbounds %struct.node, ptr %30, i32 0, i32 3
-  %31 = load i8, ptr %is_leaf, align 8
-  %tobool25 = trunc i8 %31 to i1
-  br i1 %tobool25, label %if.end36, label %if.then26
+  %23 = load ptr, ptr %n, align 8
+  %is_leaf = getelementptr inbounds %struct.node, ptr %23, i32 0, i32 3
+  %24 = load i8, ptr %is_leaf, align 8
+  %tobool = trunc i8 %24 to i1
+  br i1 %tobool, label %if.end26, label %if.then16
 
-if.then26:                                        ; preds = %for.end
+if.then16:                                        ; preds = %for.end
   store i64 0, ptr %i, align 8
-  br label %for.cond27
+  br label %for.cond17
 
-for.cond27:                                       ; preds = %for.inc33, %if.then26
+for.cond17:                                       ; preds = %for.inc23, %if.then16
+  %25 = load i64, ptr %i, align 8
+  %26 = load ptr, ptr %n, align 8
+  %num_keys18 = getelementptr inbounds %struct.node, ptr %26, i32 0, i32 4
+  %27 = load i64, ptr %num_keys18, align 8
+  %cmp19 = icmp ule i64 %25, %27
+  br i1 %cmp19, label %for.body20, label %for.end25
+
+for.body20:                                       ; preds = %for.cond17
+  %28 = load ptr, ptr %n, align 8
+  %pointers21 = getelementptr inbounds %struct.node, ptr %28, i32 0, i32 0
+  %29 = load ptr, ptr %pointers21, align 8
+  %30 = load i64, ptr %i, align 8
+  %arrayidx22 = getelementptr inbounds ptr, ptr %29, i64 %30
+  %31 = load ptr, ptr %arrayidx22, align 8
+  call void @enqueue(ptr noundef %31)
+  br label %for.inc23
+
+for.inc23:                                        ; preds = %for.body20
   %32 = load i64, ptr %i, align 8
-  %33 = load ptr, ptr %n, align 8
-  %num_keys28 = getelementptr inbounds %struct.node, ptr %33, i32 0, i32 4
-  %34 = load i64, ptr %num_keys28, align 8
-  %cmp29 = icmp ule i64 %32, %34
-  br i1 %cmp29, label %for.body30, label %for.end35
+  %inc24 = add i64 %32, 1
+  store i64 %inc24, ptr %i, align 8
+  br label %for.cond17, !llvm.loop !13
 
-for.body30:                                       ; preds = %for.cond27
-  %35 = load ptr, ptr %n, align 8
-  %pointers31 = getelementptr inbounds %struct.node, ptr %35, i32 0, i32 0
-  %36 = load ptr, ptr %pointers31, align 8
-  %37 = load i64, ptr %i, align 8
-  %arrayidx32 = getelementptr inbounds ptr, ptr %36, i64 %37
-  %38 = load ptr, ptr %arrayidx32, align 8
-  call void @enqueue(ptr noundef %38)
-  br label %for.inc33
+for.end25:                                        ; preds = %for.cond17
+  br label %if.end26
 
-for.inc33:                                        ; preds = %for.body30
-  %39 = load i64, ptr %i, align 8
-  %inc34 = add i64 %39, 1
-  store i64 %inc34, ptr %i, align 8
-  br label %for.cond27, !llvm.loop !13
-
-for.end35:                                        ; preds = %for.cond27
-  br label %if.end36
-
-if.end36:                                         ; preds = %for.end35, %for.end
-  %40 = load i8, ptr @verbose_output, align 1
-  %tobool37 = trunc i8 %40 to i1
-  br i1 %tobool37, label %if.then38, label %if.end50
-
-if.then38:                                        ; preds = %if.end36
-  %41 = load ptr, ptr %n, align 8
-  %is_leaf39 = getelementptr inbounds %struct.node, ptr %41, i32 0, i32 3
-  %42 = load i8, ptr %is_leaf39, align 8
-  %tobool40 = trunc i8 %42 to i1
-  br i1 %tobool40, label %if.then41, label %if.else
-
-if.then41:                                        ; preds = %if.then38
-  %43 = load ptr, ptr %n, align 8
-  %pointers42 = getelementptr inbounds %struct.node, ptr %43, i32 0, i32 0
-  %44 = load ptr, ptr %pointers42, align 8
-  %45 = load i64, ptr @order, align 8
-  %sub = sub i64 %45, 1
-  %arrayidx43 = getelementptr inbounds ptr, ptr %44, i64 %sub
-  %46 = load ptr, ptr %arrayidx43, align 8
-  %call44 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %46)
-  br label %if.end49
-
-if.else:                                          ; preds = %if.then38
-  %47 = load ptr, ptr %n, align 8
-  %pointers45 = getelementptr inbounds %struct.node, ptr %47, i32 0, i32 0
-  %48 = load ptr, ptr %pointers45, align 8
-  %49 = load ptr, ptr %n, align 8
-  %num_keys46 = getelementptr inbounds %struct.node, ptr %49, i32 0, i32 4
-  %50 = load i64, ptr %num_keys46, align 8
-  %arrayidx47 = getelementptr inbounds ptr, ptr %48, i64 %50
-  %51 = load ptr, ptr %arrayidx47, align 8
-  %call48 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, ptr noundef %51)
-  br label %if.end49
-
-if.end49:                                         ; preds = %if.else, %if.then41
-  br label %if.end50
-
-if.end50:                                         ; preds = %if.end49, %if.end36
-  %call51 = call i32 (ptr, ...) @printf(ptr noundef @.str.16)
+if.end26:                                         ; preds = %for.end25, %for.end
+  %call27 = call i32 (ptr, ...) @printf(ptr noundef @.str.14)
   br label %while.cond, !llvm.loop !14
 
 while.end:                                        ; preds = %while.cond
-  %call52 = call i32 (ptr, ...) @printf(ptr noundef @.str.14)
+  %call28 = call i32 (ptr, ...) @printf(ptr noundef @.str.13)
   br label %return
 
 return:                                           ; preds = %while.end, %if.then
@@ -590,38 +488,33 @@ return:                                           ; preds = %while.end, %if.then
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local void @find_and_print(ptr noundef %root, i64 noundef %key, i1 noundef zeroext %verbose) #0 {
+define dso_local void @find_and_print(ptr noundef %root, i64 noundef %key) #0 {
 entry:
   %root.addr = alloca ptr, align 8
   %key.addr = alloca i64, align 8
-  %verbose.addr = alloca i8, align 1
   %r = alloca ptr, align 8
   store ptr %root, ptr %root.addr, align 8
   store i64 %key, ptr %key.addr, align 8
-  %frombool = zext i1 %verbose to i8
-  store i8 %frombool, ptr %verbose.addr, align 1
   %0 = load ptr, ptr %root.addr, align 8
   %1 = load i64, ptr %key.addr, align 8
-  %2 = load i8, ptr %verbose.addr, align 1
-  %tobool = trunc i8 %2 to i1
-  %call = call ptr @find(ptr noundef %0, i64 noundef %1, i1 noundef zeroext %tobool, ptr noundef null)
+  %call = call ptr @find(ptr noundef %0, i64 noundef %1, ptr noundef null)
   store ptr %call, ptr %r, align 8
-  %3 = load ptr, ptr %r, align 8
-  %cmp = icmp eq ptr %3, null
+  %2 = load ptr, ptr %r, align 8
+  %cmp = icmp eq ptr %2, null
   br i1 %cmp, label %if.then, label %if.else
 
 if.then:                                          ; preds = %entry
-  %4 = load i64, ptr %key.addr, align 8
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.17, i64 noundef %4)
+  %3 = load i64, ptr %key.addr, align 8
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.15, i64 noundef %3)
   br label %if.end
 
 if.else:                                          ; preds = %entry
-  %5 = load ptr, ptr %r, align 8
-  %6 = load i64, ptr %key.addr, align 8
-  %7 = load ptr, ptr %r, align 8
-  %value = getelementptr inbounds %struct.record, ptr %7, i32 0, i32 0
-  %8 = load i64, ptr %value, align 8
-  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.18, ptr noundef %5, i64 noundef %6, i64 noundef %8)
+  %4 = load ptr, ptr %r, align 8
+  %5 = load i64, ptr %key.addr, align 8
+  %6 = load ptr, ptr %r, align 8
+  %value = getelementptr inbounds %struct.record, ptr %6, i32 0, i32 0
+  %7 = load i64, ptr %value, align 8
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.16, ptr noundef %4, i64 noundef %5, i64 noundef %7)
   br label %if.end
 
 if.end:                                           ; preds = %if.else, %if.then
@@ -629,19 +522,16 @@ if.end:                                           ; preds = %if.else, %if.then
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local ptr @find(ptr noundef %root, i64 noundef %key, i1 noundef zeroext %verbose, ptr noundef %leaf_out) #0 {
+define dso_local ptr @find(ptr noundef %root, i64 noundef %key, ptr noundef %leaf_out) #0 {
 entry:
   %retval = alloca ptr, align 8
   %root.addr = alloca ptr, align 8
   %key.addr = alloca i64, align 8
-  %verbose.addr = alloca i8, align 1
   %leaf_out.addr = alloca ptr, align 8
   %i = alloca i64, align 8
   %leaf = alloca ptr, align 8
   store ptr %root, ptr %root.addr, align 8
   store i64 %key, ptr %key.addr, align 8
-  %frombool = zext i1 %verbose to i8
-  store i8 %frombool, ptr %verbose.addr, align 1
   store ptr %leaf_out, ptr %leaf_out.addr, align 8
   %0 = load ptr, ptr %root.addr, align 8
   %cmp = icmp eq ptr %0, null
@@ -666,30 +556,28 @@ if.end3:                                          ; preds = %entry
   store ptr null, ptr %leaf, align 8
   %3 = load ptr, ptr %root.addr, align 8
   %4 = load i64, ptr %key.addr, align 8
-  %5 = load i8, ptr %verbose.addr, align 1
-  %tobool = trunc i8 %5 to i1
-  %call = call ptr @find_leaf(ptr noundef %3, i64 noundef %4, i1 noundef zeroext %tobool)
+  %call = call ptr @find_leaf(ptr noundef %3, i64 noundef %4)
   store ptr %call, ptr %leaf, align 8
   store i64 0, ptr %i, align 8
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %if.end3
-  %6 = load i64, ptr %i, align 8
-  %7 = load ptr, ptr %leaf, align 8
-  %num_keys = getelementptr inbounds %struct.node, ptr %7, i32 0, i32 4
-  %8 = load i64, ptr %num_keys, align 8
-  %cmp4 = icmp ult i64 %6, %8
+  %5 = load i64, ptr %i, align 8
+  %6 = load ptr, ptr %leaf, align 8
+  %num_keys = getelementptr inbounds %struct.node, ptr %6, i32 0, i32 4
+  %7 = load i64, ptr %num_keys, align 8
+  %cmp4 = icmp ult i64 %5, %7
   br i1 %cmp4, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %9 = load ptr, ptr %leaf, align 8
-  %keys = getelementptr inbounds %struct.node, ptr %9, i32 0, i32 1
-  %10 = load ptr, ptr %keys, align 8
-  %11 = load i64, ptr %i, align 8
-  %arrayidx = getelementptr inbounds i64, ptr %10, i64 %11
-  %12 = load i64, ptr %arrayidx, align 8
-  %13 = load i64, ptr %key.addr, align 8
-  %cmp5 = icmp eq i64 %12, %13
+  %8 = load ptr, ptr %leaf, align 8
+  %keys = getelementptr inbounds %struct.node, ptr %8, i32 0, i32 1
+  %9 = load ptr, ptr %keys, align 8
+  %10 = load i64, ptr %i, align 8
+  %arrayidx = getelementptr inbounds i64, ptr %9, i64 %10
+  %11 = load i64, ptr %arrayidx, align 8
+  %12 = load i64, ptr %key.addr, align 8
+  %cmp5 = icmp eq i64 %11, %12
   br i1 %cmp5, label %if.then6, label %if.end7
 
 if.then6:                                         ; preds = %for.body
@@ -699,28 +587,28 @@ if.end7:                                          ; preds = %for.body
   br label %for.inc
 
 for.inc:                                          ; preds = %if.end7
-  %14 = load i64, ptr %i, align 8
-  %inc = add i64 %14, 1
+  %13 = load i64, ptr %i, align 8
+  %inc = add i64 %13, 1
   store i64 %inc, ptr %i, align 8
   br label %for.cond, !llvm.loop !15
 
 for.end:                                          ; preds = %if.then6, %for.cond
-  %15 = load ptr, ptr %leaf_out.addr, align 8
-  %cmp8 = icmp ne ptr %15, null
+  %14 = load ptr, ptr %leaf_out.addr, align 8
+  %cmp8 = icmp ne ptr %14, null
   br i1 %cmp8, label %if.then9, label %if.end10
 
 if.then9:                                         ; preds = %for.end
-  %16 = load ptr, ptr %leaf, align 8
-  %17 = load ptr, ptr %leaf_out.addr, align 8
-  store ptr %16, ptr %17, align 8
+  %15 = load ptr, ptr %leaf, align 8
+  %16 = load ptr, ptr %leaf_out.addr, align 8
+  store ptr %15, ptr %16, align 8
   br label %if.end10
 
 if.end10:                                         ; preds = %if.then9, %for.end
-  %18 = load i64, ptr %i, align 8
-  %19 = load ptr, ptr %leaf, align 8
-  %num_keys11 = getelementptr inbounds %struct.node, ptr %19, i32 0, i32 4
-  %20 = load i64, ptr %num_keys11, align 8
-  %cmp12 = icmp eq i64 %18, %20
+  %17 = load i64, ptr %i, align 8
+  %18 = load ptr, ptr %leaf, align 8
+  %num_keys11 = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 4
+  %19 = load i64, ptr %num_keys11, align 8
+  %cmp12 = icmp eq i64 %17, %19
   br i1 %cmp12, label %if.then13, label %if.else
 
 if.then13:                                        ; preds = %if.end10
@@ -728,27 +616,26 @@ if.then13:                                        ; preds = %if.end10
   br label %return
 
 if.else:                                          ; preds = %if.end10
-  %21 = load ptr, ptr %leaf, align 8
-  %pointers = getelementptr inbounds %struct.node, ptr %21, i32 0, i32 0
-  %22 = load ptr, ptr %pointers, align 8
-  %23 = load i64, ptr %i, align 8
-  %arrayidx14 = getelementptr inbounds ptr, ptr %22, i64 %23
-  %24 = load ptr, ptr %arrayidx14, align 8
-  store ptr %24, ptr %retval, align 8
+  %20 = load ptr, ptr %leaf, align 8
+  %pointers = getelementptr inbounds %struct.node, ptr %20, i32 0, i32 0
+  %21 = load ptr, ptr %pointers, align 8
+  %22 = load i64, ptr %i, align 8
+  %arrayidx14 = getelementptr inbounds ptr, ptr %21, i64 %22
+  %23 = load ptr, ptr %arrayidx14, align 8
+  store ptr %23, ptr %retval, align 8
   br label %return
 
 return:                                           ; preds = %if.else, %if.then13, %if.end
-  %25 = load ptr, ptr %retval, align 8
-  ret ptr %25
+  %24 = load ptr, ptr %retval, align 8
+  ret ptr %24
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local void @find_and_print_range(ptr noundef %root, i64 noundef %key_start, i64 noundef %key_end, i1 noundef zeroext %verbose) #0 {
+define dso_local void @find_and_print_range(ptr noundef %root, i64 noundef %key_start, i64 noundef %key_end) #0 {
 entry:
   %root.addr = alloca ptr, align 8
   %key_start.addr = alloca i64, align 8
   %key_end.addr = alloca i64, align 8
-  %verbose.addr = alloca i8, align 1
   %i = alloca i64, align 8
   %array_size = alloca i64, align 8
   %saved_stack = alloca ptr, align 8
@@ -758,8 +645,6 @@ entry:
   store ptr %root, ptr %root.addr, align 8
   store i64 %key_start, ptr %key_start.addr, align 8
   store i64 %key_end, ptr %key_end.addr, align 8
-  %frombool = zext i1 %verbose to i8
-  store i8 %frombool, ptr %verbose.addr, align 1
   %0 = load i64, ptr %key_end.addr, align 8
   %1 = load i64, ptr %key_start.addr, align 8
   %sub = sub i64 %0, %1
@@ -776,16 +661,14 @@ entry:
   %5 = load ptr, ptr %root.addr, align 8
   %6 = load i64, ptr %key_start.addr, align 8
   %7 = load i64, ptr %key_end.addr, align 8
-  %8 = load i8, ptr %verbose.addr, align 1
-  %tobool = trunc i8 %8 to i1
-  %call = call i64 @find_range(ptr noundef %5, i64 noundef %6, i64 noundef %7, i1 noundef zeroext %tobool, ptr noundef %vla, ptr noundef %vla1)
+  %call = call i64 @find_range(ptr noundef %5, i64 noundef %6, i64 noundef %7, ptr noundef %vla, ptr noundef %vla1)
   store i64 %call, ptr %num_found, align 8
-  %9 = load i64, ptr %num_found, align 8
-  %tobool2 = icmp ne i64 %9, 0
-  br i1 %tobool2, label %if.else, label %if.then
+  %8 = load i64, ptr %num_found, align 8
+  %tobool = icmp ne i64 %8, 0
+  br i1 %tobool, label %if.else, label %if.then
 
 if.then:                                          ; preds = %entry
-  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.19)
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.17)
   br label %if.end
 
 if.else:                                          ; preds = %entry
@@ -793,29 +676,29 @@ if.else:                                          ; preds = %entry
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %if.else
-  %10 = load i64, ptr %i, align 8
-  %11 = load i64, ptr %num_found, align 8
-  %cmp = icmp ult i64 %10, %11
+  %9 = load i64, ptr %i, align 8
+  %10 = load i64, ptr %num_found, align 8
+  %cmp = icmp ult i64 %9, %10
   br i1 %cmp, label %for.body, label %for.end
 
 for.body:                                         ; preds = %for.cond
-  %12 = load i64, ptr %i, align 8
-  %arrayidx = getelementptr inbounds i64, ptr %vla, i64 %12
-  %13 = load i64, ptr %arrayidx, align 8
-  %14 = load i64, ptr %i, align 8
-  %arrayidx4 = getelementptr inbounds ptr, ptr %vla1, i64 %14
-  %15 = load ptr, ptr %arrayidx4, align 8
-  %16 = load i64, ptr %i, align 8
-  %arrayidx5 = getelementptr inbounds ptr, ptr %vla1, i64 %16
-  %17 = load ptr, ptr %arrayidx5, align 8
-  %value = getelementptr inbounds %struct.record, ptr %17, i32 0, i32 0
-  %18 = load i64, ptr %value, align 8
-  %call6 = call i32 (ptr, ...) @printf(ptr noundef @.str.20, i64 noundef %13, ptr noundef %15, i64 noundef %18)
+  %11 = load i64, ptr %i, align 8
+  %arrayidx = getelementptr inbounds i64, ptr %vla, i64 %11
+  %12 = load i64, ptr %arrayidx, align 8
+  %13 = load i64, ptr %i, align 8
+  %arrayidx3 = getelementptr inbounds ptr, ptr %vla1, i64 %13
+  %14 = load ptr, ptr %arrayidx3, align 8
+  %15 = load i64, ptr %i, align 8
+  %arrayidx4 = getelementptr inbounds ptr, ptr %vla1, i64 %15
+  %16 = load ptr, ptr %arrayidx4, align 8
+  %value = getelementptr inbounds %struct.record, ptr %16, i32 0, i32 0
+  %17 = load i64, ptr %value, align 8
+  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.18, i64 noundef %12, ptr noundef %14, i64 noundef %17)
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %19 = load i64, ptr %i, align 8
-  %inc = add i64 %19, 1
+  %18 = load i64, ptr %i, align 8
+  %inc = add i64 %18, 1
   store i64 %inc, ptr %i, align 8
   br label %for.cond, !llvm.loop !16
 
@@ -823,8 +706,8 @@ for.end:                                          ; preds = %for.cond
   br label %if.end
 
 if.end:                                           ; preds = %for.end, %if.then
-  %20 = load ptr, ptr %saved_stack, align 8
-  call void @llvm.stackrestore.p0(ptr %20)
+  %19 = load ptr, ptr %saved_stack, align 8
+  call void @llvm.stackrestore.p0(ptr %19)
   ret void
 }
 
@@ -832,13 +715,12 @@ if.end:                                           ; preds = %for.end, %if.then
 declare ptr @llvm.stacksave.p0() #2
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local i64 @find_range(ptr noundef %root, i64 noundef %key_start, i64 noundef %key_end, i1 noundef zeroext %verbose, ptr noundef %returned_keys, ptr noundef %returned_pointers) #0 {
+define dso_local i64 @find_range(ptr noundef %root, i64 noundef %key_start, i64 noundef %key_end, ptr noundef %returned_keys, ptr noundef %returned_pointers) #0 {
 entry:
   %retval = alloca i64, align 8
   %root.addr = alloca ptr, align 8
   %key_start.addr = alloca i64, align 8
   %key_end.addr = alloca i64, align 8
-  %verbose.addr = alloca i8, align 1
   %returned_keys.addr = alloca ptr, align 8
   %returned_pointers.addr = alloca ptr, align 8
   %i = alloca i64, align 8
@@ -847,19 +729,15 @@ entry:
   store ptr %root, ptr %root.addr, align 8
   store i64 %key_start, ptr %key_start.addr, align 8
   store i64 %key_end, ptr %key_end.addr, align 8
-  %frombool = zext i1 %verbose to i8
-  store i8 %frombool, ptr %verbose.addr, align 1
   store ptr %returned_keys, ptr %returned_keys.addr, align 8
   store ptr %returned_pointers, ptr %returned_pointers.addr, align 8
   store i64 0, ptr %num_found, align 8
   %0 = load ptr, ptr %root.addr, align 8
   %1 = load i64, ptr %key_start.addr, align 8
-  %2 = load i8, ptr %verbose.addr, align 1
-  %tobool = trunc i8 %2 to i1
-  %call = call ptr @find_leaf(ptr noundef %0, i64 noundef %1, i1 noundef zeroext %tobool)
+  %call = call ptr @find_leaf(ptr noundef %0, i64 noundef %1)
   store ptr %call, ptr %n, align 8
-  %3 = load ptr, ptr %n, align 8
-  %cmp = icmp eq ptr %3, null
+  %2 = load ptr, ptr %n, align 8
+  %cmp = icmp eq ptr %2, null
   br i1 %cmp, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
@@ -871,43 +749,43 @@ if.end:                                           ; preds = %entry
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc, %if.end
-  %4 = load i64, ptr %i, align 8
-  %5 = load ptr, ptr %n, align 8
-  %num_keys = getelementptr inbounds %struct.node, ptr %5, i32 0, i32 4
-  %6 = load i64, ptr %num_keys, align 8
-  %cmp1 = icmp ult i64 %4, %6
+  %3 = load i64, ptr %i, align 8
+  %4 = load ptr, ptr %n, align 8
+  %num_keys = getelementptr inbounds %struct.node, ptr %4, i32 0, i32 4
+  %5 = load i64, ptr %num_keys, align 8
+  %cmp1 = icmp ult i64 %3, %5
   br i1 %cmp1, label %land.rhs, label %land.end
 
 land.rhs:                                         ; preds = %for.cond
-  %7 = load ptr, ptr %n, align 8
-  %keys = getelementptr inbounds %struct.node, ptr %7, i32 0, i32 1
-  %8 = load ptr, ptr %keys, align 8
-  %9 = load i64, ptr %i, align 8
-  %arrayidx = getelementptr inbounds i64, ptr %8, i64 %9
-  %10 = load i64, ptr %arrayidx, align 8
-  %11 = load i64, ptr %key_start.addr, align 8
-  %cmp2 = icmp ult i64 %10, %11
+  %6 = load ptr, ptr %n, align 8
+  %keys = getelementptr inbounds %struct.node, ptr %6, i32 0, i32 1
+  %7 = load ptr, ptr %keys, align 8
+  %8 = load i64, ptr %i, align 8
+  %arrayidx = getelementptr inbounds i64, ptr %7, i64 %8
+  %9 = load i64, ptr %arrayidx, align 8
+  %10 = load i64, ptr %key_start.addr, align 8
+  %cmp2 = icmp ult i64 %9, %10
   br label %land.end
 
 land.end:                                         ; preds = %land.rhs, %for.cond
-  %12 = phi i1 [ false, %for.cond ], [ %cmp2, %land.rhs ]
-  br i1 %12, label %for.body, label %for.end
+  %11 = phi i1 [ false, %for.cond ], [ %cmp2, %land.rhs ]
+  br i1 %11, label %for.body, label %for.end
 
 for.body:                                         ; preds = %land.end
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body
-  %13 = load i64, ptr %i, align 8
-  %inc = add i64 %13, 1
+  %12 = load i64, ptr %i, align 8
+  %inc = add i64 %12, 1
   store i64 %inc, ptr %i, align 8
   br label %for.cond, !llvm.loop !17
 
 for.end:                                          ; preds = %land.end
-  %14 = load i64, ptr %i, align 8
-  %15 = load ptr, ptr %n, align 8
-  %num_keys3 = getelementptr inbounds %struct.node, ptr %15, i32 0, i32 4
-  %16 = load i64, ptr %num_keys3, align 8
-  %cmp4 = icmp eq i64 %14, %16
+  %13 = load i64, ptr %i, align 8
+  %14 = load ptr, ptr %n, align 8
+  %num_keys3 = getelementptr inbounds %struct.node, ptr %14, i32 0, i32 4
+  %15 = load i64, ptr %num_keys3, align 8
+  %cmp4 = icmp eq i64 %13, %15
   br i1 %cmp4, label %if.then5, label %if.end6
 
 if.then5:                                         ; preds = %for.end
@@ -918,291 +796,179 @@ if.end6:                                          ; preds = %for.end
   br label %while.cond
 
 while.cond:                                       ; preds = %for.end25, %if.end6
-  %17 = load ptr, ptr %n, align 8
-  %cmp7 = icmp ne ptr %17, null
+  %16 = load ptr, ptr %n, align 8
+  %cmp7 = icmp ne ptr %16, null
   br i1 %cmp7, label %while.body, label %while.end
 
 while.body:                                       ; preds = %while.cond
   br label %for.cond8
 
 for.cond8:                                        ; preds = %for.inc23, %while.body
-  %18 = load i64, ptr %i, align 8
-  %19 = load ptr, ptr %n, align 8
-  %num_keys9 = getelementptr inbounds %struct.node, ptr %19, i32 0, i32 4
-  %20 = load i64, ptr %num_keys9, align 8
-  %cmp10 = icmp ult i64 %18, %20
+  %17 = load i64, ptr %i, align 8
+  %18 = load ptr, ptr %n, align 8
+  %num_keys9 = getelementptr inbounds %struct.node, ptr %18, i32 0, i32 4
+  %19 = load i64, ptr %num_keys9, align 8
+  %cmp10 = icmp ult i64 %17, %19
   br i1 %cmp10, label %land.rhs11, label %land.end15
 
 land.rhs11:                                       ; preds = %for.cond8
-  %21 = load ptr, ptr %n, align 8
-  %keys12 = getelementptr inbounds %struct.node, ptr %21, i32 0, i32 1
-  %22 = load ptr, ptr %keys12, align 8
-  %23 = load i64, ptr %i, align 8
-  %arrayidx13 = getelementptr inbounds i64, ptr %22, i64 %23
-  %24 = load i64, ptr %arrayidx13, align 8
-  %25 = load i64, ptr %key_end.addr, align 8
-  %cmp14 = icmp ule i64 %24, %25
+  %20 = load ptr, ptr %n, align 8
+  %keys12 = getelementptr inbounds %struct.node, ptr %20, i32 0, i32 1
+  %21 = load ptr, ptr %keys12, align 8
+  %22 = load i64, ptr %i, align 8
+  %arrayidx13 = getelementptr inbounds i64, ptr %21, i64 %22
+  %23 = load i64, ptr %arrayidx13, align 8
+  %24 = load i64, ptr %key_end.addr, align 8
+  %cmp14 = icmp ule i64 %23, %24
   br label %land.end15
 
 land.end15:                                       ; preds = %land.rhs11, %for.cond8
-  %26 = phi i1 [ false, %for.cond8 ], [ %cmp14, %land.rhs11 ]
-  br i1 %26, label %for.body16, label %for.end25
+  %25 = phi i1 [ false, %for.cond8 ], [ %cmp14, %land.rhs11 ]
+  br i1 %25, label %for.body16, label %for.end25
 
 for.body16:                                       ; preds = %land.end15
-  %27 = load ptr, ptr %n, align 8
-  %keys17 = getelementptr inbounds %struct.node, ptr %27, i32 0, i32 1
-  %28 = load ptr, ptr %keys17, align 8
-  %29 = load i64, ptr %i, align 8
-  %arrayidx18 = getelementptr inbounds i64, ptr %28, i64 %29
-  %30 = load i64, ptr %arrayidx18, align 8
-  %31 = load ptr, ptr %returned_keys.addr, align 8
-  %32 = load i64, ptr %num_found, align 8
-  %arrayidx19 = getelementptr inbounds i64, ptr %31, i64 %32
-  store i64 %30, ptr %arrayidx19, align 8
-  %33 = load ptr, ptr %n, align 8
-  %pointers = getelementptr inbounds %struct.node, ptr %33, i32 0, i32 0
-  %34 = load ptr, ptr %pointers, align 8
-  %35 = load i64, ptr %i, align 8
-  %arrayidx20 = getelementptr inbounds ptr, ptr %34, i64 %35
-  %36 = load ptr, ptr %arrayidx20, align 8
-  %37 = load ptr, ptr %returned_pointers.addr, align 8
+  %26 = load ptr, ptr %n, align 8
+  %keys17 = getelementptr inbounds %struct.node, ptr %26, i32 0, i32 1
+  %27 = load ptr, ptr %keys17, align 8
+  %28 = load i64, ptr %i, align 8
+  %arrayidx18 = getelementptr inbounds i64, ptr %27, i64 %28
+  %29 = load i64, ptr %arrayidx18, align 8
+  %30 = load ptr, ptr %returned_keys.addr, align 8
+  %31 = load i64, ptr %num_found, align 8
+  %arrayidx19 = getelementptr inbounds i64, ptr %30, i64 %31
+  store i64 %29, ptr %arrayidx19, align 8
+  %32 = load ptr, ptr %n, align 8
+  %pointers = getelementptr inbounds %struct.node, ptr %32, i32 0, i32 0
+  %33 = load ptr, ptr %pointers, align 8
+  %34 = load i64, ptr %i, align 8
+  %arrayidx20 = getelementptr inbounds ptr, ptr %33, i64 %34
+  %35 = load ptr, ptr %arrayidx20, align 8
+  %36 = load ptr, ptr %returned_pointers.addr, align 8
+  %37 = load i64, ptr %num_found, align 8
+  %arrayidx21 = getelementptr inbounds ptr, ptr %36, i64 %37
+  store ptr %35, ptr %arrayidx21, align 8
   %38 = load i64, ptr %num_found, align 8
-  %arrayidx21 = getelementptr inbounds ptr, ptr %37, i64 %38
-  store ptr %36, ptr %arrayidx21, align 8
-  %39 = load i64, ptr %num_found, align 8
-  %inc22 = add i64 %39, 1
+  %inc22 = add i64 %38, 1
   store i64 %inc22, ptr %num_found, align 8
   br label %for.inc23
 
 for.inc23:                                        ; preds = %for.body16
-  %40 = load i64, ptr %i, align 8
-  %inc24 = add i64 %40, 1
+  %39 = load i64, ptr %i, align 8
+  %inc24 = add i64 %39, 1
   store i64 %inc24, ptr %i, align 8
   br label %for.cond8, !llvm.loop !18
 
 for.end25:                                        ; preds = %land.end15
-  %41 = load ptr, ptr %n, align 8
-  %pointers26 = getelementptr inbounds %struct.node, ptr %41, i32 0, i32 0
-  %42 = load ptr, ptr %pointers26, align 8
-  %43 = load i64, ptr @order, align 8
-  %sub = sub i64 %43, 1
-  %arrayidx27 = getelementptr inbounds ptr, ptr %42, i64 %sub
-  %44 = load ptr, ptr %arrayidx27, align 8
-  store ptr %44, ptr %n, align 8
+  %40 = load ptr, ptr %n, align 8
+  %pointers26 = getelementptr inbounds %struct.node, ptr %40, i32 0, i32 0
+  %41 = load ptr, ptr %pointers26, align 8
+  %42 = load i64, ptr @order, align 8
+  %sub = sub i64 %42, 1
+  %arrayidx27 = getelementptr inbounds ptr, ptr %41, i64 %sub
+  %43 = load ptr, ptr %arrayidx27, align 8
+  store ptr %43, ptr %n, align 8
   store i64 0, ptr %i, align 8
   br label %while.cond, !llvm.loop !19
 
 while.end:                                        ; preds = %while.cond
-  %45 = load i64, ptr %num_found, align 8
-  store i64 %45, ptr %retval, align 8
+  %44 = load i64, ptr %num_found, align 8
+  store i64 %44, ptr %retval, align 8
   br label %return
 
 return:                                           ; preds = %while.end, %if.then5, %if.then
-  %46 = load i64, ptr %retval, align 8
-  ret i64 %46
+  %45 = load i64, ptr %retval, align 8
+  ret i64 %45
 }
 
 ; Function Attrs: nocallback nofree nosync nounwind willreturn
 declare void @llvm.stackrestore.p0(ptr) #2
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local ptr @find_leaf(ptr noundef %root, i64 noundef %key, i1 noundef zeroext %verbose) #0 {
+define dso_local ptr @find_leaf(ptr noundef %root, i64 noundef %key) #0 {
 entry:
   %retval = alloca ptr, align 8
   %root.addr = alloca ptr, align 8
   %key.addr = alloca i64, align 8
-  %verbose.addr = alloca i8, align 1
   %i = alloca i64, align 8
   %c = alloca ptr, align 8
   store ptr %root, ptr %root.addr, align 8
   store i64 %key, ptr %key.addr, align 8
-  %frombool = zext i1 %verbose to i8
-  store i8 %frombool, ptr %verbose.addr, align 1
   %0 = load ptr, ptr %root.addr, align 8
   %cmp = icmp eq ptr %0, null
-  br i1 %cmp, label %if.then, label %if.end2
+  br i1 %cmp, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  %1 = load i8, ptr %verbose.addr, align 1
-  %tobool = trunc i8 %1 to i1
-  br i1 %tobool, label %if.then1, label %if.end
-
-if.then1:                                         ; preds = %if.then
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.10)
-  br label %if.end
-
-if.end:                                           ; preds = %if.then1, %if.then
-  %2 = load ptr, ptr %root.addr, align 8
-  store ptr %2, ptr %retval, align 8
+  %1 = load ptr, ptr %root.addr, align 8
+  store ptr %1, ptr %retval, align 8
   br label %return
 
-if.end2:                                          ; preds = %entry
+if.end:                                           ; preds = %entry
   store i64 0, ptr %i, align 8
-  %3 = load ptr, ptr %root.addr, align 8
-  store ptr %3, ptr %c, align 8
+  %2 = load ptr, ptr %root.addr, align 8
+  store ptr %2, ptr %c, align 8
   br label %while.cond
 
-while.cond:                                       ; preds = %if.end26, %if.end2
-  %4 = load ptr, ptr %c, align 8
-  %is_leaf = getelementptr inbounds %struct.node, ptr %4, i32 0, i32 3
-  %5 = load i8, ptr %is_leaf, align 8
-  %tobool3 = trunc i8 %5 to i1
-  %lnot = xor i1 %tobool3, true
-  br i1 %lnot, label %while.body, label %while.end28
+while.cond:                                       ; preds = %while.end, %if.end
+  %3 = load ptr, ptr %c, align 8
+  %is_leaf = getelementptr inbounds %struct.node, ptr %3, i32 0, i32 3
+  %4 = load i8, ptr %is_leaf, align 8
+  %tobool = trunc i8 %4 to i1
+  %lnot = xor i1 %tobool, true
+  br i1 %lnot, label %while.body, label %while.end8
 
 while.body:                                       ; preds = %while.cond
-  %6 = load i8, ptr %verbose.addr, align 1
-  %tobool4 = trunc i8 %6 to i1
-  br i1 %tobool4, label %if.then5, label %if.end12
-
-if.then5:                                         ; preds = %while.body
-  %call6 = call i32 (ptr, ...) @printf(ptr noundef @.str.21)
   store i64 0, ptr %i, align 8
-  br label %for.cond
+  br label %while.cond1
 
-for.cond:                                         ; preds = %for.inc, %if.then5
-  %7 = load i64, ptr %i, align 8
-  %8 = load ptr, ptr %c, align 8
-  %num_keys = getelementptr inbounds %struct.node, ptr %8, i32 0, i32 4
-  %9 = load i64, ptr %num_keys, align 8
-  %sub = sub i64 %9, 1
-  %cmp7 = icmp ult i64 %7, %sub
-  br i1 %cmp7, label %for.body, label %for.end
+while.cond1:                                      ; preds = %if.end6, %while.body
+  %5 = load i64, ptr %i, align 8
+  %6 = load ptr, ptr %c, align 8
+  %num_keys = getelementptr inbounds %struct.node, ptr %6, i32 0, i32 4
+  %7 = load i64, ptr %num_keys, align 8
+  %cmp2 = icmp ult i64 %5, %7
+  br i1 %cmp2, label %while.body3, label %while.end
 
-for.body:                                         ; preds = %for.cond
-  %10 = load ptr, ptr %c, align 8
-  %keys = getelementptr inbounds %struct.node, ptr %10, i32 0, i32 1
-  %11 = load ptr, ptr %keys, align 8
-  %12 = load i64, ptr %i, align 8
-  %arrayidx = getelementptr inbounds i64, ptr %11, i64 %12
-  %13 = load i64, ptr %arrayidx, align 8
-  %call8 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %13)
-  br label %for.inc
+while.body3:                                      ; preds = %while.cond1
+  %8 = load i64, ptr %key.addr, align 8
+  %9 = load ptr, ptr %c, align 8
+  %keys = getelementptr inbounds %struct.node, ptr %9, i32 0, i32 1
+  %10 = load ptr, ptr %keys, align 8
+  %11 = load i64, ptr %i, align 8
+  %arrayidx = getelementptr inbounds i64, ptr %10, i64 %11
+  %12 = load i64, ptr %arrayidx, align 8
+  %cmp4 = icmp uge i64 %8, %12
+  br i1 %cmp4, label %if.then5, label %if.else
 
-for.inc:                                          ; preds = %for.body
-  %14 = load i64, ptr %i, align 8
-  %inc = add i64 %14, 1
+if.then5:                                         ; preds = %while.body3
+  %13 = load i64, ptr %i, align 8
+  %inc = add i64 %13, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond, !llvm.loop !20
+  br label %if.end6
 
-for.end:                                          ; preds = %for.cond
-  %15 = load ptr, ptr %c, align 8
-  %keys9 = getelementptr inbounds %struct.node, ptr %15, i32 0, i32 1
-  %16 = load ptr, ptr %keys9, align 8
-  %17 = load i64, ptr %i, align 8
-  %arrayidx10 = getelementptr inbounds i64, ptr %16, i64 %17
-  %18 = load i64, ptr %arrayidx10, align 8
-  %call11 = call i32 (ptr, ...) @printf(ptr noundef @.str.22, i64 noundef %18)
-  br label %if.end12
-
-if.end12:                                         ; preds = %for.end, %while.body
-  store i64 0, ptr %i, align 8
-  br label %while.cond13
-
-while.cond13:                                     ; preds = %if.end22, %if.end12
-  %19 = load i64, ptr %i, align 8
-  %20 = load ptr, ptr %c, align 8
-  %num_keys14 = getelementptr inbounds %struct.node, ptr %20, i32 0, i32 4
-  %21 = load i64, ptr %num_keys14, align 8
-  %cmp15 = icmp ult i64 %19, %21
-  br i1 %cmp15, label %while.body16, label %while.end
-
-while.body16:                                     ; preds = %while.cond13
-  %22 = load i64, ptr %key.addr, align 8
-  %23 = load ptr, ptr %c, align 8
-  %keys17 = getelementptr inbounds %struct.node, ptr %23, i32 0, i32 1
-  %24 = load ptr, ptr %keys17, align 8
-  %25 = load i64, ptr %i, align 8
-  %arrayidx18 = getelementptr inbounds i64, ptr %24, i64 %25
-  %26 = load i64, ptr %arrayidx18, align 8
-  %cmp19 = icmp uge i64 %22, %26
-  br i1 %cmp19, label %if.then20, label %if.else
-
-if.then20:                                        ; preds = %while.body16
-  %27 = load i64, ptr %i, align 8
-  %inc21 = add i64 %27, 1
-  store i64 %inc21, ptr %i, align 8
-  br label %if.end22
-
-if.else:                                          ; preds = %while.body16
+if.else:                                          ; preds = %while.body3
   br label %while.end
 
-if.end22:                                         ; preds = %if.then20
-  br label %while.cond13, !llvm.loop !21
+if.end6:                                          ; preds = %if.then5
+  br label %while.cond1, !llvm.loop !20
 
-while.end:                                        ; preds = %if.else, %while.cond13
-  %28 = load i8, ptr %verbose.addr, align 1
-  %tobool23 = trunc i8 %28 to i1
-  br i1 %tobool23, label %if.then24, label %if.end26
+while.end:                                        ; preds = %if.else, %while.cond1
+  %14 = load ptr, ptr %c, align 8
+  %pointers = getelementptr inbounds %struct.node, ptr %14, i32 0, i32 0
+  %15 = load ptr, ptr %pointers, align 8
+  %16 = load i64, ptr %i, align 8
+  %arrayidx7 = getelementptr inbounds ptr, ptr %15, i64 %16
+  %17 = load ptr, ptr %arrayidx7, align 8
+  store ptr %17, ptr %c, align 8
+  br label %while.cond, !llvm.loop !21
 
-if.then24:                                        ; preds = %while.end
-  %29 = load i64, ptr %i, align 8
-  %call25 = call i32 (ptr, ...) @printf(ptr noundef @.str.23, i64 noundef %29)
-  br label %if.end26
-
-if.end26:                                         ; preds = %if.then24, %while.end
-  %30 = load ptr, ptr %c, align 8
-  %pointers = getelementptr inbounds %struct.node, ptr %30, i32 0, i32 0
-  %31 = load ptr, ptr %pointers, align 8
-  %32 = load i64, ptr %i, align 8
-  %arrayidx27 = getelementptr inbounds ptr, ptr %31, i64 %32
-  %33 = load ptr, ptr %arrayidx27, align 8
-  store ptr %33, ptr %c, align 8
-  br label %while.cond, !llvm.loop !22
-
-while.end28:                                      ; preds = %while.cond
-  %34 = load i8, ptr %verbose.addr, align 1
-  %tobool29 = trunc i8 %34 to i1
-  br i1 %tobool29, label %if.then30, label %if.end46
-
-if.then30:                                        ; preds = %while.end28
-  %call31 = call i32 (ptr, ...) @printf(ptr noundef @.str.24)
-  store i64 0, ptr %i, align 8
-  br label %for.cond32
-
-for.cond32:                                       ; preds = %for.inc40, %if.then30
-  %35 = load i64, ptr %i, align 8
-  %36 = load ptr, ptr %c, align 8
-  %num_keys33 = getelementptr inbounds %struct.node, ptr %36, i32 0, i32 4
-  %37 = load i64, ptr %num_keys33, align 8
-  %sub34 = sub i64 %37, 1
-  %cmp35 = icmp ult i64 %35, %sub34
-  br i1 %cmp35, label %for.body36, label %for.end42
-
-for.body36:                                       ; preds = %for.cond32
-  %38 = load ptr, ptr %c, align 8
-  %keys37 = getelementptr inbounds %struct.node, ptr %38, i32 0, i32 1
-  %39 = load ptr, ptr %keys37, align 8
-  %40 = load i64, ptr %i, align 8
-  %arrayidx38 = getelementptr inbounds i64, ptr %39, i64 %40
-  %41 = load i64, ptr %arrayidx38, align 8
-  %call39 = call i32 (ptr, ...) @printf(ptr noundef @.str.12, i64 noundef %41)
-  br label %for.inc40
-
-for.inc40:                                        ; preds = %for.body36
-  %42 = load i64, ptr %i, align 8
-  %inc41 = add i64 %42, 1
-  store i64 %inc41, ptr %i, align 8
-  br label %for.cond32, !llvm.loop !23
-
-for.end42:                                        ; preds = %for.cond32
-  %43 = load ptr, ptr %c, align 8
-  %keys43 = getelementptr inbounds %struct.node, ptr %43, i32 0, i32 1
-  %44 = load ptr, ptr %keys43, align 8
-  %45 = load i64, ptr %i, align 8
-  %arrayidx44 = getelementptr inbounds i64, ptr %44, i64 %45
-  %46 = load i64, ptr %arrayidx44, align 8
-  %call45 = call i32 (ptr, ...) @printf(ptr noundef @.str.25, i64 noundef %46)
-  br label %if.end46
-
-if.end46:                                         ; preds = %for.end42, %while.end28
-  %47 = load ptr, ptr %c, align 8
-  store ptr %47, ptr %retval, align 8
+while.end8:                                       ; preds = %while.cond
+  %18 = load ptr, ptr %c, align 8
+  store ptr %18, ptr %retval, align 8
   br label %return
 
-return:                                           ; preds = %if.end46, %if.end
-  %48 = load ptr, ptr %retval, align 8
-  ret ptr %48
+return:                                           ; preds = %while.end8, %if.then
+  %19 = load ptr, ptr %retval, align 8
+  ret ptr %19
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -1253,7 +1019,7 @@ if.then:                                          ; preds = %entry
 
 if.then1:                                         ; preds = %if.then
   %2 = load ptr, ptr @stderr, align 8
-  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.26)
+  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.19)
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1283,7 +1049,7 @@ for.inc:                                          ; preds = %for.body
   %9 = load i64, ptr %i, align 8
   %inc = add i64 %9, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond, !llvm.loop !24
+  br label %for.cond, !llvm.loop !22
 
 for.end:                                          ; preds = %for.cond
   br label %if.end5
@@ -1316,7 +1082,7 @@ entry:
   br i1 %tobool, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.44)
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.37)
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1373,7 +1139,7 @@ if.then:                                          ; preds = %entry
 
 if.then1:                                         ; preds = %if.then
   %2 = load ptr, ptr @stderr, align 8
-  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.26)
+  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.19)
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1403,7 +1169,7 @@ for.inc:                                          ; preds = %for.body
   %9 = load i64, ptr %i, align 8
   %inc = add i64 %9, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond, !llvm.loop !25
+  br label %for.cond, !llvm.loop !23
 
 for.end:                                          ; preds = %for.cond
   br label %if.end5
@@ -1441,14 +1207,14 @@ entry:
   %value.addr = alloca i64, align 8
   %new_record = alloca ptr, align 8
   store i64 %value, ptr %value.addr, align 8
-  %call = call ptr (i64, ...) @alloc_record(i64 noundef 32)
+  %call = call ptr @alloc_record()
   store ptr %call, ptr %new_record, align 8
   %0 = load ptr, ptr %new_record, align 8
   %cmp = icmp eq ptr %0, null
   br i1 %cmp, label %if.then, label %if.else
 
 if.then:                                          ; preds = %entry
-  call void @perror(ptr noundef @.str.27) #9
+  call void @perror(ptr noundef @.str.20) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1471,14 +1237,14 @@ declare void @perror(ptr noundef) #5
 define dso_local ptr @make_node() #0 {
 entry:
   %new_node = alloca ptr, align 8
-  %call = call ptr (i64, ...) @alloc_node(i64 noundef 56)
+  %call = call ptr @alloc_node()
   store ptr %call, ptr %new_node, align 8
   %0 = load ptr, ptr %new_node, align 8
   %cmp = icmp eq ptr %0, null
   br i1 %cmp, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  call void @perror(ptr noundef @.str.28) #9
+  call void @perror(ptr noundef @.str.21) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1497,7 +1263,7 @@ if.end:                                           ; preds = %entry
   br i1 %cmp3, label %if.then4, label %if.end5
 
 if.then4:                                         ; preds = %if.end
-  call void @perror(ptr noundef @.str.29) #9
+  call void @perror(ptr noundef @.str.22) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1515,7 +1281,7 @@ if.end5:                                          ; preds = %if.end
   br i1 %cmp9, label %if.then10, label %if.end11
 
 if.then10:                                        ; preds = %if.end5
-  call void @perror(ptr noundef @.str.30) #9
+  call void @perror(ptr noundef @.str.23) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1548,7 +1314,7 @@ entry:
   br i1 %tobool, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.44)
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.37)
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1615,7 +1381,7 @@ while.body:                                       ; preds = %land.end
   %9 = load i64, ptr %left_index, align 8
   %inc = add i64 %9, 1
   store i64 %inc, ptr %left_index, align 8
-  br label %while.cond, !llvm.loop !26
+  br label %while.cond, !llvm.loop !24
 
 while.end:                                        ; preds = %land.end
   %10 = load i64, ptr %left_index, align 8
@@ -1663,7 +1429,7 @@ while.body:                                       ; preds = %land.end
   %9 = load i64, ptr %insertion_point, align 8
   %inc = add i64 %9, 1
   store i64 %inc, ptr %insertion_point, align 8
-  br label %while.cond, !llvm.loop !27
+  br label %while.cond, !llvm.loop !25
 
 while.end:                                        ; preds = %land.end
   %10 = load ptr, ptr %leaf.addr, align 8
@@ -1711,7 +1477,7 @@ for.inc:                                          ; preds = %for.body
   %28 = load i64, ptr %i, align 8
   %dec = add i64 %28, -1
   store i64 %dec, ptr %i, align 8
-  br label %for.cond, !llvm.loop !28
+  br label %for.cond, !llvm.loop !26
 
 for.end:                                          ; preds = %for.cond
   %29 = load i64, ptr %key.addr, align 8
@@ -1768,7 +1534,7 @@ entry:
   br i1 %cmp, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  call void @perror(ptr noundef @.str.31) #9
+  call void @perror(ptr noundef @.str.24) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1783,7 +1549,7 @@ if.end:                                           ; preds = %entry
   br i1 %cmp5, label %if.then6, label %if.end7
 
 if.then6:                                         ; preds = %if.end
-  call void @perror(ptr noundef @.str.32) #9
+  call void @perror(ptr noundef @.str.25) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -1817,7 +1583,7 @@ while.body:                                       ; preds = %land.end
   %12 = load i64, ptr %insertion_index, align 8
   %inc = add i64 %12, 1
   store i64 %inc, ptr %insertion_index, align 8
-  br label %while.cond, !llvm.loop !29
+  br label %while.cond, !llvm.loop !27
 
 while.end:                                        ; preds = %land.end
   store i64 0, ptr %i, align 8
@@ -1874,7 +1640,7 @@ for.inc:                                          ; preds = %if.end14
   %32 = load i64, ptr %j, align 8
   %inc21 = add i64 %32, 1
   store i64 %inc21, ptr %j, align 8
-  br label %for.cond, !llvm.loop !30
+  br label %for.cond, !llvm.loop !28
 
 for.end:                                          ; preds = %for.cond
   %33 = load i64, ptr %key.addr, align 8
@@ -1935,7 +1701,7 @@ for.inc38:                                        ; preds = %for.body29
   %57 = load i64, ptr %i, align 8
   %inc39 = add i64 %57, 1
   store i64 %inc39, ptr %i, align 8
-  br label %for.cond27, !llvm.loop !31
+  br label %for.cond27, !llvm.loop !29
 
 for.end40:                                        ; preds = %for.cond27
   %58 = load i64, ptr %split, align 8
@@ -1984,7 +1750,7 @@ for.inc52:                                        ; preds = %for.body43
   %76 = load i64, ptr %j, align 8
   %inc54 = add i64 %76, 1
   store i64 %inc54, ptr %j, align 8
-  br label %for.cond41, !llvm.loop !32
+  br label %for.cond41, !llvm.loop !30
 
 for.end55:                                        ; preds = %for.cond41
   %77 = load ptr, ptr %temp_pointers, align 8
@@ -2039,7 +1805,7 @@ for.inc72:                                        ; preds = %for.body69
   %97 = load i64, ptr %i, align 8
   %inc73 = add i64 %97, 1
   store i64 %inc73, ptr %i, align 8
-  br label %for.cond66, !llvm.loop !33
+  br label %for.cond66, !llvm.loop !31
 
 for.end74:                                        ; preds = %for.cond66
   %98 = load ptr, ptr %new_leaf, align 8
@@ -2068,7 +1834,7 @@ for.inc82:                                        ; preds = %for.body79
   %105 = load i64, ptr %i, align 8
   %inc83 = add i64 %105, 1
   store i64 %inc83, ptr %i, align 8
-  br label %for.cond76, !llvm.loop !34
+  br label %for.cond76, !llvm.loop !32
 
 for.end84:                                        ; preds = %for.cond76
   %106 = load ptr, ptr %leaf.addr, align 8
@@ -2221,7 +1987,7 @@ for.inc:                                          ; preds = %for.body
   %18 = load i64, ptr %i, align 8
   %dec = add i64 %18, -1
   store i64 %dec, ptr %i, align 8
-  br label %for.cond, !llvm.loop !35
+  br label %for.cond, !llvm.loop !33
 
 for.end:                                          ; preds = %for.cond
   %19 = load ptr, ptr %right.addr, align 8
@@ -2279,7 +2045,7 @@ entry:
   br i1 %cmp, label %if.then, label %if.end
 
 if.then:                                          ; preds = %entry
-  call void @perror(ptr noundef @.str.33) #9
+  call void @perror(ptr noundef @.str.26) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -2293,7 +2059,7 @@ if.end:                                           ; preds = %entry
   br i1 %cmp3, label %if.then4, label %if.end5
 
 if.then4:                                         ; preds = %if.end
-  call void @perror(ptr noundef @.str.34) #9
+  call void @perror(ptr noundef @.str.27) #9
   call void @exit(i32 noundef 1) #7
   unreachable
 
@@ -2344,7 +2110,7 @@ for.inc:                                          ; preds = %if.end11
   %17 = load i64, ptr %j, align 8
   %inc14 = add i64 %17, 1
   store i64 %inc14, ptr %j, align 8
-  br label %for.cond, !llvm.loop !36
+  br label %for.cond, !llvm.loop !34
 
 for.end:                                          ; preds = %for.cond
   store i64 0, ptr %i, align 8
@@ -2391,7 +2157,7 @@ for.inc25:                                        ; preds = %if.end22
   %31 = load i64, ptr %j, align 8
   %inc27 = add i64 %31, 1
   store i64 %inc27, ptr %j, align 8
-  br label %for.cond15, !llvm.loop !37
+  br label %for.cond15, !llvm.loop !35
 
 for.end28:                                        ; preds = %for.cond15
   %32 = load ptr, ptr %right.addr, align 8
@@ -2455,7 +2221,7 @@ for.inc46:                                        ; preds = %for.body37
   %56 = load i64, ptr %i, align 8
   %inc47 = add i64 %56, 1
   store i64 %inc47, ptr %i, align 8
-  br label %for.cond35, !llvm.loop !38
+  br label %for.cond35, !llvm.loop !36
 
 for.end48:                                        ; preds = %for.cond35
   %57 = load ptr, ptr %temp_pointers, align 8
@@ -2521,7 +2287,7 @@ for.inc66:                                        ; preds = %for.body57
   %84 = load i64, ptr %j, align 8
   %inc68 = add i64 %84, 1
   store i64 %inc68, ptr %j, align 8
-  br label %for.cond55, !llvm.loop !39
+  br label %for.cond55, !llvm.loop !37
 
 for.end69:                                        ; preds = %for.cond55
   %85 = load ptr, ptr %temp_pointers, align 8
@@ -2573,7 +2339,7 @@ for.inc81:                                        ; preds = %for.body77
   %105 = load i64, ptr %i, align 8
   %inc82 = add i64 %105, 1
   store i64 %inc82, ptr %i, align 8
-  br label %for.cond74, !llvm.loop !40
+  br label %for.cond74, !llvm.loop !38
 
 for.end83:                                        ; preds = %for.cond74
   %106 = load ptr, ptr %root.addr, align 8
@@ -2691,7 +2457,7 @@ entry:
   store ptr null, ptr %leaf, align 8
   %0 = load ptr, ptr %root.addr, align 8
   %1 = load i64, ptr %key.addr, align 8
-  %call = call ptr @find(ptr noundef %0, i64 noundef %1, i1 noundef zeroext false, ptr noundef null)
+  %call = call ptr @find(ptr noundef %0, i64 noundef %1, ptr noundef null)
   store ptr %call, ptr %record_pointer, align 8
   %2 = load ptr, ptr %record_pointer, align 8
   %cmp = icmp ne ptr %2, null
@@ -2724,7 +2490,7 @@ if.then4:                                         ; preds = %if.end
 if.end6:                                          ; preds = %if.end
   %10 = load ptr, ptr %root.addr, align 8
   %11 = load i64, ptr %key.addr, align 8
-  %call7 = call ptr @find_leaf(ptr noundef %10, i64 noundef %11, i1 noundef zeroext false)
+  %call7 = call ptr @find_leaf(ptr noundef %10, i64 noundef %11)
   store ptr %call7, ptr %leaf, align 8
   %12 = load ptr, ptr %leaf, align 8
   %num_keys = getelementptr inbounds %struct.node, ptr %12, i32 0, i32 4
@@ -2802,13 +2568,13 @@ for.inc:                                          ; preds = %if.end
   %11 = load i64, ptr %i, align 8
   %inc = add i64 %11, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond, !llvm.loop !41
+  br label %for.cond, !llvm.loop !39
 
 for.end:                                          ; preds = %for.cond
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.35)
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.28)
   %12 = load ptr, ptr %n.addr, align 8
   %13 = ptrtoint ptr %12 to i64
-  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.36, i64 noundef %13)
+  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.29, i64 noundef %13)
   call void @exit(i32 noundef 1) #7
   unreachable
 }
@@ -2842,7 +2608,7 @@ while.body:                                       ; preds = %while.cond
   %5 = load i64, ptr %i, align 8
   %inc = add i64 %5, 1
   store i64 %inc, ptr %i, align 8
-  br label %while.cond, !llvm.loop !42
+  br label %while.cond, !llvm.loop !40
 
 while.end:                                        ; preds = %while.cond
   %6 = load i64, ptr %i, align 8
@@ -2878,7 +2644,7 @@ for.inc:                                          ; preds = %for.body
   %17 = load i64, ptr %i, align 8
   %inc7 = add i64 %17, 1
   store i64 %inc7, ptr %i, align 8
-  br label %for.cond, !llvm.loop !43
+  br label %for.cond, !llvm.loop !41
 
 for.end:                                          ; preds = %for.cond
   %18 = load ptr, ptr %n.addr, align 8
@@ -2921,7 +2687,7 @@ while.body13:                                     ; preds = %while.cond10
   %29 = load i64, ptr %i, align 8
   %inc14 = add i64 %29, 1
   store i64 %inc14, ptr %i, align 8
-  br label %while.cond10, !llvm.loop !44
+  br label %while.cond10, !llvm.loop !42
 
 while.end15:                                      ; preds = %while.cond10
   %30 = load i64, ptr %i, align 8
@@ -2955,7 +2721,7 @@ for.inc25:                                        ; preds = %for.body19
   %40 = load i64, ptr %i, align 8
   %inc26 = add i64 %40, 1
   store i64 %inc26, ptr %i, align 8
-  br label %for.cond17, !llvm.loop !45
+  br label %for.cond17, !llvm.loop !43
 
 for.end27:                                        ; preds = %for.cond17
   %41 = load ptr, ptr %n.addr, align 8
@@ -2996,7 +2762,7 @@ for.inc38:                                        ; preds = %for.body35
   %52 = load i64, ptr %i, align 8
   %inc39 = add i64 %52, 1
   store i64 %inc39, ptr %i, align 8
-  br label %for.cond32, !llvm.loop !46
+  br label %for.cond32, !llvm.loop !44
 
 for.end40:                                        ; preds = %for.cond32
   br label %if.end
@@ -3028,7 +2794,7 @@ for.inc48:                                        ; preds = %for.body45
   %60 = load i64, ptr %i, align 8
   %inc49 = add i64 %60, 1
   store i64 %inc49, ptr %i, align 8
-  br label %for.cond43, !llvm.loop !47
+  br label %for.cond43, !llvm.loop !45
 
 for.end50:                                        ; preds = %for.cond43
   br label %if.end
@@ -3214,7 +2980,7 @@ for.inc:                                          ; preds = %for.body
   %38 = load i64, ptr %j, align 8
   %inc16 = add i64 %38, 1
   store i64 %inc16, ptr %j, align 8
-  br label %for.cond, !llvm.loop !48
+  br label %for.cond, !llvm.loop !46
 
 for.end:                                          ; preds = %for.cond
   %39 = load ptr, ptr %n.addr, align 8
@@ -3259,7 +3025,7 @@ for.inc28:                                        ; preds = %for.body25
   %55 = load i64, ptr %i, align 8
   %inc29 = add i64 %55, 1
   store i64 %inc29, ptr %i, align 8
-  br label %for.cond21, !llvm.loop !49
+  br label %for.cond21, !llvm.loop !47
 
 for.end30:                                        ; preds = %for.cond21
   br label %if.end54
@@ -3317,7 +3083,7 @@ for.inc45:                                        ; preds = %for.body34
   %77 = load i64, ptr %j, align 8
   %inc47 = add i64 %77, 1
   store i64 %inc47, ptr %j, align 8
-  br label %for.cond31, !llvm.loop !50
+  br label %for.cond31, !llvm.loop !48
 
 for.end48:                                        ; preds = %for.cond31
   %78 = load ptr, ptr %n.addr, align 8
@@ -3630,7 +3396,7 @@ for.inc:                                          ; preds = %for.body
   %29 = load i64, ptr %i, align 8
   %dec = add i64 %29, -1
   store i64 %dec, ptr %i, align 8
-  br label %for.cond, !llvm.loop !51
+  br label %for.cond, !llvm.loop !49
 
 for.end:                                          ; preds = %for.cond
   %30 = load ptr, ptr %n.addr, align 8
@@ -3900,7 +3666,7 @@ for.inc114:                                       ; preds = %for.body103
   %151 = load i64, ptr %i, align 8
   %inc = add i64 %151, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond99, !llvm.loop !52
+  br label %for.cond99, !llvm.loop !50
 
 for.end115:                                       ; preds = %for.cond99
   %152 = load ptr, ptr %n.addr, align 8
@@ -3956,7 +3722,7 @@ entry:
   store ptr null, ptr %key_record, align 8
   %0 = load ptr, ptr %root.addr, align 8
   %1 = load i64, ptr %key.addr, align 8
-  %call = call ptr @find(ptr noundef %0, i64 noundef %1, i1 noundef zeroext false, ptr noundef %key_leaf)
+  %call = call ptr @find(ptr noundef %0, i64 noundef %1, ptr noundef %key_leaf)
   store ptr %call, ptr %key_record, align 8
   %2 = load ptr, ptr %key_record, align 8
   %cmp = icmp ne ptr %2, null
@@ -4021,7 +3787,7 @@ for.inc:                                          ; preds = %for.body
   %9 = load i64, ptr %i, align 8
   %inc = add i64 %9, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond, !llvm.loop !53
+  br label %for.cond, !llvm.loop !51
 
 for.end:                                          ; preds = %for.cond
   br label %if.end
@@ -4053,7 +3819,7 @@ for.inc7:                                         ; preds = %for.body4
   %17 = load i64, ptr %i, align 8
   %inc8 = add i64 %17, 1
   store i64 %inc8, ptr %i, align 8
-  br label %for.cond1, !llvm.loop !54
+  br label %for.cond1, !llvm.loop !52
 
 for.end9:                                         ; preds = %for.cond1
   br label %if.end
@@ -4311,7 +4077,6 @@ entry:
   %r = alloca ptr, align 8
   %e = alloca ptr, align 8
   store ptr null, ptr %root, align 8
-  store i8 0, ptr @verbose_output, align 1
   call void @myrandseed(i32 noundef -889275714)
   store i64 1548576, ptr %nelements, align 8
   store i64 1200000000, ptr %nlookup, align 8
@@ -4327,13 +4092,13 @@ entry:
 
 if.then:                                          ; preds = %entry
   %3 = load ptr, ptr @stderr, align 8
-  %call1 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %3, ptr noundef @.str.37)
+  %call1 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %3, ptr noundef @.str.30)
   call void @exit(i32 noundef 1) #7
   unreachable
 
 if.else:                                          ; preds = %entry
   %4 = load i64, ptr %total_mem, align 8
-  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.38, i64 noundef %4)
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.31, i64 noundef %4)
   br label %if.end
 
 if.end:                                           ; preds = %if.else
@@ -4368,7 +4133,7 @@ for.inc:                                          ; preds = %for.body
   %13 = load i64, ptr %i, align 8
   %inc = add i64 %13, 1
   store i64 %inc, ptr %i, align 8
-  br label %for.cond, !llvm.loop !55
+  br label %for.cond, !llvm.loop !53
 
 for.end:                                          ; preds = %for.cond
   %14 = load i64, ptr %nelements, align 8
@@ -4414,7 +4179,7 @@ for.inc19:                                        ; preds = %for.body9
   %28 = load i64, ptr %i6, align 8
   %dec = add i64 %28, -1
   store i64 %dec, ptr %i6, align 8
-  br label %for.cond7, !llvm.loop !56
+  br label %for.cond7, !llvm.loop !54
 
 for.end20:                                        ; preds = %for.cond7
   store i64 0, ptr %i21, align 8
@@ -4445,16 +4210,16 @@ for.inc29:                                        ; preds = %for.body24
   %38 = load i64, ptr %i21, align 8
   %inc30 = add i64 %38, 1
   store i64 %inc30, ptr %i21, align 8
-  br label %for.cond22, !llvm.loop !57
+  br label %for.cond22, !llvm.loop !55
 
 for.end31:                                        ; preds = %for.cond22
   %39 = load i64, ptr %nelements, align 8
-  %call32 = call i32 (ptr, ...) @printf(ptr noundef @.str.39, i64 noundef %39)
+  %call32 = call i32 (ptr, ...) @printf(ptr noundef @.str.32, i64 noundef %39)
   %40 = load i64, ptr @order, align 8
-  %call33 = call i32 (ptr, ...) @printf(ptr noundef @.str.40, i64 noundef %40)
+  %call33 = call i32 (ptr, ...) @printf(ptr noundef @.str.33, i64 noundef %40)
   %41 = load i64, ptr @allocator_stat, align 8
   %shr = lshr i64 %41, 20
-  %call34 = call i32 (ptr, ...) @printf(ptr noundef @.str.41, i64 noundef %shr)
+  %call34 = call i32 (ptr, ...) @printf(ptr noundef @.str.34, i64 noundef %shr)
   %call35 = call i32 @usleep(i32 noundef 250)
   store i64 0, ptr %sum, align 8
   %call36 = call i32 @gettimeofday(ptr noundef %start, ptr noundef null) #8
@@ -4475,7 +4240,7 @@ for.body40:                                       ; preds = %for.cond38
   store i64 %rem43, ptr %rdn, align 8
   %45 = load ptr, ptr %root, align 8
   %46 = load i64, ptr %rdn, align 8
-  %call44 = call ptr @find(ptr noundef %45, i64 noundef %46, i1 noundef zeroext false, ptr noundef null)
+  %call44 = call ptr @find(ptr noundef %45, i64 noundef %46, ptr noundef null)
   store ptr %call44, ptr %r, align 8
   %47 = load ptr, ptr %r, align 8
   %tobool = icmp ne ptr %47, null
@@ -4515,7 +4280,7 @@ for.inc55:                                        ; preds = %if.end54
   %57 = load i64, ptr %i37, align 8
   %inc56 = add i64 %57, 1
   store i64 %inc56, ptr %i37, align 8
-  br label %for.cond38, !llvm.loop !58
+  br label %for.cond38, !llvm.loop !56
 
 for.end57:                                        ; preds = %for.cond38
   %call58 = call i32 @gettimeofday(ptr noundef %end, ptr noundef null) #8
@@ -4525,8 +4290,8 @@ for.end57:                                        ; preds = %for.cond38
   %tv_sec59 = getelementptr inbounds %struct.timeval, ptr %start, i32 0, i32 0
   %60 = load i64, ptr %tv_sec59, align 8
   %sub = sub nsw i64 %59, %60
-  %call60 = call i32 (ptr, ...) @printf(ptr noundef @.str.42, i64 noundef %58, i64 noundef %sub)
-  %call61 = call i32 (ptr, ...) @printf(ptr noundef @.str.43)
+  %call60 = call i32 (ptr, ...) @printf(ptr noundef @.str.35, i64 noundef %58, i64 noundef %sub)
+  %call61 = call i32 (ptr, ...) @printf(ptr noundef @.str.36)
   ret i32 0
 }
 
@@ -4609,5 +4374,3 @@ attributes #9 = { cold }
 !54 = distinct !{!54, !7}
 !55 = distinct !{!55, !7}
 !56 = distinct !{!56, !7}
-!57 = distinct !{!57, !7}
-!58 = distinct !{!58, !7}

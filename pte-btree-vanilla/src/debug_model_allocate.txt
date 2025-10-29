@@ -1,0 +1,113 @@
+Constraints unsatisfiable in allocate!
+Location: line 25
+
+Solver assertions (with source if available):
+Implies(True, True)                postdom: pc_min ⊑ %entry
+False == False                     postdom: %if.then == PUBLIC
+Implies(True, True)                postdom: pc_min ⊑ %if.end
+Implies(True, %size.addr)          [allocate line 2] %size.addr = alloca i64, align 8
+Implies(True, %alignment.addr)     [allocate line 3] %alignment.addr = alloca i64, align 8
+Implies(True, %memptr)             [allocate line 4] %memptr = alloca ptr, align 8
+Implies(True, %size.addr)          [allocate line 5] store i64 %size, ptr %size.addr, align 8
+Implies(%size, %size.addr)         [allocate line 5] store i64 %size, ptr %size.addr, align 8
+Implies(True, %alignment.addr)     [allocate line 6] store i64 %alignment, ptr %alignment.addr, align 8
+Implies(False, %alignment.addr)    [allocate line 6] store i64 %alignment, ptr %alignment.addr, align 8
+Implies(True, %call)               call-site: pc ⊑ %call
+%memptr == True                    call-arg: %memptr ≡ %param0
+Implies(%0, False)                 call-arg: %0 ⊑ %param1 (weakened)
+Implies(%1, False)                 call-arg: %1 ⊑ %param2 (weakened)
+Implies(True, True)                call-site: allocate:9 -> posix_memalign
+%call == True                      call-site: allocate:9 -> posix_memalign
+Implies(False, %call1)             call-site: pc ⊑ %call1
+Implies(False, False)              call-arg: @.str.37 ⊑ %param0 (weakened)
+%call1 == False                    call-site: allocate:14 -> printf
+15_exit_arg0 == False              void-call-arg: 15_exit_arg0 ≡ %param0
+Implies(False, False)              void-call: pc ⊑ pc_min(exit)
+Implies(True, False)               [allocate line 22] store i64 %add, ptr @allocator_stat, align 8
+Implies(%add, False)               [allocate line 22] store i64 %add, ptr @allocator_stat, align 8
+Implies(0, %4)                     [allocate line 25] call void @llvm.memset.p0.i64(ptr align 1 %4, i8 0, i64 %5, i1 false)
+Implies(%5, 0)                     [allocate line 25] call void @llvm.memset.p0.i64(ptr align 1 %4, i8 0, i64 %5, i1 false)
+Implies(True, %4)                  [allocate line 25] call void @llvm.memset.p0.i64(ptr align 1 %4, i8 0, i64 %5, i1 false)
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+Implies(True, False)    [allocate line 22] store i64 %add, ptr @allocator_stat, align 8
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%2 : %2
+%3 : %3
+%4 : %4
+%5 : %5
+%add : %add
+%alignment : False
+%alignment.addr : %alignment.addr
+%call : %call
+%call1 : %call1
+%memptr : %memptr
+%param0 : False
+%param1 : False
+%size : %size
+%size, : False
+%size.addr : %size.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%tobool : %tobool
+0 : 0
+10_allocate_arg2 : 10_allocate_arg2
+15_exit_arg0 : 15_exit_arg0
+25_llvm.memset.p0.i64_is_volatile : 25_llvm.memset.p0.i64_is_volatile
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : False
+@c : False
+@free_nodes : True
+@free_recs : False
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

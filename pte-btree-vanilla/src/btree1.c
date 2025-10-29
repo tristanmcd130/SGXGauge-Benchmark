@@ -254,14 +254,6 @@ uint64_t order = CONFIG_DEFAULT_ORDER;
  */
 node *queue = NULL;
 
-/* The user can toggle on and off the "verbose"
- * property, which causes the pointer addresses
- * to be printed out in hexadecimal notation
- * next to their corresponding keys.
- */
-bool verbose_output = false;
-
-
 // FUNCTION PROTOTYPES.
 
 // Output and utility.
@@ -276,12 +268,12 @@ uint64_t height(node *const root);
 uint64_t path_to_root(node *const root, node *child);
 void print_leaves(node *const root);
 void print_tree(node *const root);
-void find_and_print(node *const root, uint64_t key, bool verbose);
-void find_and_print_range(node *const root, uint64_t range1, uint64_t range2, bool verbose);
-uint64_t find_range(node *const root, uint64_t key_start, uint64_t key_end, bool verbose,
+void find_and_print(node *const root, uint64_t key);
+void find_and_print_range(node *const root, uint64_t range1, uint64_t range2);
+uint64_t find_range(node *const root, uint64_t key_start, uint64_t key_end,
                     uint64_t returned_keys[], void *returned_pointers[]);
-node *find_leaf(node *const root, uint64_t key, bool verbose);
-record *find(node *root, uint64_t key, bool verbose, node **leaf_out);
+node *find_leaf(node *const root, uint64_t key);
+record *find(node *root, uint64_t key, node **leaf_out);
 uint64_t cut(uint64_t length);
 
 // Insertion.
@@ -429,12 +421,8 @@ void print_leaves(node *const root)
         c = c->pointers[0];
     while (true) {
         for (i = 0; i < c->num_keys; i++) {
-            if (verbose_output)
-                printf("%p ", c->pointers[i]);
             printf("%ld ", c->keys[i]);
         }
-        if (verbose_output)
-            printf("%p ", c->pointers[order - 1]);
         if (c->pointers[order - 1] != NULL) {
             printf(" | ");
             c = c->pointers[order - 1];
@@ -507,22 +495,12 @@ void print_tree(node *const root)
                 printf("\n");
             }
         }
-        if (verbose_output)
-            printf("(%p)", n);
         for (i = 0; i < n->num_keys; i++) {
-            if (verbose_output)
-                printf("%p ", n->pointers[i]);
             printf("%ld ", n->keys[i]);
         }
         if (!n->is_leaf)
             for (i = 0; i <= n->num_keys; i++)
                 enqueue(n->pointers[i]); // %96
-        if (verbose_output) {
-            if (n->is_leaf)
-                printf("%p ", n->pointers[order - 1]);
-            else
-                printf("%p ", n->pointers[n->num_keys]);
-        }
         printf("| ");
     }
     printf("\n");
@@ -532,9 +510,9 @@ void print_tree(node *const root)
 /* Finds the record under a given key and prints an
  * appropriate message to stdout.
  */
-void find_and_print(node *const root, uint64_t key, bool verbose) // %5 = key: private
+void find_and_print(node *const root, uint64_t key) // %5 = key: private
 {
-    record *r = find(root, key, verbose, NULL); // %13: private
+    record *r = find(root, key, NULL); // %13: private
     if (r == NULL)
         printf("Record not found under key %ld.\n", key);
     else
@@ -545,13 +523,13 @@ void find_and_print(node *const root, uint64_t key, bool verbose) // %5 = key: p
 /* Finds and prints the keys, pointers, and values within a range
  * of keys between key_start and key_end, including both bounds.
  */
-void find_and_print_range(node *const root, uint64_t key_start, uint64_t key_end, bool verbose)
+void find_and_print_range(node *const root, uint64_t key_start, uint64_t key_end)
 {
     uint64_t i;
     uint64_t array_size = key_end - key_start + 1;
     uint64_t returned_keys[array_size]; // %22: private
     void *returned_pointers[array_size];
-    uint64_t num_found = find_range(root, key_start, key_end, verbose, returned_keys,
+    uint64_t num_found = find_range(root, key_start, key_end, returned_keys,
                                     returned_pointers);
     if (!num_found)
         printf("None found.\n");
@@ -568,12 +546,12 @@ void find_and_print_range(node *const root, uint64_t key_start, uint64_t key_end
  * returned_keys and returned_pointers, and returns the number of
  * entries found.
  */
-uint64_t find_range(node *const root, uint64_t key_start, uint64_t key_end, bool verbose,
+uint64_t find_range(node *const root, uint64_t key_start, uint64_t key_end,
                     uint64_t returned_keys[], void *returned_pointers[])
 {
     uint64_t i, num_found;
     num_found = 0;
-    node *n = find_leaf(root, key_start, verbose);
+    node *n = find_leaf(root, key_start);
     if (n == NULL)
         return 0;
     for (i = 0; i < n->num_keys && n->keys[i] < key_start; i++)
@@ -598,22 +576,14 @@ uint64_t find_range(node *const root, uint64_t key_start, uint64_t key_end, bool
  * if the verbose flag is set.
  * Returns the leaf containing the given key.
  */
-node *find_leaf(node *const root, uint64_t key, bool verbose)
+node *find_leaf(node *const root, uint64_t key)
 {
     if (root == NULL) {
-        if (verbose)
-            printf("Empty tree.\n");
         return root;
     }
     uint64_t i = 0;
     node *c = root;
     while (!c->is_leaf) { // c is %23
-        if (verbose) {
-            printf("[");
-            for (i = 0; i < c->num_keys - 1; i++)
-                printf("%ld ", c->keys[i]);
-            printf("%ld] ", c->keys[i]);
-        }
         i = 0;
         while (i < c->num_keys) {
             if (key >= c->keys[i])
@@ -621,15 +591,7 @@ node *find_leaf(node *const root, uint64_t key, bool verbose)
             else
                 break;
         }
-        if (verbose)
-            printf("%ld ->\n", i);
         c = (node *)c->pointers[i];
-    }
-    if (verbose) {
-        printf("Leaf [");
-        for (i = 0; i < c->num_keys - 1; i++)
-            printf("%ld ", c->keys[i]);
-        printf("%ld] ->\n", c->keys[i]);
     }
     return c;
 }
@@ -638,7 +600,7 @@ node *find_leaf(node *const root, uint64_t key, bool verbose)
 /* Finds and returns the record to which
  * a key refers.
  */
-record *find(node *root, uint64_t key, bool verbose, node **leaf_out) // %7 = key
+record *find(node *root, uint64_t key, node **leaf_out) // %7 = key
 {
     if (root == NULL) {
         if (leaf_out != NULL) {
@@ -650,7 +612,7 @@ record *find(node *root, uint64_t key, bool verbose, node **leaf_out) // %7 = ke
     uint64_t i = 0;
     node *leaf = NULL;
 
-    leaf = find_leaf(root, key, verbose);
+    leaf = find_leaf(root, key);
 
     /* If root != NULL, leaf must have a value, even
      * if it does not contain the desired key.
@@ -755,7 +717,7 @@ void free_record(record *r)
  */
 record *make_record(uint64_t value)
 {
-    record *new_record = (record *)alloc_record(sizeof(record));
+    record *new_record = (record *)alloc_record();
     if (new_record == NULL) {
         perror("Record creation.");
         exit(EXIT_FAILURE);
@@ -772,7 +734,7 @@ record *make_record(uint64_t value)
 node *make_node(void)
 {
     node *new_node;
-    new_node = alloc_node(sizeof(node));
+    new_node = alloc_node();
     if (new_node == NULL) {
         perror("Node creation.");
         exit(EXIT_FAILURE);
@@ -1104,7 +1066,7 @@ node *insert(node *root, uint64_t key, uint64_t value)
      * duplicates.
      */
 
-    record_pointer = find(root, key, false, NULL);
+    record_pointer = find(root, key, NULL);
     if (record_pointer != NULL) {
         /* If the key already exists in this tree, update
          * the value and return the tree.
@@ -1132,7 +1094,7 @@ node *insert(node *root, uint64_t key, uint64_t value)
      * (Rest of function body.)
      */
 
-    leaf = find_leaf(root, key, false);
+    leaf = find_leaf(root, key);
 
     /* Case: leaf has room for key and record_pointer.
      */
@@ -1498,7 +1460,7 @@ node *delete (node *root, uint64_t key)
     node *key_leaf = NULL;
     record *key_record = NULL;
 
-    key_record = find(root, key, false, &key_leaf);
+    key_record = find(root, key, &key_leaf);
 
     /* CHANGE */
 
@@ -1615,7 +1577,6 @@ int real_main(){
     node *root;
 
     root = NULL;
-    verbose_output = false;
 
     myrandseed(0xcafebabe);
 
@@ -1688,7 +1649,7 @@ int real_main(){
 #endif
     for (size_t i = 0; i < nlookup; i++) {
         size_t rdn = myrand() % (nelements * 2);
-        record *r = find(root, rdn, false, NULL);
+        record *r = find(root, rdn, NULL);
         if (r) {
             // int bw =write(fd,r,sizeof(record));            
             struct element *e = (struct element *)r->value;

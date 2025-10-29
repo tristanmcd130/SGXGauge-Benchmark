@@ -1,0 +1,151 @@
+Constraints unsatisfiable in find_leaf!
+Location: line 23
+
+Solver assertions (with source if available):
+Implies(True, True)                  postdom: pc_min ⊑ %entry
+Implies(True, True)                  postdom: pc_min ⊑ %if.then
+Implies(True, True)                  postdom: pc_min ⊑ %if.end2
+Implies(True, True)                  postdom: pc_min ⊑ %if.then1
+Implies(True, True)                  postdom: pc_min ⊑ %if.end
+Implies(True, True)                  postdom: pc_min ⊑ %return
+Implies(True, True)                  postdom: pc_min ⊑ %while.cond
+Implies(True, True)                  postdom: pc_min ⊑ %while.body
+Implies(True, True)                  postdom: pc_min ⊑ %while.end28
+Implies(True, True)                  postdom: pc_min ⊑ %if.then5
+Implies(True, True)                  postdom: pc_min ⊑ %if.end12
+Implies(True, True)                  postdom: pc_min ⊑ %for.cond
+Implies(True, True)                  postdom: pc_min ⊑ %for.body
+Implies(True, True)                  postdom: pc_min ⊑ %for.end
+Implies(True, True)                  postdom: pc_min ⊑ %for.inc
+Implies(True, True)                  postdom: pc_min ⊑ %for.cond,
+Implies(True, True)                  postdom: pc_min ⊑ %while.cond13
+Implies(True, True)                  postdom: pc_min ⊑ %while.body16
+Implies(True, True)                  postdom: pc_min ⊑ %while.end
+Implies(True, True)                  postdom: pc_min ⊑ %if.then20
+Implies(True, True)                  postdom: pc_min ⊑ %if.else
+Implies(True, True)                  postdom: pc_min ⊑ %if.end22
+Implies(True, True)                  postdom: pc_min ⊑ %while.cond13,
+Implies(True, True)                  postdom: pc_min ⊑ %if.then24
+Implies(True, True)                  postdom: pc_min ⊑ %if.end26
+Implies(True, True)                  postdom: pc_min ⊑ %while.cond,
+Implies(True, True)                  postdom: pc_min ⊑ %if.then30
+Implies(True, True)                  postdom: pc_min ⊑ %if.end46
+Implies(True, True)                  postdom: pc_min ⊑ %for.cond32
+Implies(True, True)                  postdom: pc_min ⊑ %for.body36
+Implies(True, True)                  postdom: pc_min ⊑ %for.end42
+Implies(True, True)                  postdom: pc_min ⊑ %for.inc40
+Implies(True, True)                  postdom: pc_min ⊑ %for.cond32,
+Implies(True, %retval)               [find_leaf line 2] %retval = alloca ptr, align 8
+Implies(True, %root.addr)            [find_leaf line 3] %root.addr = alloca ptr, align 8
+Implies(True, %key.addr)             [find_leaf line 4] %key.addr = alloca i64, align 8
+Implies(True, %verbose.addr)         [find_leaf line 5] %verbose.addr = alloca i8, align 1
+Implies(True, %i)                    [find_leaf line 6] %i = alloca i64, align 8
+Implies(True, %c)                    [find_leaf line 7] %c = alloca ptr, align 8
+Implies(True, %root.addr)            [find_leaf line 8] store ptr %root, ptr %root.addr, align 8
+%root == %root.addr                  [find_leaf line 8] store ptr %root, ptr %root.addr, align 8
+Implies(True, %key.addr)             [find_leaf line 9] store i64 %key, ptr %key.addr, align 8
+Implies(%key, %key.addr)             [find_leaf line 9] store i64 %key, ptr %key.addr, align 8
+Implies(True, %verbose.addr)         [find_leaf line 11] store i8 %frombool, ptr %verbose.addr, align 1
+Implies(%frombool, %verbose.addr)    [find_leaf line 11] store i8 %frombool, ptr %verbose.addr, align 1
+Implies(True, %call)                 call-site: pc ⊑ %call
+Implies(False, False)                call-arg: @.str.10 ⊑ %param0 (weakened)
+%call == False                       call-site: find_leaf:22 -> printf
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+%call == False          call-site: find_leaf:22 -> printf
+Implies(True, %call)    call-site: pc ⊑ %call
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%c : %c
+%call : %call
+%cmp : %cmp
+%cmp15 : %cmp15
+%cmp19 : %cmp19
+%cmp35 : %cmp35
+%cmp7 : %cmp7
+%frombool : %frombool
+%i : %i
+%key : %key
+%key, : False
+%key.addr : %key.addr
+%lnot : %lnot
+%param0 : True
+%param1 : False
+%param2 : False
+%retval : %retval
+%root : %root
+%root, : True
+%root.addr : %root.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%tobool : %tobool
+%tobool23 : %tobool23
+%tobool29 : %tobool29
+%tobool4 : %tobool4
+%verbose : False
+%verbose.addr : %verbose.addr
+13_find_leaf_arg2 : 13_find_leaf_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.38 : False
+@.str.39 : False
+@.str.4 : False
+@.str.40 : False
+@.str.41 : False
+@.str.42 : False
+@.str.43 : False
+@.str.44 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : False
+@c : False
+@free_nodes : False
+@free_recs : False
+@order : False
+@queue : True
+@stderr : False
+@verbose_output : False
+@x : False
+pc : True
+ret : True

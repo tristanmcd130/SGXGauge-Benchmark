@@ -1,0 +1,77 @@
+Constraints unsatisfiable in destroy_tree!
+Location: line 7
+
+Solver assertions (with source if available):
+Implies(True, True)                   postdom: pc_min ⊑ %entry
+Implies(True, %root.addr)             [destroy_tree line 2] %root.addr = alloca ptr, align 8
+Implies(True, %root.addr)             [destroy_tree line 3] store ptr %root, ptr %root.addr, align 8
+True == %root.addr                    [destroy_tree line 3] store ptr %root, ptr %root.addr, align 8
+%0 == True                            void-call-arg: %0 ≡ %param0
+Implies(True, False)                  void-call: pc ⊑ pc_min(destroy_tree_nodes)
+Implies(6_destroy_tree_arg0, True)    ret: 6_destroy_tree_arg0 ⊑ ret
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+Implies(True, False)    void-call: pc ⊑ pc_min(destroy_tree_nodes)
+
+var_map keys and reprs:
+%0 : %0
+%param0 : True
+%root : True
+%root.addr : %root.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+6_destroy_tree_arg0 : 6_destroy_tree_arg0
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : True
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

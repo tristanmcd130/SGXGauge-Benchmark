@@ -1,5 +1,5 @@
 program = BTree
-source = btree1.c
+source = btree1.c main.c
 ir = $(source:.c=.ll)
 iromp = $(source:.c=.ll-omp)
 
@@ -10,7 +10,7 @@ CFLAGS := -Wall -target x86_64-unknown-linux-gnu -S -emit-llvm -O0 -fno-inline -
 CC = clang
 
 $(program): $(ir) Makefile
-	$(CC) $(CFLAGS) $(ir) -o $@ $(LDFLAGS)
+	$(CC) $(ir) -o $@ $(LDFLAGS)
 
 # libbtree.a: $(ir) Makefile
 # 	ar rcs $@ $(ir)

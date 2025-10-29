@@ -1,0 +1,136 @@
+Constraints unsatisfiable in alloc_record!
+Location: line 42
+
+Solver assertions (with source if available):
+Implies(True, True)                     postdom: pc_min ⊑ %entry
+Implies(True, True)                     postdom: pc_min ⊑ %if.end5
+Implies(True, True)                     postdom: pc_min ⊑ %if.then
+False == False                          postdom: %if.then1 == PUBLIC
+Implies(True, True)                     postdom: pc_min ⊑ %if.end
+Implies(True, True)                     postdom: pc_min ⊑ %for.cond
+Implies(True, True)                     postdom: pc_min ⊑ %for.body
+Implies(True, True)                     postdom: pc_min ⊑ %for.end
+Implies(True, True)                     postdom: pc_min ⊑ %for.inc
+Implies(True, True)                     postdom: pc_min ⊑ %for.cond,
+Implies(True, %r)                       [alloc_record line 2] %r = alloca ptr, align 8
+Implies(True, %i)                       [alloc_record line 3] %i = alloca i64, align 8
+Implies(True, %rec)                     [alloc_record line 4] %rec = alloca ptr, align 8
+Implies(True, %call)                    call-site: pc ⊑ %call
+Implies(10_allocate_arg0, False)        call-arg: 10_allocate_arg0 ⊑ %param0 (weakened)
+Implies(10_allocate_arg1, False)        call-arg: 10_allocate_arg1 ⊑ %param1 (weakened)
+Implies(True, True)                     call-site: alloc_record:10 -> allocate
+%call == True                           call-site: alloc_record:10 -> allocate
+Implies(True, %r)                       [alloc_record line 11] store ptr %call, ptr %r, align 8
+%call == %r                             [alloc_record line 11] store ptr %call, ptr %r, align 8
+Implies(False, %call2)                  call-site: pc ⊑ %call2
+Implies(%2, False)                      call-arg: %2 ⊑ %param0 (weakened)
+Implies(False, False)                   call-arg: @.str.19 ⊑ %param1 (weakened)
+%call2 == False                         call-site: alloc_record:18 -> fprintf
+19_exit_arg0 == False                   void-call-arg: 19_exit_arg0 ≡ %param0
+Implies(False, False)                   void-call: pc ⊑ pc_min(exit)
+Implies(True, %i)                       [alloc_record line 23] store i64 0, ptr %i, align 8
+Implies(False, %i)                      [alloc_record line 23] store i64 0, ptr %i, align 8
+Implies(%6, %arrayidx)                  gep: idx0 ⊑ %arrayidx
+Implies(True, %arrayidx)                gep: pc ⊑ %arrayidx; %5 ≡ %arrayidx
+%5 == %arrayidx                         gep: pc ⊑ %arrayidx; %5 ≡ %arrayidx
+Implies(36_alloc_record_arg0, %next)    gep: idx0 ⊑ %next
+Implies(36_alloc_record_arg1, %next)    gep: idx1 ⊑ %next
+Implies(True, %next)                    gep: pc ⊑ %next; %arrayidx ≡ %next
+%arrayidx == %next                      gep: pc ⊑ %next; %arrayidx ≡ %next
+Implies(True, %next)                    [alloc_record line 37] store ptr %4, ptr %next, align 8
+%4 == %next                             [alloc_record line 37] store ptr %4, ptr %next, align 8
+Implies(%8, %arrayidx4)                 gep: idx0 ⊑ %arrayidx4
+Implies(True, %arrayidx4)               gep: pc ⊑ %arrayidx4; %7 ≡ %arrayidx4
+%7 == %arrayidx4                        gep: pc ⊑ %arrayidx4; %7 ≡ %arrayidx4
+Implies(True, False)                    [alloc_record line 41] store ptr %arrayidx4, ptr @free_recs, align 8
+Implies(%arrayidx4, False)              [alloc_record line 41] store ptr %arrayidx4, ptr @free_recs, align 8
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+Implies(True, False)    [alloc_record line 41] store ptr %arrayidx4, ptr @free_recs, align 8
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%2 : %2
+%3 : %3
+%4 : %4
+%5 : %5
+%6 : %6
+%7 : %7
+%8 : %8
+%arrayidx : %arrayidx
+%arrayidx4 : %arrayidx4
+%call : %call
+%call2 : %call2
+%cmp : %cmp
+%cmp3 : %cmp3
+%i : %i
+%next : %next
+%r : %r
+%rec : %rec
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%tobool : %tobool
+0 : False
+10_allocate_arg0 : 10_allocate_arg0
+10_allocate_arg1 : 10_allocate_arg1
+13_alloc_record_arg2 : 13_alloc_record_arg2
+19_exit_arg0 : 19_exit_arg0
+28_alloc_record_arg2 : 28_alloc_record_arg2
+36_alloc_record_arg0 : 36_alloc_record_arg0
+36_alloc_record_arg1 : 36_alloc_record_arg1
+6_alloc_record_arg2 : 6_alloc_record_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : False
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

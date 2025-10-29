@@ -5,13 +5,13 @@ target triple = "x86_64-unknown-linux-gnu"
 
 %struct.timeval = type { i64, i64 }
 
-@stderr = external global ptr, align 8, !sec !{!"public"}
-@.str = private unnamed_addr constant [22 x i8] c"SECUREFS_TIME %lu us\0A\00", align 1, !sec !{!"public"}
-@.str.1 = private unnamed_addr constant [23 x i8] c"Total time: %zu.%03zu\0A\00", align 1, !sec !{!"public"}
+@stderr = external global ptr, align 8
+@.str = private unnamed_addr constant [22 x i8] c"SECUREFS_TIME %lu us\0A\00", align 1
+@.str.1 = private unnamed_addr constant [23 x i8] c"Total time: %zu.%03zu\0A\00", align 1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local i32 @main(i32 noundef %argc, ptr noundef %argv) #0 !sec !{!"public", !"public", !{!"public", !"public"}} {
-entry:		; !sec !{!"public"}
+entry:                                            ; !sec !{!"public"}
   %retval = alloca i32, align 4, !sec !{!"public"}
   %argc.addr = alloca i32, align 4, !sec !{!"public"}
   %argv.addr = alloca ptr, align 8, !sec !{!"public"}
@@ -39,7 +39,7 @@ entry:		; !sec !{!"public"}
   %tv_usec5 = getelementptr inbounds %struct.timeval, ptr %start, i32 0, i32 1, !sec !{!"public", !"public", !"public", !"public"}
   %4 = load i64, ptr %tv_usec5, align 8, !sec !{!"public", !"public"}
   %sub6 = sub nsw i64 %add, %4, !sec !{!"public"}
-  %call7 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %0, ptr noundef @.str, i64 noundef %sub6), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
+  %call7 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %0, ptr noundef @.str, i64 noundef %sub6), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
   %call8 = call i32 @gettimeofday(ptr noundef %tend, ptr noundef null) #3, !sec !{!"call", !"public", !{!"public", !"public"}}
   %tv_sec9 = getelementptr inbounds %struct.timeval, ptr %tend, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
   %5 = load i64, ptr %tv_sec9, align 8, !sec !{!"public", !"public"}
@@ -52,7 +52,7 @@ entry:		; !sec !{!"public"}
   %8 = load i64, ptr %tv_usec13, align 8, !sec !{!"public", !"public"}
   %sub14 = sub nsw i64 %7, %8, !sec !{!"public"}
   %div = sdiv i64 %sub14, 1000, !sec !{!"public"}
-  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i64 noundef %sub11, i64 noundef %div), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
+  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i64 noundef %sub11, i64 noundef %div), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
   ret i32 0, !sec !{!"public"}
 }
 
@@ -61,9 +61,9 @@ declare !sec !{!"public", !"public", !{!"public", !"public"}} i32 @gettimeofday(
 
 declare !sec !{!"public", !"public", !{}} i32 @real_main(...) #2
 
-declare !sec !{!"public", !"public", !{!"public", !"public", !"..."}} i32 @fprintf(ptr noundef, ptr noundef, ...) #2
+declare !sec !{!"public", !"public", !{!"public", !"public", !"public"}} i32 @fprintf(ptr noundef, ptr noundef, ...) #2
 
-declare !sec !{!"public", !"public", !{!"public", !"..."}} i32 @printf(ptr noundef, ...) #2
+declare !sec !{!"public", !"public", !{!"public", !"public", !"public"}} i32 @printf(ptr noundef, ...) #2
 
 attributes #0 = { noinline nounwind optnone uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
 attributes #1 = { nounwind "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }

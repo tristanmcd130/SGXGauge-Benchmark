@@ -5,9 +5,9 @@ target triple = "x86_64-unknown-linux-gnu"
 
 %struct.timeval = type { i64, i64 }
 
-@stderr = external global ptr, align 8, !sec !{!"public"}
-@.str = private unnamed_addr constant [22 x i8] c"SECUREFS_TIME %lu us\0A\00", align 1, !sec !{!"public"}
-@.str.1 = private unnamed_addr constant [23 x i8] c"Total time: %zu.%03zu\0A\00", align 1, !sec !{!"public"}
+@stderr = external global ptr, align 8
+@.str = private unnamed_addr constant [22 x i8] c"SECUREFS_TIME %lu us\0A\00", align 1
+@.str.1 = private unnamed_addr constant [23 x i8] c"Total time: %zu.%03zu\0A\00", align 1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local i32 @main(i32 noundef %argc, ptr noundef %argv) #0 !sec !{!"public", !"public", !{!"public", !"public"}} {
@@ -59,7 +59,7 @@ entry:
 ; Function Attrs: nounwind
 declare !sec !{!"public", !"public", !{!"public", !"public"}} i32 @gettimeofday(ptr noundef, ptr noundef) #1
 
-declare !sec !{!"public", !"public", !{}} i32 @real_main(...) #2
+declare !sec !{!"public", !"public", !{!"..."}} i32 @real_main(...) #2
 
 declare !sec !{!"public", !"public", !{!"public", !"public", !"..."}} i32 @fprintf(ptr noundef, ptr noundef, ...) #2
 

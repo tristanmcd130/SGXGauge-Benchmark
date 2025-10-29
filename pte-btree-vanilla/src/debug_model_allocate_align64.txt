@@ -1,0 +1,83 @@
+Constraints unsatisfiable in allocate_align64!
+Location: line 6
+
+Solver assertions (with source if available):
+Implies(True, True)           postdom: pc_min ⊑ %entry
+False == False                postdom: %if.then == PUBLIC
+Implies(True, True)           postdom: pc_min ⊑ %if.end
+Implies(True, %size.addr)     [allocate_align64 line 2] %size.addr = alloca i64, align 8
+Implies(True, %memptr)        [allocate_align64 line 3] %memptr = alloca ptr, align 8
+Implies(True, %size.addr)     [allocate_align64 line 4] store i64 %size, ptr %size.addr, align 8
+Implies(False, %size.addr)    [allocate_align64 line 4] store i64 %size, ptr %size.addr, align 8
+Implies(True, %call)          call-site: pc ⊑ %call
+Implies(%memptr, False)       call-arg: %memptr ⊑ %param0 (weakened)
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+Implies(%memptr, False)    call-arg: %memptr ⊑ %param0 (weakened)
+Implies(True, %memptr)     [allocate_align64 line 3] %memptr = alloca ptr, align 8
+
+var_map keys and reprs:
+%0 : %0
+%call : %call
+%memptr : %memptr
+%param0 : False
+%size : False
+%size.addr : %size.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%tobool : %tobool
+6_posix_memalign_arg1 : 6_posix_memalign_arg1
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : False
+@c : False
+@free_nodes : False
+@free_recs : False
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

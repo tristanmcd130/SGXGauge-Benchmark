@@ -1,0 +1,358 @@
+Constraints unsatisfiable in insert_into_leaf_after_splitting!
+Location: line 157
+
+Solver assertions (with source if available):
+Implies(True, True)                                                        postdom: pc_min ⊑ %entry
+False == False                                                             postdom: %if.then == PUBLIC
+Implies(True, True)                                                        postdom: pc_min ⊑ %if.end
+False == False                                                             postdom: %if.then6 == PUBLIC
+Implies(True, True)                                                        postdom: pc_min ⊑ %if.end7
+Implies(True, True)                                                        postdom: pc_min ⊑ %while.cond
+Implies(True, True)                                                        postdom: pc_min ⊑ %land.rhs
+Implies(True, True)                                                        postdom: pc_min ⊑ %land.end
+Implies(True, True)                                                        postdom: pc_min ⊑ %while.body
+Implies(True, True)                                                        postdom: pc_min ⊑ %while.end
+Implies(True, True)                                                        postdom: pc_min ⊑ %while.cond,
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.body
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.end
+Implies(True, True)                                                        postdom: pc_min ⊑ %if.then12
+Implies(True, True)                                                        postdom: pc_min ⊑ %if.end14
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.inc
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond,
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond27
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.body29
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.end40
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.inc38
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond27,
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond41
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.body43
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.end55
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.inc52
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond41,
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond66
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.body69
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.end74
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.inc72
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond66,
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond76
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.body79
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.end84
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.inc82
+Implies(True, True)                                                        postdom: pc_min ⊑ %for.cond76,
+Implies(True, %root.addr)                                                  [insert_into_leaf_after_splitting line 2] %root.addr = alloca ptr, align 8
+Implies(True, %leaf.addr)                                                  [insert_into_leaf_after_splitting line 3] %leaf.addr = alloca ptr, align 8
+Implies(True, %key.addr)                                                   [insert_into_leaf_after_splitting line 4] %key.addr = alloca i64, align 8
+Implies(True, %pointer.addr)                                               [insert_into_leaf_after_splitting line 5] %pointer.addr = alloca ptr, align 8
+Implies(True, %new_leaf)                                                   [insert_into_leaf_after_splitting line 6] %new_leaf = alloca ptr, align 8
+Implies(True, %temp_keys)                                                  [insert_into_leaf_after_splitting line 7] %temp_keys = alloca ptr, align 8
+Implies(True, %temp_pointers)                                              [insert_into_leaf_after_splitting line 8] %temp_pointers = alloca ptr, align 8
+Implies(True, %insertion_index)                                            [insert_into_leaf_after_splitting line 9] %insertion_index = alloca i64, align 8
+Implies(True, %split)                                                      [insert_into_leaf_after_splitting line 10] %split = alloca i64, align 8
+Implies(True, %new_key)                                                    [insert_into_leaf_after_splitting line 11] %new_key = alloca i64, align 8
+Implies(True, %i)                                                          [insert_into_leaf_after_splitting line 12] %i = alloca i64, align 8
+Implies(True, %j)                                                          [insert_into_leaf_after_splitting line 13] %j = alloca i64, align 8
+Implies(True, %root.addr)                                                  [insert_into_leaf_after_splitting line 14] store ptr %root, ptr %root.addr, align 8
+%root == %root.addr                                                        [insert_into_leaf_after_splitting line 14] store ptr %root, ptr %root.addr, align 8
+Implies(True, %leaf.addr)                                                  [insert_into_leaf_after_splitting line 15] store ptr %leaf, ptr %leaf.addr, align 8
+%leaf == %leaf.addr                                                        [insert_into_leaf_after_splitting line 15] store ptr %leaf, ptr %leaf.addr, align 8
+Implies(True, %key.addr)                                                   [insert_into_leaf_after_splitting line 16] store i64 %key, ptr %key.addr, align 8
+Implies(%key, %key.addr)                                                   [insert_into_leaf_after_splitting line 16] store i64 %key, ptr %key.addr, align 8
+Implies(True, %pointer.addr)                                               [insert_into_leaf_after_splitting line 17] store ptr %pointer, ptr %pointer.addr, align 8
+True == %pointer.addr                                                      [insert_into_leaf_after_splitting line 17] store ptr %pointer, ptr %pointer.addr, align 8
+Implies(True, %call)                                                       call-site: pc ⊑ %call
+Implies(True, True)                                                        call-site: insert_into_leaf_after_splitting:18 -> make_leaf
+%call == True                                                              call-site: insert_into_leaf_after_splitting:18 -> make_leaf
+Implies(True, %new_leaf)                                                   [insert_into_leaf_after_splitting line 19] store ptr %call, ptr %new_leaf, align 8
+%call == %new_leaf                                                         [insert_into_leaf_after_splitting line 19] store ptr %call, ptr %new_leaf, align 8
+Implies(True, %call1)                                                      call-site: pc ⊑ %call1
+Implies(%mul, False)                                                       call-arg: %mul ⊑ %param0 (weakened)
+Implies(True, True)                                                        call-site: insert_into_leaf_after_splitting:23 -> allocate_align64
+%call1 == True                                                             call-site: insert_into_leaf_after_splitting:23 -> allocate_align64
+Implies(True, %temp_keys)                                                  [insert_into_leaf_after_splitting line 24] store ptr %call1, ptr %temp_keys, align 8
+%call1 == %temp_keys                                                       [insert_into_leaf_after_splitting line 24] store ptr %call1, ptr %temp_keys, align 8
+False == False                                                             void-call-arg: @.str.24 ≡ %param0
+Implies(False, False)                                                      void-call: pc ⊑ pc_min(perror)
+31_exit_arg0 == False                                                      void-call-arg: 31_exit_arg0 ≡ %param0
+Implies(False, False)                                                      void-call: pc ⊑ pc_min(exit)
+Implies(True, %call4)                                                      call-site: pc ⊑ %call4
+Implies(%mul3, False)                                                      call-arg: %mul3 ⊑ %param0 (weakened)
+Implies(True, True)                                                        call-site: insert_into_leaf_after_splitting:38 -> allocate_align64
+%call4 == True                                                             call-site: insert_into_leaf_after_splitting:38 -> allocate_align64
+Implies(True, %temp_pointers)                                              [insert_into_leaf_after_splitting line 39] store ptr %call4, ptr %temp_pointers, align 8
+%call4 == %temp_pointers                                                   [insert_into_leaf_after_splitting line 39] store ptr %call4, ptr %temp_pointers, align 8
+False == False                                                             void-call-arg: @.str.25 ≡ %param0
+Implies(False, False)                                                      void-call: pc ⊑ pc_min(perror)
+46_exit_arg0 == False                                                      void-call-arg: 46_exit_arg0 ≡ %param0
+Implies(False, False)                                                      void-call: pc ⊑ pc_min(exit)
+Implies(True, %insertion_index)                                            [insert_into_leaf_after_splitting line 50] store i64 0, ptr %insertion_index, align 8
+Implies(False, %insertion_index)                                           [insert_into_leaf_after_splitting line 50] store i64 0, ptr %insertion_index, align 8
+Implies(62_insert_into_leaf_after_splitting_arg0, %keys)                   gep: idx0 ⊑ %keys
+Implies(62_insert_into_leaf_after_splitting_arg1, %keys)                   gep: idx1 ⊑ %keys
+Implies(True, %keys)                                                       gep: pc ⊑ %keys; %6 ≡ %keys
+%6 == %keys                                                                gep: pc ⊑ %keys; %6 ≡ %keys
+Implies(%8, %arrayidx)                                                     gep: idx0 ⊑ %arrayidx
+Implies(True, %arrayidx)                                                   gep: pc ⊑ %arrayidx; %7 ≡ %arrayidx
+%7 == %arrayidx                                                            gep: pc ⊑ %arrayidx; %7 ≡ %arrayidx
+Implies(True, %11)                                                         call: pc ⊑ %11
+Implies(True, %11)                                                         phi: 72_insert_into_leaf_after_splitting_arg0 ≡ %11; %while.cond ⊑ %11
+72_insert_into_leaf_after_splitting_arg0 == %11                            phi: 72_insert_into_leaf_after_splitting_arg0 ≡ %11; %while.cond ⊑ %11
+Implies(True, %11)                                                         phi: %cmp9 ≡ %11; %land.rhs ⊑ %11
+%cmp9 == %11                                                               phi: %cmp9 ≡ %11; %land.rhs ⊑ %11
+Implies(True, %insertion_index)                                            [insert_into_leaf_after_splitting line 78] store i64 %inc, ptr %insertion_index, align 8
+Implies(%inc, %insertion_index)                                            [insert_into_leaf_after_splitting line 78] store i64 %inc, ptr %insertion_index, align 8
+Implies(True, %i)                                                          [insert_into_leaf_after_splitting line 82] store i64 0, ptr %i, align 8
+Implies(False, %i)                                                         [insert_into_leaf_after_splitting line 82] store i64 0, ptr %i, align 8
+Implies(True, %j)                                                          [insert_into_leaf_after_splitting line 83] store i64 0, ptr %j, align 8
+Implies(False, %j)                                                         [insert_into_leaf_after_splitting line 83] store i64 0, ptr %j, align 8
+Implies(89_insert_into_leaf_after_splitting_arg0, %num_keys)               gep: idx0 ⊑ %num_keys
+Implies(89_insert_into_leaf_after_splitting_arg1, %num_keys)               gep: idx1 ⊑ %num_keys
+Implies(True, %num_keys)                                                   gep: pc ⊑ %num_keys; %14 ≡ %num_keys
+%14 == %num_keys                                                           gep: pc ⊑ %num_keys; %14 ≡ %num_keys
+Implies(True, %j)                                                          [insert_into_leaf_after_splitting line 103] store i64 %inc13, ptr %j, align 8
+Implies(%inc13, %j)                                                        [insert_into_leaf_after_splitting line 103] store i64 %inc13, ptr %j, align 8
+Implies(108_insert_into_leaf_after_splitting_arg0, %keys15)                gep: idx0 ⊑ %keys15
+Implies(108_insert_into_leaf_after_splitting_arg1, %keys15)                gep: idx1 ⊑ %keys15
+Implies(True, %keys15)                                                     gep: pc ⊑ %keys15; %19 ≡ %keys15
+%19 == %keys15                                                             gep: pc ⊑ %keys15; %19 ≡ %keys15
+Implies(%21, %arrayidx16)                                                  gep: idx0 ⊑ %arrayidx16
+Implies(True, %arrayidx16)                                                 gep: pc ⊑ %arrayidx16; %20 ≡ %arrayidx16
+%20 == %arrayidx16                                                         gep: pc ⊑ %arrayidx16; %20 ≡ %arrayidx16
+Implies(%24, %arrayidx17)                                                  gep: idx0 ⊑ %arrayidx17
+Implies(True, %arrayidx17)                                                 gep: pc ⊑ %arrayidx17; %23 ≡ %arrayidx17
+%23 == %arrayidx17                                                         gep: pc ⊑ %arrayidx17; %23 ≡ %arrayidx17
+Implies(True, %arrayidx17)                                                 [insert_into_leaf_after_splitting line 116] store i64 %22, ptr %arrayidx17, align 8
+Implies(%22, %arrayidx17)                                                  [insert_into_leaf_after_splitting line 116] store i64 %22, ptr %arrayidx17, align 8
+Implies(118_insert_into_leaf_after_splitting_arg0,
+        %pointers)      gep: idx0 ⊑ %pointers
+Implies(118_insert_into_leaf_after_splitting_arg1,
+        %pointers)      gep: idx1 ⊑ %pointers
+Implies(True, %pointers)                                                   gep: pc ⊑ %pointers; %25 ≡ %pointers
+%25 == %pointers                                                           gep: pc ⊑ %pointers; %25 ≡ %pointers
+Implies(%27, %arrayidx18)                                                  gep: idx0 ⊑ %arrayidx18
+Implies(True, %arrayidx18)                                                 gep: pc ⊑ %arrayidx18; %26 ≡ %arrayidx18
+%26 == %arrayidx18                                                         gep: pc ⊑ %arrayidx18; %26 ≡ %arrayidx18
+Implies(%30, %arrayidx19)                                                  gep: idx0 ⊑ %arrayidx19
+Implies(True, %arrayidx19)                                                 gep: pc ⊑ %arrayidx19; %29 ≡ %arrayidx19
+%29 == %arrayidx19                                                         gep: pc ⊑ %arrayidx19; %29 ≡ %arrayidx19
+Implies(True, %arrayidx19)                                                 [insert_into_leaf_after_splitting line 126] store ptr %28, ptr %arrayidx19, align 8
+%28 == %arrayidx19                                                         [insert_into_leaf_after_splitting line 126] store ptr %28, ptr %arrayidx19, align 8
+Implies(True, %i)                                                          [insert_into_leaf_after_splitting line 132] store i64 %inc20, ptr %i, align 8
+Implies(%inc20, %i)                                                        [insert_into_leaf_after_splitting line 132] store i64 %inc20, ptr %i, align 8
+Implies(True, %j)                                                          [insert_into_leaf_after_splitting line 135] store i64 %inc21, ptr %j, align 8
+Implies(%inc21, %j)                                                        [insert_into_leaf_after_splitting line 135] store i64 %inc21, ptr %j, align 8
+Implies(%35, %arrayidx22)                                                  gep: idx0 ⊑ %arrayidx22
+Implies(True, %arrayidx22)                                                 gep: pc ⊑ %arrayidx22; %34 ≡ %arrayidx22
+%34 == %arrayidx22                                                         gep: pc ⊑ %arrayidx22; %34 ≡ %arrayidx22
+Implies(True, %arrayidx22)                                                 [insert_into_leaf_after_splitting line 143] store i64 %33, ptr %arrayidx22, align 8
+Implies(%33, %arrayidx22)                                                  [insert_into_leaf_after_splitting line 143] store i64 %33, ptr %arrayidx22, align 8
+Implies(%38, %arrayidx23)                                                  gep: idx0 ⊑ %arrayidx23
+Implies(True, %arrayidx23)                                                 gep: pc ⊑ %arrayidx23; %37 ≡ %arrayidx23
+%37 == %arrayidx23                                                         gep: pc ⊑ %arrayidx23; %37 ≡ %arrayidx23
+Implies(True, %arrayidx23)                                                 [insert_into_leaf_after_splitting line 148] store ptr %36, ptr %arrayidx23, align 8
+%36 == %arrayidx23                                                         [insert_into_leaf_after_splitting line 148] store ptr %36, ptr %arrayidx23, align 8
+Implies(150_insert_into_leaf_after_splitting_arg0,
+        %num_keys24)    gep: idx0 ⊑ %num_keys24
+Implies(150_insert_into_leaf_after_splitting_arg1,
+        %num_keys24)    gep: idx1 ⊑ %num_keys24
+Implies(True, %num_keys24)                                                 gep: pc ⊑ %num_keys24; %39 ≡ %num_keys24
+%39 == %num_keys24                                                         gep: pc ⊑ %num_keys24; %39 ≡ %num_keys24
+Implies(True, %num_keys24)                                                 [insert_into_leaf_after_splitting line 151] store i64 0, ptr %num_keys24, align 8
+Implies(False, %num_keys24)                                                [insert_into_leaf_after_splitting line 151] store i64 0, ptr %num_keys24, align 8
+Implies(True, %call26)                                                     call-site: pc ⊑ %call26
+Implies(%sub25, False)                                                     call-arg: %sub25 ⊑ %param0 (weakened)
+%call26 == False                                                           call-site: insert_into_leaf_after_splitting:154 -> cut
+Implies(True, %split)                                                      [insert_into_leaf_after_splitting line 155] store i64 %call26, ptr %split, align 8
+Implies(%call26, %split)                                                   [insert_into_leaf_after_splitting line 155] store i64 %call26, ptr %split, align 8
+Implies(True, %i)                                                          [insert_into_leaf_after_splitting line 156] store i64 0, ptr %i, align 8
+Implies(False, %i)                                                         [insert_into_leaf_after_splitting line 156] store i64 0, ptr %i, align 8
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+%call26 == False          call-site: insert_into_leaf_after_splitting:154 -> cut
+Implies(True, %call26)    call-site: pc ⊑ %call26
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%10 : %10
+%11 : %11
+%12 : %12
+%13 : %13
+%14 : %14
+%15 : %15
+%16 : %16
+%17 : %17
+%18 : %18
+%19 : %19
+%2 : %2
+%20 : %20
+%21 : %21
+%22 : %22
+%23 : %23
+%24 : %24
+%25 : %25
+%26 : %26
+%27 : %27
+%28 : %28
+%29 : %29
+%3 : %3
+%30 : %30
+%31 : %31
+%32 : %32
+%33 : %33
+%34 : %34
+%35 : %35
+%36 : %36
+%37 : %37
+%38 : %38
+%39 : %39
+%4 : %4
+%40 : %40
+%5 : %5
+%6 : %6
+%7 : %7
+%8 : %8
+%9 : %9
+%add : %add
+%add2 : %add2
+%arrayidx : %arrayidx
+%arrayidx16 : %arrayidx16
+%arrayidx17 : %arrayidx17
+%arrayidx18 : %arrayidx18
+%arrayidx19 : %arrayidx19
+%arrayidx22 : %arrayidx22
+%arrayidx23 : %arrayidx23
+%call : %call
+%call1 : %call1
+%call26 : %call26
+%call4 : %call4
+%cmp : %cmp
+%cmp10 : %cmp10
+%cmp11 : %cmp11
+%cmp28 : %cmp28
+%cmp42 : %cmp42
+%cmp5 : %cmp5
+%cmp68 : %cmp68
+%cmp78 : %cmp78
+%cmp8 : %cmp8
+%cmp9 : %cmp9
+%i : %i
+%inc : %inc
+%inc13 : %inc13
+%inc20 : %inc20
+%inc21 : %inc21
+%insertion_index : %insertion_index
+%j : %j
+%key : %key
+%key, : False
+%key.addr : %key.addr
+%keys : %keys
+%keys15 : %keys15
+%land.rhs : %land.rhs
+%leaf : %leaf
+%leaf, : True
+%leaf.addr : %leaf.addr
+%mul : %mul
+%mul3 : %mul3
+%new_key : %new_key
+%new_leaf : %new_leaf
+%num_keys : %num_keys
+%num_keys24 : %num_keys24
+%param0 : True
+%param1 : True
+%param2 : False
+%param3 : True
+%pointer : True
+%pointer.addr : %pointer.addr
+%pointers : %pointers
+%root : %root
+%root, : True
+%root.addr : %root.addr
+%split : %split
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%sub : %sub
+%sub25 : %sub25
+%temp_keys : %temp_keys
+%temp_pointers : %temp_pointers
+%while.cond : %while.cond
+0 : False
+102_insert_into_leaf_after_splitting_arg2 : 102_insert_into_leaf_after_splitting_arg2
+108_insert_into_leaf_after_splitting_arg0 : 108_insert_into_leaf_after_splitting_arg0
+108_insert_into_leaf_after_splitting_arg1 : 108_insert_into_leaf_after_splitting_arg1
+118_insert_into_leaf_after_splitting_arg0 : 118_insert_into_leaf_after_splitting_arg0
+118_insert_into_leaf_after_splitting_arg1 : 118_insert_into_leaf_after_splitting_arg1
+131_insert_into_leaf_after_splitting_arg2 : 131_insert_into_leaf_after_splitting_arg2
+134_insert_into_leaf_after_splitting_arg2 : 134_insert_into_leaf_after_splitting_arg2
+150_insert_into_leaf_after_splitting_arg0 : 150_insert_into_leaf_after_splitting_arg0
+150_insert_into_leaf_after_splitting_arg1 : 150_insert_into_leaf_after_splitting_arg1
+153_insert_into_leaf_after_splitting_arg2 : 153_insert_into_leaf_after_splitting_arg2
+21_insert_into_leaf_after_splitting_arg2 : 21_insert_into_leaf_after_splitting_arg2
+22_insert_into_leaf_after_splitting_arg2 : 22_insert_into_leaf_after_splitting_arg2
+26_insert_into_leaf_after_splitting_arg2 : 26_insert_into_leaf_after_splitting_arg2
+31_exit_arg0 : 31_exit_arg0
+36_insert_into_leaf_after_splitting_arg2 : 36_insert_into_leaf_after_splitting_arg2
+37_insert_into_leaf_after_splitting_arg2 : 37_insert_into_leaf_after_splitting_arg2
+41_insert_into_leaf_after_splitting_arg2 : 41_insert_into_leaf_after_splitting_arg2
+46_exit_arg0 : 46_exit_arg0
+56_insert_into_leaf_after_splitting_arg2 : 56_insert_into_leaf_after_splitting_arg2
+62_insert_into_leaf_after_splitting_arg0 : 62_insert_into_leaf_after_splitting_arg0
+62_insert_into_leaf_after_splitting_arg1 : 62_insert_into_leaf_after_splitting_arg1
+72_insert_into_leaf_after_splitting_arg0 : 72_insert_into_leaf_after_splitting_arg0
+77_insert_into_leaf_after_splitting_arg2 : 77_insert_into_leaf_after_splitting_arg2
+89_insert_into_leaf_after_splitting_arg0 : 89_insert_into_leaf_after_splitting_arg0
+89_insert_into_leaf_after_splitting_arg1 : 89_insert_into_leaf_after_splitting_arg1
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : True
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

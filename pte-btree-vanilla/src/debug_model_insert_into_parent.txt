@@ -1,0 +1,153 @@
+Constraints unsatisfiable in insert_into_parent!
+Location: line 41
+
+Solver assertions (with source if available):
+Implies(True, True)                               postdom: pc_min ⊑ %entry
+Implies(True, True)                               postdom: pc_min ⊑ %if.then
+Implies(True, True)                               postdom: pc_min ⊑ %if.end
+Implies(True, True)                               postdom: pc_min ⊑ %return
+Implies(True, True)                               postdom: pc_min ⊑ %if.then4
+Implies(True, True)                               postdom: pc_min ⊑ %if.end6
+Implies(True, %retval)                            [insert_into_parent line 2] %retval = alloca ptr, align 8
+Implies(True, %root.addr)                         [insert_into_parent line 3] %root.addr = alloca ptr, align 8
+Implies(True, %left.addr)                         [insert_into_parent line 4] %left.addr = alloca ptr, align 8
+Implies(True, %key.addr)                          [insert_into_parent line 5] %key.addr = alloca i64, align 8
+Implies(True, %right.addr)                        [insert_into_parent line 6] %right.addr = alloca ptr, align 8
+Implies(True, %left_index)                        [insert_into_parent line 7] %left_index = alloca i64, align 8
+Implies(True, %parent)                            [insert_into_parent line 8] %parent = alloca ptr, align 8
+Implies(True, %root.addr)                         [insert_into_parent line 9] store ptr %root, ptr %root.addr, align 8
+%root == %root.addr                               [insert_into_parent line 9] store ptr %root, ptr %root.addr, align 8
+Implies(True, %left.addr)                         [insert_into_parent line 10] store ptr %left, ptr %left.addr, align 8
+%left == %left.addr                               [insert_into_parent line 10] store ptr %left, ptr %left.addr, align 8
+Implies(True, %key.addr)                          [insert_into_parent line 11] store i64 %key, ptr %key.addr, align 8
+Implies(%key, %key.addr)                          [insert_into_parent line 11] store i64 %key, ptr %key.addr, align 8
+Implies(True, %right.addr)                        [insert_into_parent line 12] store ptr %right, ptr %right.addr, align 8
+True == %right.addr                               [insert_into_parent line 12] store ptr %right, ptr %right.addr, align 8
+Implies(14_insert_into_parent_arg0, %parent1)     gep: idx0 ⊑ %parent1
+Implies(14_insert_into_parent_arg1, %parent1)     gep: idx1 ⊑ %parent1
+Implies(True, %parent1)                           gep: pc ⊑ %parent1; %0 ≡ %parent1
+%0 == %parent1                                    gep: pc ⊑ %parent1; %0 ≡ %parent1
+Implies(True, %parent)                            [insert_into_parent line 16] store ptr %1, ptr %parent, align 8
+%1 == %parent                                     [insert_into_parent line 16] store ptr %1, ptr %parent, align 8
+Implies(True, %call)                              call-site: pc ⊑ %call
+%3 == True                                        call-arg: %3 ≡ %param0
+Implies(%4, False)                                call-arg: %4 ⊑ %param1 (weakened)
+%5 == True                                        call-arg: %5 ≡ %param2
+Implies(True, True)                               call-site: insert_into_parent:25 -> insert_into_new_root
+%call == True                                     call-site: insert_into_parent:25 -> insert_into_new_root
+Implies(True, %retval)                            [insert_into_parent line 26] store ptr %call, ptr %retval, align 8
+%call == %retval                                  [insert_into_parent line 26] store ptr %call, ptr %retval, align 8
+Implies(True, %call2)                             call-site: pc ⊑ %call2
+%6 == True                                        call-arg: %6 ≡ %param0
+%7 == True                                        call-arg: %7 ≡ %param1
+%call2 == False                                   call-site: insert_into_parent:32 -> get_left_index
+Implies(True, %left_index)                        [insert_into_parent line 33] store i64 %call2, ptr %left_index, align 8
+Implies(%call2, %left_index)                      [insert_into_parent line 33] store i64 %call2, ptr %left_index, align 8
+Implies(35_insert_into_parent_arg0, %num_keys)    gep: idx0 ⊑ %num_keys
+Implies(35_insert_into_parent_arg1, %num_keys)    gep: idx1 ⊑ %num_keys
+Implies(True, %num_keys)                          gep: pc ⊑ %num_keys; %8 ≡ %num_keys
+%8 == %num_keys                                   gep: pc ⊑ %num_keys; %8 ≡ %num_keys
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+%call2 == False          call-site: insert_into_parent:32 -> get_left_index
+Implies(True, %call2)    call-site: pc ⊑ %call2
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%10 : %10
+%2 : %2
+%3 : %3
+%4 : %4
+%5 : %5
+%6 : %6
+%7 : %7
+%8 : %8
+%9 : %9
+%call : %call
+%call2 : %call2
+%cmp : %cmp
+%cmp3 : %cmp3
+%key : %key
+%key, : False
+%key.addr : %key.addr
+%left : %left
+%left, : True
+%left.addr : %left.addr
+%left_index : %left_index
+%num_keys : %num_keys
+%param0 : True
+%param1 : True
+%param2 : False
+%param3 : True
+%parent : %parent
+%parent1 : %parent1
+%retval : %retval
+%right : True
+%right.addr : %right.addr
+%root : %root
+%root, : True
+%root.addr : %root.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%sub : %sub
+14_insert_into_parent_arg0 : 14_insert_into_parent_arg0
+14_insert_into_parent_arg1 : 14_insert_into_parent_arg1
+18_insert_into_parent_arg2 : 18_insert_into_parent_arg2
+35_insert_into_parent_arg0 : 35_insert_into_parent_arg0
+35_insert_into_parent_arg1 : 35_insert_into_parent_arg1
+38_insert_into_parent_arg2 : 38_insert_into_parent_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : True
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

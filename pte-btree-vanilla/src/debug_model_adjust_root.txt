@@ -1,0 +1,162 @@
+Constraints unsatisfiable in adjust_root!
+Location: line 53
+
+Solver assertions (with source if available):
+Implies(True, True)                         postdom: pc_min ⊑ %entry
+Implies(True, True)                         postdom: pc_min ⊑ %if.then
+Implies(True, True)                         postdom: pc_min ⊑ %if.end
+Implies(True, True)                         postdom: pc_min ⊑ %return
+Implies(True, True)                         postdom: pc_min ⊑ %if.else
+Implies(True, True)                         postdom: pc_min ⊑ %if.then1
+Implies(True, True)                         postdom: pc_min ⊑ %if.end2
+Implies(True, %retval)                      [adjust_root line 2] %retval = alloca ptr, align 8
+Implies(True, %root.addr)                   [adjust_root line 3] %root.addr = alloca ptr, align 8
+Implies(True, %new_root)                    [adjust_root line 4] %new_root = alloca ptr, align 8
+Implies(True, %root.addr)                   [adjust_root line 5] store ptr %root, ptr %root.addr, align 8
+True == %root.addr                          [adjust_root line 5] store ptr %root, ptr %root.addr, align 8
+Implies(7_adjust_root_arg0, %num_keys)      gep: idx0 ⊑ %num_keys
+Implies(7_adjust_root_arg1, %num_keys)      gep: idx1 ⊑ %num_keys
+Implies(True, %num_keys)                    gep: pc ⊑ %num_keys; %0 ≡ %num_keys
+%0 == %num_keys                             gep: pc ⊑ %num_keys; %0 ≡ %num_keys
+Implies(True, %retval)                      [adjust_root line 14] store ptr %2, ptr %retval, align 8
+%2 == %retval                               [adjust_root line 14] store ptr %2, ptr %retval, align 8
+Implies(19_adjust_root_arg0, %is_leaf)      gep: idx0 ⊑ %is_leaf
+Implies(19_adjust_root_arg1, %is_leaf)      gep: idx1 ⊑ %is_leaf
+Implies(True, %is_leaf)                     gep: pc ⊑ %is_leaf; %3 ≡ %is_leaf
+%3 == %is_leaf                              gep: pc ⊑ %is_leaf; %3 ≡ %is_leaf
+Implies(26_adjust_root_arg0, %pointers)     gep: idx0 ⊑ %pointers
+Implies(26_adjust_root_arg1, %pointers)     gep: idx1 ⊑ %pointers
+Implies(True, %pointers)                    gep: pc ⊑ %pointers; %5 ≡ %pointers
+%5 == %pointers                             gep: pc ⊑ %pointers; %5 ≡ %pointers
+Implies(28_adjust_root_arg0, %arrayidx)     gep: idx0 ⊑ %arrayidx
+Implies(True, %arrayidx)                    gep: pc ⊑ %arrayidx; %6 ≡ %arrayidx
+%6 == %arrayidx                             gep: pc ⊑ %arrayidx; %6 ≡ %arrayidx
+Implies(True, %new_root)                    [adjust_root line 30] store ptr %7, ptr %new_root, align 8
+%7 == %new_root                             [adjust_root line 30] store ptr %7, ptr %new_root, align 8
+Implies(32_adjust_root_arg0, %parent)       gep: idx0 ⊑ %parent
+Implies(32_adjust_root_arg1, %parent)       gep: idx1 ⊑ %parent
+Implies(True, %parent)                      gep: pc ⊑ %parent; %8 ≡ %parent
+%8 == %parent                               gep: pc ⊑ %parent; %8 ≡ %parent
+Implies(True, %parent)                      [adjust_root line 33] store ptr null, ptr %parent, align 8
+Implies(False, %parent)                     [adjust_root line 33] store ptr null, ptr %parent, align 8
+Implies(True, %new_root)                    [adjust_root line 37] store ptr null, ptr %new_root, align 8
+Implies(False, %new_root)                   [adjust_root line 37] store ptr null, ptr %new_root, align 8
+Implies(42_adjust_root_arg0, %keys)         gep: idx0 ⊑ %keys
+Implies(42_adjust_root_arg1, %keys)         gep: idx1 ⊑ %keys
+Implies(True, %keys)                        gep: pc ⊑ %keys; %9 ≡ %keys
+%9 == %keys                                 gep: pc ⊑ %keys; %9 ≡ %keys
+Implies(46_adjust_root_arg0, %pointers3)    gep: idx0 ⊑ %pointers3
+Implies(46_adjust_root_arg1, %pointers3)    gep: idx1 ⊑ %pointers3
+Implies(True, %pointers3)                   gep: pc ⊑ %pointers3; %11 ≡ %pointers3
+%11 == %pointers3                           gep: pc ⊑ %pointers3; %11 ≡ %pointers3
+%13 == True                                 void-call-arg: %13 ≡ %param0
+Implies(True, False)                        void-call: pc ⊑ pc_min(free_node)
+Implies(True, %retval)                      [adjust_root line 52] store ptr %14, ptr %retval, align 8
+%14 == %retval                              [adjust_root line 52] store ptr %14, ptr %retval, align 8
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+Implies(True, False)    void-call: pc ⊑ pc_min(free_node)
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%10 : %10
+%11 : %11
+%12 : %12
+%13 : %13
+%14 : %14
+%2 : %2
+%3 : %3
+%4 : %4
+%5 : %5
+%6 : %6
+%7 : %7
+%8 : %8
+%9 : %9
+%arrayidx : %arrayidx
+%cmp : %cmp
+%is_leaf : %is_leaf
+%keys : %keys
+%new_root : %new_root
+%num_keys : %num_keys
+%param0 : True
+%parent : %parent
+%pointers : %pointers
+%pointers3 : %pointers3
+%retval : %retval
+%root : True
+%root.addr : %root.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%tobool : %tobool
+19_adjust_root_arg0 : 19_adjust_root_arg0
+19_adjust_root_arg1 : 19_adjust_root_arg1
+26_adjust_root_arg0 : 26_adjust_root_arg0
+26_adjust_root_arg1 : 26_adjust_root_arg1
+28_adjust_root_arg0 : 28_adjust_root_arg0
+32_adjust_root_arg0 : 32_adjust_root_arg0
+32_adjust_root_arg1 : 32_adjust_root_arg1
+42_adjust_root_arg0 : 42_adjust_root_arg0
+42_adjust_root_arg1 : 42_adjust_root_arg1
+46_adjust_root_arg0 : 46_adjust_root_arg0
+46_adjust_root_arg1 : 46_adjust_root_arg1
+7_adjust_root_arg0 : 7_adjust_root_arg0
+7_adjust_root_arg1 : 7_adjust_root_arg1
+9_adjust_root_arg2 : 9_adjust_root_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : True
+@order : False
+@queue : True
+@stderr : False
+@x : False
+null : False
+pc : True
+ptr noundef %10 : ptr noundef %10
+ptr noundef %12 : ptr noundef %12
+ret : True

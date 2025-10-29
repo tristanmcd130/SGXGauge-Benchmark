@@ -1,0 +1,85 @@
+Constraints unsatisfiable in make_node!
+Location: line 8
+
+Solver assertions (with source if available):
+Implies(True, True)         postdom: pc_min ⊑ %entry
+False == False              postdom: %if.then == PUBLIC
+Implies(True, True)         postdom: pc_min ⊑ %if.end
+False == False              postdom: %if.then4 == PUBLIC
+Implies(True, True)         postdom: pc_min ⊑ %if.end5
+False == False              postdom: %if.then10 == PUBLIC
+Implies(True, True)         postdom: pc_min ⊑ %if.end11
+Implies(True, %new_node)    [make_node line 2] %new_node = alloca ptr, align 8
+Implies(True, %call)        call-site: pc ⊑ %call
+%call == False              call-site: make_node:3 -> alloc_node
+Implies(True, %new_node)    [make_node line 4] store ptr %call, ptr %new_node, align 8
+%call == %new_node          [make_node line 4] store ptr %call, ptr %new_node, align 8
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+%call == False          call-site: make_node:3 -> alloc_node
+Implies(True, %call)    call-site: pc ⊑ %call
+
+var_map keys and reprs:
+%0 : %0
+%call : %call
+%cmp : %cmp
+%cmp3 : %cmp3
+%cmp9 : %cmp9
+%new_node : %new_node
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+6_make_node_arg2 : 6_make_node_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : False
+@c : False
+@free_nodes : False
+@free_recs : False
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

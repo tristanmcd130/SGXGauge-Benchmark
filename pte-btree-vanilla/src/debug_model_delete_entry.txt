@@ -1,0 +1,213 @@
+Constraints unsatisfiable in delete_entry!
+Location: line 74
+
+Solver assertions (with source if available):
+Implies(True, True)                         postdom: pc_min ⊑ %entry
+Implies(True, True)                         postdom: pc_min ⊑ %if.then
+Implies(True, True)                         postdom: pc_min ⊑ %if.end
+Implies(True, True)                         postdom: pc_min ⊑ %return
+Implies(True, True)                         postdom: pc_min ⊑ %cond.true
+Implies(True, True)                         postdom: pc_min ⊑ %cond.false
+Implies(True, True)                         postdom: pc_min ⊑ %cond.end
+Implies(True, True)                         postdom: pc_min ⊑ %if.then6
+Implies(True, True)                         postdom: pc_min ⊑ %if.end7
+Implies(True, True)                         postdom: pc_min ⊑ %cond.true10
+Implies(True, True)                         postdom: pc_min ⊑ %cond.false11
+Implies(True, True)                         postdom: pc_min ⊑ %cond.end12
+Implies(True, True)                         postdom: pc_min ⊑ %cond.true15
+Implies(True, True)                         postdom: pc_min ⊑ %cond.false18
+Implies(True, True)                         postdom: pc_min ⊑ %cond.end22
+Implies(True, True)                         postdom: pc_min ⊑ %cond.true26
+Implies(True, True)                         postdom: pc_min ⊑ %cond.false27
+Implies(True, True)                         postdom: pc_min ⊑ %cond.end29
+Implies(True, True)                         postdom: pc_min ⊑ %if.then34
+Implies(True, True)                         postdom: pc_min ⊑ %if.else
+Implies(True, %retval)                      [delete_entry line 2] %retval = alloca ptr, align 8
+Implies(True, %root.addr)                   [delete_entry line 3] %root.addr = alloca ptr, align 8
+Implies(True, %n.addr)                      [delete_entry line 4] %n.addr = alloca ptr, align 8
+Implies(True, %key.addr)                    [delete_entry line 5] %key.addr = alloca i64, align 8
+Implies(True, %pointer.addr)                [delete_entry line 6] %pointer.addr = alloca ptr, align 8
+Implies(True, %min_keys)                    [delete_entry line 7] %min_keys = alloca i64, align 8
+Implies(True, %neighbor)                    [delete_entry line 8] %neighbor = alloca ptr, align 8
+Implies(True, %neighbor_index)              [delete_entry line 9] %neighbor_index = alloca i64, align 8
+Implies(True, %k_prime_index)               [delete_entry line 10] %k_prime_index = alloca i64, align 8
+Implies(True, %k_prime)                     [delete_entry line 11] %k_prime = alloca i64, align 8
+Implies(True, %capacity)                    [delete_entry line 12] %capacity = alloca i64, align 8
+Implies(True, %root.addr)                   [delete_entry line 13] store ptr %root, ptr %root.addr, align 8
+%root == %root.addr                         [delete_entry line 13] store ptr %root, ptr %root.addr, align 8
+Implies(True, %n.addr)                      [delete_entry line 14] store ptr %n, ptr %n.addr, align 8
+%n == %n.addr                               [delete_entry line 14] store ptr %n, ptr %n.addr, align 8
+Implies(True, %key.addr)                    [delete_entry line 15] store i64 %key, ptr %key.addr, align 8
+Implies(%key, %key.addr)                    [delete_entry line 15] store i64 %key, ptr %key.addr, align 8
+Implies(True, %pointer.addr)                [delete_entry line 16] store ptr %pointer, ptr %pointer.addr, align 8
+%pointer == %pointer.addr                   [delete_entry line 16] store ptr %pointer, ptr %pointer.addr, align 8
+Implies(True, %call)                        call-site: pc ⊑ %call
+%0 == True                                  call-arg: %0 ≡ %param0
+Implies(%1, False)                          call-arg: %1 ⊑ %param1 (weakened)
+%2 == True                                  call-arg: %2 ≡ %param2
+Implies(True, True)                         call-site: delete_entry:20 -> remove_entry_from_node
+%call == True                               call-site: delete_entry:20 -> remove_entry_from_node
+Implies(True, %n.addr)                      [delete_entry line 21] store ptr %call, ptr %n.addr, align 8
+%call == %n.addr                            [delete_entry line 21] store ptr %call, ptr %n.addr, align 8
+Implies(True, %call1)                       call-site: pc ⊑ %call1
+%5 == True                                  call-arg: %5 ≡ %param0
+Implies(True, True)                         call-site: delete_entry:29 -> adjust_root
+%call1 == True                              call-site: delete_entry:29 -> adjust_root
+Implies(True, %retval)                      [delete_entry line 30] store ptr %call1, ptr %retval, align 8
+%call1 == %retval                           [delete_entry line 30] store ptr %call1, ptr %retval, align 8
+Implies(35_delete_entry_arg0, %is_leaf)     gep: idx0 ⊑ %is_leaf
+Implies(35_delete_entry_arg1, %is_leaf)     gep: idx1 ⊑ %is_leaf
+Implies(True, %is_leaf)                     gep: pc ⊑ %is_leaf; %6 ≡ %is_leaf
+%6 == %is_leaf                              gep: pc ⊑ %is_leaf; %6 ≡ %is_leaf
+Implies(True, %call2)                       call-site: pc ⊑ %call2
+Implies(%sub, False)                        call-arg: %sub ⊑ %param0 (weakened)
+Implies(True, True)                         call-site: delete_entry:43 -> cut
+%call2 == True                              call-site: delete_entry:43 -> cut
+Implies(True, %call3)                       call-site: pc ⊑ %call3
+Implies(%9, False)                          call-arg: %9 ⊑ %param0 (weakened)
+Implies(True, True)                         call-site: delete_entry:48 -> cut
+%call3 == True                              call-site: delete_entry:48 -> cut
+Implies(True, %cond)                        call: pc ⊑ %cond
+Implies(True, %cond)                        phi: %call2 ≡ %cond; %cond.true ⊑ %cond
+%call2 == %cond                             phi: %call2 ≡ %cond; %cond.true ⊑ %cond
+Implies(True, %cond)                        phi: %sub4 ≡ %cond; %cond.false ⊑ %cond
+%sub4 == %cond                              phi: %sub4 ≡ %cond; %cond.false ⊑ %cond
+Implies(True, %min_keys)                    [delete_entry line 54] store i64 %cond, ptr %min_keys, align 8
+Implies(%cond, %min_keys)                   [delete_entry line 54] store i64 %cond, ptr %min_keys, align 8
+Implies(56_delete_entry_arg0, %num_keys)    gep: idx0 ⊑ %num_keys
+Implies(56_delete_entry_arg1, %num_keys)    gep: idx1 ⊑ %num_keys
+Implies(True, %num_keys)                    gep: pc ⊑ %num_keys; %10 ≡ %num_keys
+%10 == %num_keys                            gep: pc ⊑ %num_keys; %10 ≡ %num_keys
+Implies(True, %retval)                      [delete_entry line 64] store ptr %13, ptr %retval, align 8
+%13 == %retval                              [delete_entry line 64] store ptr %13, ptr %retval, align 8
+Implies(True, %call8)                       call-site: pc ⊑ %call8
+%14 == True                                 call-arg: %14 ≡ %param0
+%call8 == False                             call-site: delete_entry:69 -> get_neighbor_index
+Implies(True, %neighbor_index)              [delete_entry line 70] store i64 %call8, ptr %neighbor_index, align 8
+Implies(%call8, %neighbor_index)            [delete_entry line 70] store i64 %call8, ptr %neighbor_index, align 8
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+%call8 == False          call-site: delete_entry:69 -> get_neighbor_index
+Implies(True, %call8)    call-site: pc ⊑ %call8
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%10 : %10
+%11 : %11
+%12 : %12
+%13 : %13
+%14 : %14
+%15 : %15
+%2 : %2
+%3 : %3
+%4 : %4
+%5 : %5
+%6 : %6
+%7 : %7
+%8 : %8
+%9 : %9
+%call : %call
+%call1 : %call1
+%call2 : %call2
+%call3 : %call3
+%call8 : %call8
+%capacity : %capacity
+%cmp : %cmp
+%cmp14 : %cmp14
+%cmp33 : %cmp33
+%cmp5 : %cmp5
+%cmp9 : %cmp9
+%cond : %cond
+%cond.false : %cond.false
+%cond.true : %cond.true
+%is_leaf : %is_leaf
+%k_prime : %k_prime
+%k_prime_index : %k_prime_index
+%key : %key
+%key, : False
+%key.addr : %key.addr
+%min_keys : %min_keys
+%n : %n
+%n, : True
+%n.addr : %n.addr
+%neighbor : %neighbor
+%neighbor_index : %neighbor_index
+%num_keys : %num_keys
+%param0 : True
+%param1 : True
+%param2 : False
+%param3 : %param3
+%pointer : %pointer
+%pointer.addr : %pointer.addr
+%retval : %retval
+%root : %root
+%root, : True
+%root.addr : %root.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+%sub : %sub
+%sub4 : %sub4
+%tobool : %tobool
+%tobool25 : %tobool25
+35_delete_entry_arg0 : 35_delete_entry_arg0
+35_delete_entry_arg1 : 35_delete_entry_arg1
+42_delete_entry_arg2 : 42_delete_entry_arg2
+49_delete_entry_arg2 : 49_delete_entry_arg2
+56_delete_entry_arg0 : 56_delete_entry_arg0
+56_delete_entry_arg1 : 56_delete_entry_arg1
+72_delete_entry_arg2 : 72_delete_entry_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : True
+@order : False
+@queue : True
+@stderr : False
+@x : False
+pc : True
+ret : True

@@ -1,0 +1,124 @@
+Constraints unsatisfiable in delete!
+Location: line 32
+
+Solver assertions (with source if available):
+Implies(True, True)            postdom: pc_min ⊑ %entry
+Implies(True, True)            postdom: pc_min ⊑ %land.lhs.true
+Implies(True, True)            postdom: pc_min ⊑ %if.end
+Implies(True, True)            postdom: pc_min ⊑ %if.then
+Implies(True, %root.addr)      [delete line 2] %root.addr = alloca ptr, align 8
+Implies(True, %key.addr)       [delete line 3] %key.addr = alloca i64, align 8
+Implies(True, %key_leaf)       [delete line 4] %key_leaf = alloca ptr, align 8
+Implies(True, %key_record)     [delete line 5] %key_record = alloca ptr, align 8
+Implies(True, %root.addr)      [delete line 6] store ptr %root, ptr %root.addr, align 8
+%root == %root.addr            [delete line 6] store ptr %root, ptr %root.addr, align 8
+Implies(True, %key.addr)       [delete line 7] store i64 %key, ptr %key.addr, align 8
+Implies(False, %key.addr)      [delete line 7] store i64 %key, ptr %key.addr, align 8
+Implies(True, %key_leaf)       [delete line 8] store ptr null, ptr %key_leaf, align 8
+Implies(False, %key_leaf)      [delete line 8] store ptr null, ptr %key_leaf, align 8
+Implies(True, %key_record)     [delete line 9] store ptr null, ptr %key_record, align 8
+Implies(False, %key_record)    [delete line 9] store ptr null, ptr %key_record, align 8
+Implies(True, %call)           call-site: pc ⊑ %call
+%0 == True                     call-arg: %0 ≡ %param0
+Implies(%1, False)             call-arg: %1 ⊑ %param1 (weakened)
+%key_leaf == True              call-arg: %key_leaf ≡ %param2
+Implies(True, True)            call-site: delete:12 -> find
+%call == True                  call-site: delete:12 -> find
+Implies(True, %key_record)     [delete line 13] store ptr %call, ptr %key_record, align 8
+%call == %key_record           [delete line 13] store ptr %call, ptr %key_record, align 8
+Implies(True, %call2)          call-site: pc ⊑ %call2
+%4 == %4                       call-arg: %4 ≡ %param0
+%5 == %5                       call-arg: %5 ≡ %param1
+%6 == %6                       call-arg: %6 ≡ %param2
+%7 == %7                       call-arg: %7 ≡ %param3
+Implies(True, True)            call-site: delete:28 -> delete_entry
+Implies(True, %root.addr)      [delete line 29] store ptr %call2, ptr %root.addr, align 8
+%call2 == %root.addr           [delete line 29] store ptr %call2, ptr %root.addr, align 8
+%8 == True                     void-call-arg: %8 ≡ %param0
+Implies(True, False)           void-call: pc ⊑ pc_min(free_record)
+
+Unsat core:
+[]
+
+Constraint trace (subset leading to unsat) with sources:
+Implies(True, False)    void-call: pc ⊑ pc_min(free_record)
+
+var_map keys and reprs:
+%0 : %0
+%1 : %1
+%2 : %2
+%3 : %3
+%4 : %4
+%5 : %5
+%6 : %6
+%7 : %7
+%8 : %8
+%call : %call
+%call2 : %call2
+%cmp : %cmp
+%cmp1 : %cmp1
+%key : False
+%key.addr : %key.addr
+%key_leaf : %key_leaf
+%key_record : %key_record
+%param0 : True
+%param1 : False
+%root : %root
+%root, : True
+%root.addr : %root.addr
+%struct.element : %struct.element
+%struct.node : %struct.node
+%struct.record : %struct.record
+%struct.timeval : %struct.timeval
+15_delete_arg2 : 15_delete_arg2
+20_delete_arg2 : 20_delete_arg2
+@.str : False
+@.str.1 : False
+@.str.10 : False
+@.str.11 : False
+@.str.12 : False
+@.str.13 : False
+@.str.14 : False
+@.str.15 : False
+@.str.16 : False
+@.str.17 : False
+@.str.18 : False
+@.str.19 : False
+@.str.2 : False
+@.str.20 : False
+@.str.21 : False
+@.str.22 : False
+@.str.23 : False
+@.str.24 : False
+@.str.25 : False
+@.str.26 : False
+@.str.27 : False
+@.str.28 : False
+@.str.29 : False
+@.str.3 : False
+@.str.30 : False
+@.str.31 : False
+@.str.32 : False
+@.str.33 : False
+@.str.34 : False
+@.str.35 : False
+@.str.36 : False
+@.str.37 : False
+@.str.4 : False
+@.str.5 : False
+@.str.6 : False
+@.str.7 : False
+@.str.8 : False
+@.str.9 : False
+@a : False
+@allocator_stat : True
+@c : False
+@free_nodes : True
+@free_recs : True
+@order : False
+@queue : True
+@stderr : False
+@x : False
+null : False
+pc : True
+ret : True
