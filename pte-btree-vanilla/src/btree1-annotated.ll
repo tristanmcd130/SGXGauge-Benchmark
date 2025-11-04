@@ -59,8 +59,8 @@ target triple = "x86_64-unknown-linux-gnu"
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @license_notice() #0 !sec !{!"void", !"public", !{}} {
 entry:                                            ; !sec !{!"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1), !sec !{!"public", !"public", !{!"public", !"public"}}
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.2), !sec !{!"public", !"public", !{!"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str, ptr noundef @.str.1), !sec !{!"call", !"public", !{!"public", !"public"}}
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.2), !sec !{!"call", !"public", !{!"public"}}
   ret void
 }
 
@@ -70,25 +70,25 @@ declare !sec !{!"public", !"public", !{!"public", !"public"}} i32 @printf(ptr no
 define dso_local void @usage_1() #0 !sec !{!"void", !"public", !{}} {
 entry:                                            ; !sec !{!"public"}
   %0 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.3, i64 noundef %0), !sec !{!"public", !"public", !{!"public", !"public"}}
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.4), !sec !{!"public", !"public", !{!"public"}}
-  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.5, i32 noundef 3, i32 noundef 20), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
-  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.6), !sec !{!"public", !"public", !{!"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.3, i64 noundef %0), !sec !{!"call", !"public", !{!"public", !"public"}}
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.4), !sec !{!"call", !"public", !{!"public"}}
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.5, i32 noundef 3, i32 noundef 20), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
+  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.6), !sec !{!"call", !"public", !{!"public"}}
   ret void
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @usage_2() #0 !sec !{!"void", !"public", !{}} {
 entry:                                            ; !sec !{!"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.7), !sec !{!"public", !"public", !{!"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.7), !sec !{!"call", !"public", !{!"public"}}
   ret void
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local void @usage_3() #0 !sec !{!"void", !"public", !{}} {
 entry:                                            ; !sec !{!"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.8), !sec !{!"public", !"public", !{!"public"}}
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.9, i32 noundef 3, i32 noundef 20), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.8), !sec !{!"call", !"public", !{!"public"}}
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.9, i32 noundef 3, i32 noundef 20), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
   ret void
 }
 
@@ -156,8 +156,8 @@ entry:                                            ; !sec !{!"private"}
   %3 = load ptr, ptr %n, align 8, !sec !{!"private", !"private"}
   %next1 = getelementptr inbounds %struct.node, ptr %3, i32 0, i32 6, !sec !{!"private", !"private", !"public", !"public"}
   store ptr null, ptr %next1, align 8, !sec !{!"public", !"private"}
-  %4 = load ptr, ptr %n, align 8, !sec !{!"public", !"private"}
-  ret ptr %4, !sec !{!"public"}
+  %4 = load ptr, ptr %n, align 8, !sec !{!"private", !"private"}
+  ret ptr %4, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -172,7 +172,7 @@ entry:                                            ; !sec !{!"public"}
   br i1 %cmp, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"public", !"public", !{!"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"call", !"public", !{!"public"}}
   br label %return
 
 if.end:                                           ; preds = %entry, !sec !{!"public"}
@@ -219,7 +219,7 @@ for.body:                                         ; preds = %for.cond, !sec !{!"
   %12 = load i64, ptr %i, align 8, !sec !{!"public", !"public"}
   %arrayidx4 = getelementptr inbounds i64, ptr %11, i64 %12, !sec !{!"public", !"public", !"public"}
   %13 = load i64, ptr %arrayidx4, align 8, !sec !{!"public", !"public"}
-  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, i64 noundef %13), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, i64 noundef %13), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body, !sec !{!"public"}
@@ -240,7 +240,7 @@ for.end:                                          ; preds = %for.cond, !sec !{!"
   br i1 %cmp8, label %if.then9, label %if.else, !sec !{!"public"}
 
 if.then9:                                         ; preds = %for.end, !sec !{!"public"}
-  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.12), !sec !{!"public", !"public", !{!"public"}}
+  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.12), !sec !{!"call", !"public", !{!"public"}}
   %19 = load ptr, ptr %c, align 8, !sec !{!"public", !"public"}
   %pointers11 = getelementptr inbounds %struct.node, ptr %19, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
   %20 = load ptr, ptr %pointers11, align 8, !sec !{!"public", !"public"}
@@ -258,7 +258,7 @@ if.end14:                                         ; preds = %if.then9, !sec !{!"
   br label %while.body2
 
 while.end15:                                      ; preds = %if.else, !sec !{!"public"}
-  %call16 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"public", !"public", !{!"public"}}
+  %call16 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"call", !"public", !{!"public"}}
   br label %return
 
 return:                                           ; preds = %while.end15, %if.then, !sec !{!"public"}
@@ -355,7 +355,7 @@ entry:                                            ; !sec !{!"public"}
   br i1 %cmp, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"public", !"public", !{!"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.10), !sec !{!"call", !"public", !{!"public"}}
   br label %return
 
 if.end:                                           ; preds = %entry, !sec !{!"public"}
@@ -403,7 +403,7 @@ if.then6:                                         ; preds = %land.lhs.true, !sec
 if.then9:                                         ; preds = %if.then6, !sec !{!"public"}
   %14 = load i64, ptr %new_rank, align 8, !sec !{!"public", !"public"}
   store i64 %14, ptr %rank, align 8, !sec !{!"public", !"public"}
-  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"public", !"public", !{!"public"}}
+  %call10 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"call", !"public", !{!"public"}}
   br label %if.end11
 
 if.end11:                                         ; preds = %if.then9, %if.then6, !sec !{!"public"}
@@ -428,7 +428,7 @@ for.body:                                         ; preds = %for.cond, !sec !{!"
   %20 = load i64, ptr %i, align 8, !sec !{!"public", !"public"}
   %arrayidx14 = getelementptr inbounds i64, ptr %19, i64 %20, !sec !{!"public", !"public", !"public"}
   %21 = load i64, ptr %arrayidx14, align 8, !sec !{!"public", !"public"}
-  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, i64 noundef %21), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.11, i64 noundef %21), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body, !sec !{!"public"}
@@ -476,11 +476,11 @@ for.end25:                                        ; preds = %for.cond17, !sec !{
   br label %if.end26
 
 if.end26:                                         ; preds = %for.end25, %for.end, !sec !{!"public"}
-  %call27 = call i32 (ptr, ...) @printf(ptr noundef @.str.14), !sec !{!"public", !"public", !{!"public"}}
+  %call27 = call i32 (ptr, ...) @printf(ptr noundef @.str.14), !sec !{!"call", !"public", !{!"public"}}
   br label %while.cond, !llvm.loop !14
 
 while.end:                                        ; preds = %while.cond, !sec !{!"public"}
-  %call28 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"public", !"public", !{!"public"}}
+  %call28 = call i32 (ptr, ...) @printf(ptr noundef @.str.13), !sec !{!"call", !"public", !{!"public"}}
   br label %return
 
 return:                                           ; preds = %while.end, %if.then, !sec !{!"public"}
@@ -505,7 +505,7 @@ entry:                                            ; !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
   %3 = load i64, ptr %key.addr, align 8, !sec !{!"public", !"public"}
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.15, i64 noundef %3), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.15, i64 noundef %3), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %if.end
 
 if.else:                                          ; preds = %entry, !sec !{!"public"}
@@ -514,7 +514,7 @@ if.else:                                          ; preds = %entry, !sec !{!"pub
   %6 = load ptr, ptr %r, align 8, !sec !{!"public", !"private"}
   %value = getelementptr inbounds %struct.record, ptr %6, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
   %7 = load i64, ptr %value, align 8, !sec !{!"public", !"public"}
-  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.16, ptr noundef %4, i64 noundef %5, i64 noundef %7), !sec !{!"public", !"public", !{!"public", !"public", !"public", !"public"}}
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.16, ptr noundef %4, i64 noundef %5, i64 noundef %7), !sec !{!"call", !"public", !{!"public", !"public", !"public", !"public"}}
   br label %if.end
 
 if.end:                                           ; preds = %if.else, %if.then, !sec !{!"public"}
@@ -626,8 +626,8 @@ if.else:                                          ; preds = %if.end10, !sec !{!"
   br label %return
 
 return:                                           ; preds = %if.else, %if.then13, %if.end, !sec !{!"private"}
-  %24 = load ptr, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret ptr %24, !sec !{!"public"}
+  %24 = load ptr, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret ptr %24, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -668,7 +668,7 @@ entry:                                            ; !sec !{!"public"}
   br i1 %tobool, label %if.else, label %if.then, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.17), !sec !{!"public", !"public", !{!"public"}}
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.17), !sec !{!"call", !"public", !{!"public"}}
   br label %if.end
 
 if.else:                                          ; preds = %entry, !sec !{!"public"}
@@ -693,7 +693,7 @@ for.body:                                         ; preds = %for.cond, !sec !{!"
   %16 = load ptr, ptr %arrayidx4, align 8, !sec !{!"public", !"private"}
   %value = getelementptr inbounds %struct.record, ptr %16, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
   %17 = load i64, ptr %value, align 8, !sec !{!"public", !"public"}
-  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.18, i64 noundef %12, ptr noundef %14, i64 noundef %17), !sec !{!"public", !"public", !{!"public", !"public", !"public", !"public"}}
+  %call5 = call i32 (ptr, ...) @printf(ptr noundef @.str.18, i64 noundef %12, ptr noundef %14, i64 noundef %17), !sec !{!"call", !"public", !{!"public", !"public", !"public", !"public"}}
   br label %for.inc
 
 for.inc:                                          ; preds = %for.body, !sec !{!"public"}
@@ -967,8 +967,8 @@ while.end8:                                       ; preds = %while.cond, !sec !{
   br label %return
 
 return:                                           ; preds = %while.end8, %if.then, !sec !{!"private"}
-  %19 = load ptr, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret ptr %19, !sec !{!"public"}
+  %19 = load ptr, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret ptr %19, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -996,11 +996,12 @@ if.else:                                          ; preds = %entry, !sec !{!"pri
   br label %return
 
 return:                                           ; preds = %if.else, %if.then, !sec !{!"private"}
-  %3 = load i64, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret i64 %3, !sec !{!"public"}
+  %3 = load i64, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret i64 %3, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
+; TRY MAKING PRIVATE
 define dso_local ptr @alloc_node() #0 !sec !{!"private", !"private", !{}} {
 entry:                                            ; !sec !{!"private"}
   %n = alloca ptr, align 8, !sec !{!"private"}
@@ -1019,7 +1020,7 @@ if.then:                                          ; preds = %entry, !sec !{!"pri
 
 if.then1:                                         ; preds = %if.then, !sec !{!"public"}
   %2 = load ptr, ptr @stderr, align 8, !sec !{!"public", !"public"}
-  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.19), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.19), !sec !{!"call", !"public", !{!"public", !"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1063,8 +1064,8 @@ if.end5:                                          ; preds = %for.end, %entry, !s
   store ptr %12, ptr @free_nodes, align 8, !sec !{!"private", !"private"}
   %13 = load ptr, ptr %nd, align 8, !sec !{!"private", !"private"}
   call void @llvm.memset.p0.i64(ptr align 8 %13, i8 0, i64 8, i1 false), !sec !{!"call", !"void", !{!"private", !"public", !"public", !"public"}}
-  %14 = load ptr, ptr %nd, align 8, !sec !{!"public", !"private"}
-  ret ptr %14, !sec !{!"public"}
+  %14 = load ptr, ptr %nd, align 8, !sec !{!"private", !"private"}
+  ret ptr %14, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -1082,7 +1083,7 @@ entry:                                            ; !sec !{!"private"}
   br i1 %tobool, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.37), !sec !{!"public", !"public", !{!"public"}}
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.37), !sec !{!"call", !"public", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1094,8 +1095,8 @@ if.end:                                           ; preds = %entry, !sec !{!"pri
   %4 = load ptr, ptr %memptr, align 8, !sec !{!"private", !"private"}
   %5 = load i64, ptr %size.addr, align 8, !sec !{!"public", !"private"}
   call void @llvm.memset.p0.i64(ptr align 1 %4, i8 0, i64 %5, i1 false), !sec !{!"call", !"void", !{!"private", !"public", !"public", !"public"}}
-  %6 = load ptr, ptr %memptr, align 8, !sec !{!"public", !"private"}
-  ret ptr %6, !sec !{!"public"}
+  %6 = load ptr, ptr %memptr, align 8, !sec !{!"private", !"private"}
+  ret ptr %6, !sec !{!"private"}
 }
 
 declare !sec !{!"public", !"private", !{!"public", !"public"}} i32 @fprintf(ptr noundef, ptr noundef, ...) #1
@@ -1121,6 +1122,7 @@ entry:                                            ; !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
+; TRY MAKING PRIVATE
 define dso_local ptr @alloc_record() #0 !sec !{!"private", !"private", !{}} {
 entry:                                            ; !sec !{!"private"}
   %r = alloca ptr, align 8, !sec !{!"private"}
@@ -1139,7 +1141,7 @@ if.then:                                          ; preds = %entry, !sec !{!"pri
 
 if.then1:                                         ; preds = %if.then, !sec !{!"public"}
   %2 = load ptr, ptr @stderr, align 8, !sec !{!"public", !"public"}
-  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.19), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call2 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %2, ptr noundef @.str.19), !sec !{!"call", !"public", !{!"public", !"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1183,8 +1185,8 @@ if.end5:                                          ; preds = %for.end, %entry, !s
   store ptr %12, ptr @free_recs, align 8, !sec !{!"private", !"private"}
   %13 = load ptr, ptr %rec, align 8, !sec !{!"private", !"private"}
   call void @llvm.memset.p0.i64(ptr align 8 %13, i8 0, i64 32, i1 false), !sec !{!"call", !"void", !{!"private", !"public", !"public", !"public"}}
-  %14 = load ptr, ptr %rec, align 8, !sec !{!"public", !"private"}
-  ret ptr %14, !sec !{!"public"}
+  %14 = load ptr, ptr %rec, align 8, !sec !{!"private", !"private"}
+  ret ptr %14, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -1202,6 +1204,7 @@ entry:                                            ; !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
+; TRY MAKING PRIVATE
 define dso_local ptr @make_record(i64 noundef %value) #0 !sec !{!"private", !"private", !{!"public"}} {
 entry:                                            ; !sec !{!"private"}
   %value.addr = alloca i64, align 8, !sec !{!"private"}
@@ -1214,7 +1217,7 @@ entry:                                            ; !sec !{!"private"}
   br i1 %cmp, label %if.then, label %if.else, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.20) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.20) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1226,14 +1229,15 @@ if.else:                                          ; preds = %entry, !sec !{!"pri
   br label %if.end
 
 if.end:                                           ; preds = %if.else, !sec !{!"private"}
-  %3 = load ptr, ptr %new_record, align 8, !sec !{!"public", !"private"}
-  ret ptr %3, !sec !{!"public"}
+  %3 = load ptr, ptr %new_record, align 8, !sec !{!"private", !"private"}
+  ret ptr %3, !sec !{!"private"}
 }
 
 ; Function Attrs: cold
-declare !sec !{!"public", !"private", !{!"public"}} void @perror(ptr noundef) #5
+declare !sec !{!"void", !"private", !{!"public"}} void @perror(ptr noundef) #5
 
 ; Function Attrs: noinline nounwind optnone uwtable
+; TRY MAKING PRIVATE
 define dso_local ptr @make_node() #0 !sec !{!"private", !"private", !{}} {
 entry:                                            ; !sec !{!"private"}
   %new_node = alloca ptr, align 8, !sec !{!"private"}
@@ -1244,7 +1248,7 @@ entry:                                            ; !sec !{!"private"}
   br i1 %cmp, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.21) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.21) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1263,7 +1267,7 @@ if.end:                                           ; preds = %entry, !sec !{!"pri
   br i1 %cmp3, label %if.then4, label %if.end5, !sec !{!"public"}
 
 if.then4:                                         ; preds = %if.end, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.22) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.22) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1281,7 +1285,7 @@ if.end5:                                          ; preds = %if.end, !sec !{!"pr
   br i1 %cmp9, label %if.then10, label %if.end11, !sec !{!"public"}
 
 if.then10:                                        ; preds = %if.end5, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.23) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.23) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1298,11 +1302,12 @@ if.end11:                                         ; preds = %if.end5, !sec !{!"p
   %12 = load ptr, ptr %new_node, align 8, !sec !{!"private", !"private"}
   %next = getelementptr inbounds %struct.node, ptr %12, i32 0, i32 6, !sec !{!"private", !"private", !"public", !"public"}
   store ptr null, ptr %next, align 8, !sec !{!"public", !"private"}
-  %13 = load ptr, ptr %new_node, align 8, !sec !{!"public", !"private"}
-  ret ptr %13, !sec !{!"public"}
+  %13 = load ptr, ptr %new_node, align 8, !sec !{!"private", !"private"}
+  ret ptr %13, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
+; TRY MAKING PRIVATE
 define internal ptr @allocate_align64(i64 noundef %size) #0 !sec !{!"private", !"private", !{!"public"}} {
 entry:                                            ; !sec !{!"private"}
   %size.addr = alloca i64, align 8, !sec !{!"private"}
@@ -1314,7 +1319,7 @@ entry:                                            ; !sec !{!"private"}
   br i1 %tobool, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.37), !sec !{!"public", !"public", !{!"public"}}
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str.37), !sec !{!"call", !"public", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1326,11 +1331,12 @@ if.end:                                           ; preds = %entry, !sec !{!"pri
   %3 = load ptr, ptr %memptr, align 8, !sec !{!"private", !"private"}
   %4 = load i64, ptr %size.addr, align 8, !sec !{!"public", !"private"}
   call void @llvm.memset.p0.i64(ptr align 1 %3, i8 0, i64 %4, i1 false), !sec !{!"call", !"void", !{!"private", !"public", !"public", !"public"}}
-  %5 = load ptr, ptr %memptr, align 8, !sec !{!"public", !"private"}
-  ret ptr %5, !sec !{!"public"}
+  %5 = load ptr, ptr %memptr, align 8, !sec !{!"private", !"private"}
+  ret ptr %5, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
+; TRY MAKING PRIVATE
 define dso_local ptr @make_leaf() #0 !sec !{!"private", !"private", !{}} {
 entry:                                            ; !sec !{!"private"}
   %leaf = alloca ptr, align 8, !sec !{!"private"}
@@ -1339,8 +1345,8 @@ entry:                                            ; !sec !{!"private"}
   %0 = load ptr, ptr %leaf, align 8, !sec !{!"private", !"private"}
   %is_leaf = getelementptr inbounds %struct.node, ptr %0, i32 0, i32 3, !sec !{!"private", !"private", !"public", !"public"}
   store i8 1, ptr %is_leaf, align 8, !sec !{!"public", !"private"}
-  %1 = load ptr, ptr %leaf, align 8, !sec !{!"public", !"private"}
-  ret ptr %1, !sec !{!"public"}
+  %1 = load ptr, ptr %leaf, align 8, !sec !{!"private", !"private"}
+  ret ptr %1, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -1384,8 +1390,8 @@ while.body:                                       ; preds = %land.end, !sec !{!"
   br label %while.cond, !llvm.loop !24
 
 while.end:                                        ; preds = %land.end, !sec !{!"private"}
-  %10 = load i64, ptr %left_index, align 8, !sec !{!"public", !"private"}
-  ret i64 %10, !sec !{!"public"}
+  %10 = load i64, ptr %left_index, align 8, !sec !{!"private", !"private"}
+  ret i64 %10, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -1499,8 +1505,8 @@ for.end:                                          ; preds = %for.cond, !sec !{!"
   %38 = load i64, ptr %num_keys16, align 8, !sec !{!"public", !"private"}
   %inc17 = add i64 %38, 1, !sec !{!"public"}
   store i64 %inc17, ptr %num_keys16, align 8, !sec !{!"public", !"private"}
-  %39 = load ptr, ptr %leaf.addr, align 8, !sec !{!"public", !"private"}
-  ret ptr %39, !sec !{!"public"}
+  %39 = load ptr, ptr %leaf.addr, align 8, !sec !{!"private", !"private"}
+  ret ptr %39, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -1534,7 +1540,7 @@ entry:                                            ; !sec !{!"private"}
   br i1 %cmp, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.24) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.24) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1549,7 +1555,7 @@ if.end:                                           ; preds = %entry, !sec !{!"pri
   br i1 %cmp5, label %if.then6, label %if.end7, !sec !{!"public"}
 
 if.then6:                                         ; preds = %if.end, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.25) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.25) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -1924,8 +1930,8 @@ if.end6:                                          ; preds = %if.end, !sec !{!"pr
   br label %return
 
 return:                                           ; preds = %if.end6, %if.then4, %if.then, !sec !{!"private"}
-  %21 = load ptr, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret ptr %21, !sec !{!"public"}
+  %21 = load ptr, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret ptr %21, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2010,8 +2016,8 @@ for.end:                                          ; preds = %for.cond, !sec !{!"
   %28 = load i64, ptr %num_keys11, align 8, !sec !{!"public", !"private"}
   %inc = add i64 %28, 1, !sec !{!"public"}
   store i64 %inc, ptr %num_keys11, align 8, !sec !{!"public", !"private"}
-  %29 = load ptr, ptr %root.addr, align 8, !sec !{!"public", !"private"}
-  ret ptr %29, !sec !{!"public"}
+  %29 = load ptr, ptr %root.addr, align 8, !sec !{!"private", !"private"}
+  ret ptr %29, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2045,7 +2051,7 @@ entry:                                            ; !sec !{!"private"}
   br i1 %cmp, label %if.then, label %if.end, !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.26) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.26) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -2059,7 +2065,7 @@ if.end:                                           ; preds = %entry, !sec !{!"pri
   br i1 %cmp3, label %if.then4, label %if.end5, !sec !{!"public"}
 
 if.then4:                                         ; preds = %if.end, !sec !{!"public"}
-  call void @perror(ptr noundef @.str.27) #9, !sec !{!"public", !"public", !{!"public"}}
+  call void @perror(ptr noundef @.str.27) #9, !sec !{!"call", !"void", !{!"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
@@ -2396,8 +2402,8 @@ entry:                                            ; !sec !{!"private"}
   %15 = load ptr, ptr %right.addr, align 8, !sec !{!"private", !"private"}
   %parent5 = getelementptr inbounds %struct.node, ptr %15, i32 0, i32 2, !sec !{!"private", !"private", !"public", !"public"}
   store ptr %14, ptr %parent5, align 8, !sec !{!"private", !"private"}
-  %16 = load ptr, ptr %root, align 8, !sec !{!"public", !"private"}
-  ret ptr %16, !sec !{!"public"}
+  %16 = load ptr, ptr %root, align 8, !sec !{!"private", !"private"}
+  ret ptr %16, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2437,8 +2443,8 @@ entry:                                            ; !sec !{!"private"}
   %11 = load i64, ptr %num_keys, align 8, !sec !{!"public", !"private"}
   %inc = add i64 %11, 1, !sec !{!"public"}
   store i64 %inc, ptr %num_keys, align 8, !sec !{!"public", !"private"}
-  %12 = load ptr, ptr %root, align 8, !sec !{!"public", !"private"}
-  ret ptr %12, !sec !{!"public"}
+  %12 = load ptr, ptr %root, align 8, !sec !{!"private", !"private"}
+  ret ptr %12, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2520,8 +2526,8 @@ if.end11:                                         ; preds = %if.end6, !sec !{!"p
   br label %return
 
 return:                                           ; preds = %if.end11, %if.then9, %if.then4, %if.then, !sec !{!"private"}
-  %23 = load ptr, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret ptr %23, !sec !{!"public"}
+  %23 = load ptr, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret ptr %23, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2558,8 +2564,8 @@ for.body:                                         ; preds = %for.cond, !sec !{!"
 
 if.then:                                          ; preds = %for.body, !sec !{!"private"}
   %10 = load i64, ptr %i, align 8, !sec !{!"public", !"private"}
-  %sub = sub i64 %10, 1, !sec !{!"public"}
-  ret i64 %sub, !sec !{!"public"}
+  %sub = sub i64 %10, 1, !sec !{!"private"}
+  ret i64 %sub, !sec !{!"private"}
 
 if.end:                                           ; preds = %for.body, !sec !{!"private"}
   br label %for.inc
@@ -2571,10 +2577,10 @@ for.inc:                                          ; preds = %if.end, !sec !{!"pr
   br label %for.cond, !llvm.loop !39
 
 for.end:                                          ; preds = %for.cond, !sec !{!"public"}
-  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.28), !sec !{!"public", !"public", !{!"public"}}
+  %call = call i32 (ptr, ...) @printf(ptr noundef @.str.28), !sec !{!"call", !"public", !{!"public"}}
   %12 = load ptr, ptr %n.addr, align 8, !sec !{!"public", !"private"}
   %13 = ptrtoint ptr %12 to i64, !sec !{!"public"}
-  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.29, i64 noundef %13), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str.29, i64 noundef %13), !sec !{!"call", !"public", !{!"public", !"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 }
@@ -2800,8 +2806,8 @@ for.end50:                                        ; preds = %for.cond43, !sec !{
   br label %if.end
 
 if.end:                                           ; preds = %for.end50, %for.end40, !sec !{!"private"}
-  %61 = load ptr, ptr %n.addr, align 8, !sec !{!"public", !"private"}
-  ret ptr %61, !sec !{!"public"}
+  %61 = load ptr, ptr %n.addr, align 8, !sec !{!"private", !"private"}
+  ret ptr %61, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -2861,8 +2867,8 @@ if.end2:                                          ; preds = %if.else, %if.then1,
   br label %return
 
 return:                                           ; preds = %if.end2, %if.then, !sec !{!"private"}
-  %15 = load ptr, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret ptr %15, !sec !{!"public"}
+  %15 = load ptr, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret ptr %15, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -3121,8 +3127,8 @@ if.end54:                                         ; preds = %for.end48, %for.end
   call void @free(ptr noundef %93) #8, !sec !{!"public"}
   %94 = load ptr, ptr %n.addr, align 8, !sec !{!"private", !"private"}
   call void @free_node(ptr noundef %94), !sec !{!"call", !"void", !{!"private"}}
-  %95 = load ptr, ptr %root.addr, align 8, !sec !{!"public", !"private"}
-  ret ptr %95, !sec !{!"public"}
+  %95 = load ptr, ptr %root.addr, align 8, !sec !{!"private", !"private"}
+  ret ptr %95, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -3299,8 +3305,8 @@ if.else:                                          ; preds = %cond.end29, !sec !{
   br label %return
 
 return:                                           ; preds = %if.else, %if.then34, %if.then6, %if.then, !sec !{!"private"}
-  %52 = load ptr, ptr %retval, align 8, !sec !{!"public", !"private"}
-  ret ptr %52, !sec !{!"public"}
+  %52 = load ptr, ptr %retval, align 8, !sec !{!"private", !"private"}
+  ret ptr %52, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -3705,8 +3711,8 @@ if.end125:                                        ; preds = %if.end124, %if.end5
   %164 = load i64, ptr %num_keys128, align 8, !sec !{!"public", !"private"}
   %dec129 = add i64 %164, -1, !sec !{!"public"}
   store i64 %dec129, ptr %num_keys128, align 8, !sec !{!"public", !"private"}
-  %165 = load ptr, ptr %root.addr, align 8, !sec !{!"public", !"private"}
-  ret ptr %165, !sec !{!"public"}
+  %165 = load ptr, ptr %root.addr, align 8, !sec !{!"private", !"private"}
+  ret ptr %165, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -3745,8 +3751,8 @@ if.then:                                          ; preds = %land.lhs.true, !sec
   br label %if.end
 
 if.end:                                           ; preds = %if.then, %land.lhs.true, %entry, !sec !{!"private"}
-  %9 = load ptr, ptr %root.addr, align 8, !sec !{!"public", !"private"}
-  ret ptr %9, !sec !{!"public"}
+  %9 = load ptr, ptr %root.addr, align 8, !sec !{!"private", !"private"}
+  ret ptr %9, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -3845,7 +3851,7 @@ entry:                                            ; !sec !{!"private"}
   store ptr %root, ptr %root.addr, align 8, !sec !{!"private", !"private"}
   %0 = load ptr, ptr %root.addr, align 8, !sec !{!"private", !"private"}
   call void @destroy_tree_nodes(ptr noundef %0), !sec !{!"call", !"void", !{!"private"}}
-  ret ptr null, !sec !{!"public"}
+  ret ptr null, !sec !{!"private"}
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable
@@ -4092,13 +4098,13 @@ entry:                                            ; !sec !{!"public"}
 
 if.then:                                          ; preds = %entry, !sec !{!"public"}
   %3 = load ptr, ptr @stderr, align 8, !sec !{!"public", !"public"}
-  %call1 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %3, ptr noundef @.str.30), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call1 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %3, ptr noundef @.str.30), !sec !{!"call", !"public", !{!"public", !"public"}}
   call void @exit(i32 noundef 1) #7, !sec !{!"call", !"void", !{!"public"}}
   unreachable
 
 if.else:                                          ; preds = %entry, !sec !{!"public"}
   %4 = load i64, ptr %total_mem, align 8, !sec !{!"public", !"public"}
-  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.31, i64 noundef %4), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call2 = call i32 (ptr, ...) @printf(ptr noundef @.str.31, i64 noundef %4), !sec !{!"call", !"public", !{!"public", !"public"}}
   br label %if.end
 
 if.end:                                           ; preds = %if.else, !sec !{!"public"}
@@ -4214,12 +4220,12 @@ for.inc29:                                        ; preds = %for.body24, !sec !{
 
 for.end31:                                        ; preds = %for.cond22, !sec !{!"public"}
   %39 = load i64, ptr %nelements, align 8, !sec !{!"public", !"public"}
-  %call32 = call i32 (ptr, ...) @printf(ptr noundef @.str.32, i64 noundef %39), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call32 = call i32 (ptr, ...) @printf(ptr noundef @.str.32, i64 noundef %39), !sec !{!"call", !"public", !{!"public", !"public"}}
   %40 = load i64, ptr @order, align 8, !sec !{!"public", !"public"}
-  %call33 = call i32 (ptr, ...) @printf(ptr noundef @.str.33, i64 noundef %40), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call33 = call i32 (ptr, ...) @printf(ptr noundef @.str.33, i64 noundef %40), !sec !{!"call", !"public", !{!"public", !"public"}}
   %41 = load i64, ptr @allocator_stat, align 8, !sec !{!"private", !"private"}
   %shr = lshr i64 %41, 20, !sec !{!"public"}
-  %call34 = call i32 (ptr, ...) @printf(ptr noundef @.str.34, i64 noundef %shr), !sec !{!"public", !"public", !{!"public", !"public"}}
+  %call34 = call i32 (ptr, ...) @printf(ptr noundef @.str.34, i64 noundef %shr), !sec !{!"call", !"public", !{!"public", !"public"}}
   %call35 = call i32 @usleep(i32 noundef 250), !sec !{!"call", !"public", !{!"public"}}
   store i64 0, ptr %sum, align 8, !sec !{!"public", !"public"}
   %call36 = call i32 @gettimeofday(ptr noundef %start, ptr noundef null) #8, !sec !{!"call", !"public", !{!"public", !"public"}}
@@ -4290,8 +4296,8 @@ for.end57:                                        ; preds = %for.cond38, !sec !{
   %tv_sec59 = getelementptr inbounds %struct.timeval, ptr %start, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
   %60 = load i64, ptr %tv_sec59, align 8, !sec !{!"public", !"public"}
   %sub = sub nsw i64 %59, %60, !sec !{!"public"}
-  %call60 = call i32 (ptr, ...) @printf(ptr noundef @.str.35, i64 noundef %58, i64 noundef %sub), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
-  %call61 = call i32 (ptr, ...) @printf(ptr noundef @.str.36), !sec !{!"public", !"public", !{!"public"}}
+  %call60 = call i32 (ptr, ...) @printf(ptr noundef @.str.35, i64 noundef %58, i64 noundef %sub), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
+  %call61 = call i32 (ptr, ...) @printf(ptr noundef @.str.36), !sec !{!"call", !"public", !{!"public"}}
   ret i32 0, !sec !{!"public"}
 }
 

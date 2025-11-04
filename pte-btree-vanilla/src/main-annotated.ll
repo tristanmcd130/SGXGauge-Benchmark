@@ -39,7 +39,7 @@ entry:                                            ; !sec !{!"public"}
   %tv_usec5 = getelementptr inbounds %struct.timeval, ptr %start, i32 0, i32 1, !sec !{!"public", !"public", !"public", !"public"}
   %4 = load i64, ptr %tv_usec5, align 8, !sec !{!"public", !"public"}
   %sub6 = sub nsw i64 %add, %4, !sec !{!"public"}
-  %call7 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %0, ptr noundef @.str, i64 noundef %sub6), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
+  %call7 = call i32 (ptr, ptr, ...) @fprintf(ptr noundef %0, ptr noundef @.str, i64 noundef %sub6), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
   %call8 = call i32 @gettimeofday(ptr noundef %tend, ptr noundef null) #3, !sec !{!"call", !"public", !{!"public", !"public"}}
   %tv_sec9 = getelementptr inbounds %struct.timeval, ptr %tend, i32 0, i32 0, !sec !{!"public", !"public", !"public", !"public"}
   %5 = load i64, ptr %tv_sec9, align 8, !sec !{!"public", !"public"}
@@ -52,7 +52,7 @@ entry:                                            ; !sec !{!"public"}
   %8 = load i64, ptr %tv_usec13, align 8, !sec !{!"public", !"public"}
   %sub14 = sub nsw i64 %7, %8, !sec !{!"public"}
   %div = sdiv i64 %sub14, 1000, !sec !{!"public"}
-  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i64 noundef %sub11, i64 noundef %div), !sec !{!"public", !"public", !{!"public", !"public", !"public"}}
+  %call15 = call i32 (ptr, ...) @printf(ptr noundef @.str.1, i64 noundef %sub11, i64 noundef %div), !sec !{!"call", !"public", !{!"public", !"public", !"public"}}
   ret i32 0, !sec !{!"public"}
 }
 
